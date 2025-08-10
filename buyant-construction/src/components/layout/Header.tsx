@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Menu, X, Globe } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Header() {
   const { language, setLanguage, t } = useLanguage()
@@ -24,14 +25,19 @@ export default function Header() {
   return (
     <header className="bg-[#F4F2EA] shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-[#0F425C] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">Б</span>
-              </div>
-              <span className="ml-3 text-xl font-bold text-[#0F425C]">
+              <Image
+                src="/logoMain.png"
+                alt="Buyant Construction Logo"
+                width={180}
+                height={72}
+                className="h-16 w-auto"
+                priority
+              />
+              <span className="ml-3 text-xl font-bold text-[#0F425C] hidden sm:block">
                 {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
               </span>
             </Link>

@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
   const { language, t } = useLanguage()
@@ -17,9 +18,13 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-[#0F425C] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">Б</span>
-              </div>
+              <Image
+                src="/logoMain.png"
+                alt="Buyant Construction Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10"
+              />
               <span className="ml-3 text-xl font-bold">
                 {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
               </span>
