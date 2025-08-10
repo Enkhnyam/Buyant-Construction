@@ -22,16 +22,16 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-[#F4F2EA] shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#0F425C] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-xl">Б</span>
               </div>
-              <span className="ml-3 text-xl font-bold text-gray-900">
+              <span className="ml-3 text-xl font-bold text-[#0F425C]">
                 {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
               </span>
             </Link>
@@ -43,7 +43,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
               >
                 {item.name}
               </Link>
@@ -54,7 +54,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center space-x-2 text-[#0F425C] hover:text-[#0F425C]/80 transition-colors"
             >
               <Globe className="w-5 h-5" />
               <span className="text-sm font-medium">
@@ -65,7 +65,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+              className="md:hidden p-2 rounded-md text-[#0F425C] hover:text-[#0F425C]/80 hover:bg-[#0F425C]/10 transition-colors"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -80,12 +80,12 @@ export default function Header() {
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#F4F2EA] border-t border-[#0F425C]/20">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium transition-colors"
+                className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}

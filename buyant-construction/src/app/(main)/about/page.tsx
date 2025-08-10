@@ -79,12 +79,12 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-[#0F425C] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             {language === 'mn' ? 'Бидний тухай' : 'About Us'}
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
             {language === 'mn'
               ? 'Монголын гэр бүлийн барилгын үйлчилгээний түүх, зорилго, үнэт зүйлс'
               : 'The story, mission, and values of Mongolia\'s family construction service'
@@ -98,10 +98,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-6">
                 {language === 'mn' ? 'Манай түүх' : 'Our Story'}
               </h2>
-              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-lg text-[#0F425C]/80 leading-relaxed">
                 <p>
                   {language === 'mn'
                     ? 'Баянт Барилга нь 2003 онд үүсч, Монголын барилгын салбарт 20 гаруй жилийн туршлагатай гэр бүлийн бизнес юм. Бид эхлээд жижиг барилгын ажилгаас эхлээд, одоо орон сууцны болон арилжааны барилгын бүрэн үйлчилгээ үзүүлж байна.'
@@ -116,15 +116,15 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="bg-gray-100 rounded-xl p-8">
+            <div className="bg-[#F4F2EA] rounded-xl p-8">
               <div className="text-center">
-                <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white text-3xl font-bold">Б</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
                   {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-[#0F425C]/80">
                   {language === 'mn'
                     ? '2003 онд үүссэн гэр бүлийн бизнес'
                     : 'Family business established in 2003'
@@ -137,17 +137,17 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F4F2EA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="text-center">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Target className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
                 {language === 'mn' ? 'Бидний зорилго' : 'Our Mission'}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-[#0F425C]/80 leading-relaxed">
                 {language === 'mn'
                   ? 'Монголын хэрэглэгчдэд чанартай, найдвартай барилгын үйлчилгээг үзүүлж, тэдний мөрөөдлийн гэр, ажлын байрыг бүтээхэд хувь нэмрээ оруулах.'
                   : 'To provide quality and reliable construction services to Mongolian customers and contribute to building their dream homes and workplaces.'
@@ -155,13 +155,13 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Star className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
                 {language === 'mn' ? 'Бидний хараа' : 'Our Vision'}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-[#0F425C]/80 leading-relaxed">
                 {language === 'mn'
                   ? 'Монголын барилгын салбарт тэргүүлэгч, хэрэглэгчдийн итгэлд нийцсэн, олон улсын стандартад нийцсэн үйлчилгээ үзүүлэгч компани болох.'
                   : 'To become a leading company in Mongolia\'s construction sector, trusted by customers and providing services that meet international standards.'
@@ -176,10 +176,10 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
               {language === 'mn' ? 'Манай баг' : 'Our Team'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
                 ? 'Чадвартай, туршлагатай мэргэжлийн баг'
                 : 'Skilled and experienced professional team'
@@ -189,23 +189,23 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-8">
+              <div key={index} className="bg-[#F4F2EA] rounded-xl p-8">
                 <div className="text-center mb-6">
-                  <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-24 h-24 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-white text-2xl font-bold">{member.name.charAt(0)}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-blue-600 font-semibold">{member.role}</p>
+                  <h3 className="text-2xl font-bold text-[#0F425C] mb-2">{member.name}</h3>
+                  <p className="text-[#0F425C] font-semibold">{member.role}</p>
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-6">{member.description}</p>
+                <p className="text-[#0F425C]/80 leading-relaxed mb-6">{member.description}</p>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">
+                  <h4 className="font-semibold text-[#0F425C] mb-3">
                     {language === 'mn' ? 'Мэргэшил:' : 'Expertise:'}
                   </h4>
                   <ul className="space-y-2">
                     {member.expertise.map((skill, skillIndex) => (
-                      <li key={skillIndex} className="flex items-center text-gray-600">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                      <li key={skillIndex} className="flex items-center text-[#0F425C]/80">
+                        <CheckCircle className="w-4 h-4 text-[#0F425C] mr-2 flex-shrink-0" />
                         {skill}
                       </li>
                     ))}
@@ -218,13 +218,13 @@ export default function AboutPage() {
       </section>
 
       {/* Company Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F4F2EA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
               {language === 'mn' ? 'Бидний үнэт зүйлс' : 'Our Values'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
                 ? 'Бидний ажил, үйлчилгээний суурь болсон үнэт зүйлс'
                 : 'The values that form the foundation of our work and service'
@@ -235,11 +235,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <value.icon className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-[#0F425C]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <value.icon className="w-8 h-8 text-[#0F425C]" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl font-semibold text-[#0F425C] mb-4">{value.title}</h3>
+                <p className="text-[#0F425C]/80 leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -247,13 +247,13 @@ export default function AboutPage() {
       </section>
 
       {/* Achievements */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-[#0F425C] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               {language === 'mn' ? 'Бидний амжилтууд' : 'Our Achievements'}
             </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
               {language === 'mn'
                 ? '20 гаруй жилийн туршлагатай барилгын компани'
                 : 'Construction company with over 20 years of experience'
@@ -265,7 +265,7 @@ export default function AboutPage() {
             {achievements.map((achievement, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl md:text-5xl font-bold mb-2">{achievement.number}</div>
-                <div className="text-blue-100">{achievement.label}</div>
+                <div className="text-white/80">{achievement.label}</div>
               </div>
             ))}
           </div>

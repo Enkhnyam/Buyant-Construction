@@ -10,7 +10,7 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    service: '',
+    subject: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -37,297 +37,284 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       })
 
-      const data = await response.json()
-
       if (response.ok) {
         setIsSubmitted(true)
         setFormData({
           name: '',
           email: '',
           phone: '',
-          service: '',
+          subject: '',
           message: ''
         })
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => setIsSubmitted(false), 5000)
       } else {
-        // Handle error
-        console.error('Contact form error:', data.error)
-        alert(language === 'mn' 
-          ? `Алдаа гарлаа: ${data.error}` 
-          : `Error: ${data.error}`
-        )
+        throw new Error('Failed to submit')
       }
     } catch (error) {
-      console.error('Failed to submit contact form:', error)
-      alert(language === 'mn' 
-        ? 'Системийн алдаа гарлаа. Дахин оролдоно уу.' 
-        : 'System error occurred. Please try again.'
-      )
+      console.error('Error submitting form:', error)
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const services = [
-    { value: '', label: language === 'mn' ? 'Үйлчилгээ сонгох' : 'Select Service' },
-    { value: 'construction', label: language === 'mn' ? 'Орон сууцны барилга' : 'Residential Construction' },
-    { value: 'legal', label: language === 'mn' ? 'Хуулийн үйлчилгээ' : 'Legal Services' },
-    { value: 'consultation', label: language === 'mn' ? 'Зөвлөгөө' : 'Consultation' },
+  const subjects = [
+    { value: 'construction', label: language === 'mn' ? 'Барилгын ажил' : 'Construction Work' },
+    { value: 'legal', label: language === 'mn' ? 'Хуулийн зөвлөгөө' : 'Legal Consultation' },
+    { value: 'quote', label: language === 'mn' ? 'Үнийн санал' : 'Price Quote' },
     { value: 'other', label: language === 'mn' ? 'Бусад' : 'Other' }
   ]
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-[#F4F2EA] flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center p-8">
+          <div className="w-16 h-16 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold text-[#0F425C] mb-4">
+            {language === 'mn' ? 'Баярлалаа!' : 'Thank You!'}
+          </h1>
+          <p className="text-[#0F425C]/80 mb-6">
+            {language === 'mn'
+              ? 'Таны мессеж амжилттай илгээгдлээ. Бид удахгүй танд холбогдох болно.'
+              : 'Your message has been sent successfully. We will contact you soon.'
+            }
+          </p>
+          <button
+            onClick={() => setIsSubmitted(false)}
+            className="bg-[#0F425C] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-colors"
+          >
+            {language === 'mn' ? 'Шинэ мессеж' : 'New Message'}
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-[#0F425C] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             {language === 'mn' ? 'Холбоо барих' : 'Contact Us'}
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
             {language === 'mn'
-              ? 'Таны төслийн талаар зөвлөгөө авахын тулд бидэнтэй холбоо барина уу'
-              : 'Get in touch with us for consultation about your project'
+              ? 'Таны төслийн талаар ярилцая. Чөлөөт зөвлөгөө авахын тулд бидэнтэй холбоо барина уу.'
+              : 'Let\'s discuss your project. Contact us for a free consultation.'
             }
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Form */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              {language === 'mn' ? 'Мессеж илгээх' : 'Send Message'}
-            </h2>
-            
-            {isSubmitted && (
-              <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2" />
-                {language === 'mn' 
-                  ? 'Таны мессеж амжилттай илгээгдлээ! Бид удахгүй танд холбогдох болно.'
-                  : 'Your message has been sent successfully! We will contact you soon.'
-                }
-              </div>
-            )}
+      {/* Contact Form and Info */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div>
+              <h2 className="text-3xl font-bold text-[#0F425C] mb-8">
+                {language === 'mn' ? 'Мессеж илгээх' : 'Send Message'}
+              </h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Нэр' : 'Name'} *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
+                      placeholder={language === 'mn' ? 'Таны нэр' : 'Your name'}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'И-мэйл' : 'Email'} *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
+                      placeholder={language === 'mn' ? 'Таны и-мэйл' : 'Your email'}
+                    />
+                  </div>
+                </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Утас' : 'Phone'}
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
+                      placeholder={language === 'mn' ? '+976 11 123 456' : '+976 11 123 456'}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Сэдэв' : 'Subject'} *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      required
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
+                    >
+                      <option value="">{language === 'mn' ? 'Сэдэв сонгох' : 'Select subject'}</option>
+                      {subjects.map((subject) => (
+                        <option key={subject.value} value={subject.value}>
+                          {subject.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'mn' ? 'Нэр *' : 'Name *'}
+                  <label htmlFor="message" className="block text-sm font-medium text-[#0F425C] mb-2">
+                    {language === 'mn' ? 'Мессеж' : 'Message'} *
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
+                  <textarea
+                    id="message"
+                    name="message"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder={language === 'mn' ? 'Таны нэр' : 'Your name'}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'mn' ? 'И-мэйл *' : 'Email *'}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                    rows={6}
+                    value={formData.message}
                     onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder={language === 'mn' ? 'Таны и-мэйл' : 'Your email'}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'mn' ? 'Утасны дугаар' : 'Phone Number'}
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder={language === 'mn' ? '+976 99 999 999' : '+976 99 999 999'}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                    {language === 'mn' ? 'Үйлчилгээ' : 'Service'}
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    {services.map((service) => (
-                      <option key={service.value} value={service.value}>
-                        {service.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'mn' ? 'Мессеж *' : 'Message *'}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder={language === 'mn' 
-                    ? 'Таны төслийн талаар дэлгэрэнгүй бичнэ үү...'
-                    : 'Please provide details about your project...'
-                  }
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                    {language === 'mn' ? 'Илгээж байна...' : 'Sending...'}
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5 mr-2" />
-                    {language === 'mn' ? 'Мессеж илгээх' : 'Send Message'}
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              {language === 'mn' ? 'Холбоо барих мэдээлэл' : 'Contact Information'}
-            </h2>
-
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {language === 'mn' ? 'Утасны дугаар' : 'Phone'}
-                  </h3>
-                  <a 
-                    href="tel:+976-11-123456" 
-                    className="text-gray-600 hover:text-blue-600 transition-colors text-lg"
-                  >
-                    +976 11 123 456
-                  </a>
-                  <p className="text-gray-500 text-sm mt-1">
-                    {language === 'mn' ? 'Да-Ня: 9:00-18:00' : 'Mon-Fri: 9:00-18:00'}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {language === 'mn' ? 'И-мэйл' : 'Email'}
-                  </h3>
-                  <a 
-                    href="mailto:info@buyant.mn" 
-                    className="text-gray-600 hover:text-blue-600 transition-colors text-lg"
-                  >
-                    info@buyant.mn
-                  </a>
-                  <p className="text-gray-500 text-sm mt-1">
-                    {language === 'mn' ? '24 цагийн дотор хариулна' : 'We reply within 24 hours'}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {language === 'mn' ? 'Хаяг' : 'Address'}
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    {language === 'mn' 
-                      ? 'Улаанбаатар хот, Сүхбаатар дүүрэг, 1-р хороо'
-                      : '1st Khoroo, Sukhbaatar District, Ulaanbaatar, Mongolia'
+                    className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
+                    placeholder={language === 'mn' 
+                      ? 'Таны төслийн талаар дэлгэрэнгүй мэдээлэл...'
+                      : 'Tell us more about your project...'
                     }
-                  </p>
-                  <p className="text-gray-500 text-sm mt-1">
-                    {language === 'mn' ? 'Төв хэсэгт байрладаг' : 'Located in the city center'}
-                  </p>
+                  />
                 </div>
-              </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-orange-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {language === 'mn' ? 'Ажиллах цаг' : 'Working Hours'}
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    {language === 'mn' ? 'Даваа - Баасан: 9:00 - 18:00' : 'Monday - Friday: 9:00 - 18:00'}
-                  </p>
-                  <p className="text-gray-500 text-sm mt-1">
-                    {language === 'mn' ? 'Мягмар, Ням: Амарна' : 'Saturday & Sunday: Closed'}
-                  </p>
-                </div>
-              </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#0F425C] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-[#0F425C]/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      {language === 'mn' ? 'Илгээж байна...' : 'Sending...'}
+                    </>
+                  ) : (
+                    <>
+                      {language === 'mn' ? 'Мессеж илгээх' : 'Send Message'}
+                      <Send className="ml-2 w-5 h-5" />
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
 
-            {/* Emergency Contact */}
-            <div className="mt-12 p-6 bg-red-50 border border-red-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-red-800 mb-2">
-                {language === 'mn' ? 'Яаралтай холбоо барих' : 'Emergency Contact'}
-              </h3>
-              <p className="text-red-700 mb-3">
-                {language === 'mn'
-                  ? 'Яаралтай асуудал гарвал 24 цагийн турш холбогдох боломжтой'
-                  : 'Available 24/7 for emergency issues'
-                }
-              </p>
-              <a 
-                href="tel:+976-99-999-999" 
-                className="inline-flex items-center text-red-600 hover:text-red-700 font-semibold"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                +976 99 999 999
-              </a>
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-3xl font-bold text-[#0F425C] mb-8">
+                {language === 'mn' ? 'Холбоо барих мэдээлэл' : 'Contact Information'}
+              </h2>
+              
+              <div className="space-y-8">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-[#0F425C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[#0F425C]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Утас' : 'Phone'}
+                    </h3>
+                    <a
+                      href="tel:+976-11-123456"
+                      className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors text-lg"
+                    >
+                      +976 11 123 456
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-[#0F425C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-[#0F425C]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'И-мэйл' : 'Email'}
+                    </h3>
+                    <a
+                      href="mailto:info@buyant.mn"
+                      className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors text-lg"
+                    >
+                      info@buyant.mn
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-[#0F425C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-[#0F425C]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Хаяг' : 'Address'}
+                    </h3>
+                    <p className="text-[#0F425C]/80 text-lg">
+                      {language === 'mn' ? 'Улаанбаатар хот, Монгол' : 'Ulaanbaatar, Mongolia'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-[#0F425C]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-[#0F425C]" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg font-semibold text-[#0F425C] mb-2">
+                      {language === 'mn' ? 'Ажиллах цаг' : 'Working Hours'}
+                    </h3>
+                    <p className="text-[#0F425C]/80 text-lg">
+                      {language === 'mn' ? 'Даваа-Ням: 9:00-18:00' : 'Monday-Friday: 9:00-18:00'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Info */}
+              <div className="mt-12 p-6 bg-[#F4F2EA] rounded-lg">
+                <h3 className="text-lg font-semibold text-[#0F425C] mb-3">
+                  {language === 'mn' ? 'Чөлөөт зөвлөгөө' : 'Free Consultation'}
+                </h3>
+                <p className="text-[#0F425C]/80">
+                  {language === 'mn'
+                    ? 'Барилгын төслийн талаар чөлөөт зөвлөгөө өгнө. Бидэнтэй холбоо барина уу.'
+                    : 'We provide free consultation for construction projects. Contact us today.'
+                  }
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

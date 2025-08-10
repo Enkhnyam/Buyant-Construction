@@ -105,12 +105,12 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-[#0F425C] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             {language === 'mn' ? 'Бидний төслүүд' : 'Our Projects'}
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
             {language === 'mn'
               ? 'Амжилттай гүйцэтгэсэн барилгын төслүүд, чанартай ажлын жишээ'
               : 'Successfully completed construction projects and examples of quality work'
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Filters and Search */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-[#F4F2EA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
             {/* Category Filter */}
@@ -131,8 +131,8 @@ export default function ProjectsPage() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-6 py-3 rounded-lg font-medium transition-colors ${
                     selectedCategory === category.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white text-gray-700 hover:bg-gray-100'
+                      ? 'bg-[#0F425C] text-white'
+                      : 'bg-white text-[#0F425C] hover:bg-[#0F425C]/10'
                   }`}
                 >
                   {category.name}
@@ -142,13 +142,13 @@ export default function ProjectsPage() {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0F425C]/40 w-5 h-5" />
               <input
                 type="text"
                 placeholder={language === 'mn' ? 'Төсөл хайх...' : 'Search projects...'}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                className="pl-10 pr-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent w-64"
               />
             </div>
           </div>
@@ -160,11 +160,11 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProjects.length === 0 ? (
             <div className="text-center py-20">
-              <Building2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              <Building2 className="w-16 h-16 text-[#0F425C]/40 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-[#0F425C]/60 mb-2">
                 {language === 'mn' ? 'Төсөл олдсонгүй' : 'No projects found'}
               </h3>
-              <p className="text-gray-500">
+              <p className="text-[#0F425C]/50">
                 {language === 'mn' 
                   ? 'Хайлтын нөхцөлд тохирох төсөл байхгүй байна'
                   : 'No projects match your search criteria'
@@ -176,66 +176,66 @@ export default function ProjectsPage() {
               {filteredProjects.map((project) => (
                 <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   {/* Project Image Placeholder */}
-                  <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                    <Building2 className="w-16 h-16 text-blue-600" />
+                  <div className="h-48 bg-gradient-to-br from-[#0F425C]/10 to-[#0F425C]/20 flex items-center justify-center">
+                    <Building2 className="w-16 h-16 text-[#0F425C]" />
                   </div>
 
                   {/* Project Info */}
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.category === 'residential' ? 'bg-blue-100 text-blue-800' :
-                        project.category === 'commercial' ? 'bg-green-100 text-green-800' :
-                        'bg-orange-100 text-orange-800'
+                        project.category === 'residential' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
+                        project.category === 'commercial' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
+                        'bg-[#0F425C]/10 text-[#0F425C]'
                       }`}>
                         {categories.find(c => c.id === project.category)?.name}
                       </span>
-                      <span className="text-sm text-gray-500">{project.year}</span>
+                      <span className="text-sm text-[#0F425C]/50">{project.year}</span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                    <h3 className="text-xl font-bold text-[#0F425C] mb-3">{project.title}</h3>
                     
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-[#0F425C]/80">
                         <MapPin className="w-4 h-4 mr-2" />
                         {project.location}
                       </div>
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-[#0F425C]/80">
                         <Home className="w-4 h-4 mr-2" />
                         {project.area} {project.areaUnit}
                       </div>
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-[#0F425C]/80">
                         <Calendar className="w-4 h-4 mr-2" />
                         {project.duration}
                       </div>
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-[#0F425C]/80">
                         <Users className="w-4 h-4 mr-2" />
                         {language === 'mn' ? `${project.team} хүн` : `${project.team} people`}
                       </div>
                     </div>
 
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">{project.description}</p>
+                    <p className="text-[#0F425C]/80 text-sm mb-4 line-clamp-3">{project.description}</p>
 
                     {/* Project Features */}
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-900 mb-2 text-sm">
+                      <h4 className="font-semibold text-[#0F425C] mb-2 text-sm">
                         {language === 'mn' ? 'Онцлог шийдэл:' : 'Key Features:'}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {project.features.slice(0, 3).map((feature, index) => (
-                          <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                          <span key={index} className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
                             {feature}
                           </span>
                         ))}
                         {project.features.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                          <span className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
                             +{project.features.length - 3}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center">
+                    <button className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-colors inline-flex items-center justify-center">
                       {language === 'mn' ? 'Дэлгэрэнгүй' : 'View Details'}
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </button>
@@ -248,13 +248,13 @@ export default function ProjectsPage() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F4F2EA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
               {language === 'mn' ? 'Төслийн статистик' : 'Project Statistics'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
                 ? '20 гаруй жилийн туршлагатай барилгын компанийн амжилтууд'
                 : 'Achievements of a construction company with over 20 years of experience'
@@ -264,26 +264,26 @@ export default function ProjectsPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">50+</div>
-              <div className="text-gray-600">
+              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">50+</div>
+              <div className="text-[#0F425C]/80">
                 {language === 'mn' ? 'Амжилттай төсөл' : 'Successful Projects'}
               </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-green-600 mb-2">25,000+</div>
-              <div className="text-gray-600">
+              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">25,000+</div>
+              <div className="text-[#0F425C]/80">
                 {language === 'mn' ? 'м² барилга' : 'm² Built'}
               </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">100%</div>
-              <div className="text-gray-600">
+              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">100%</div>
+              <div className="text-[#0F425C]/80">
                 {language === 'mn' ? 'Хэрэглэгчийн сэтгэл ханамж' : 'Customer Satisfaction'}
               </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-orange-600 mb-2">20+</div>
-              <div className="text-gray-600">
+              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">20+</div>
+              <div className="text-[#0F425C]/80">
                 {language === 'mn' ? 'Жилийн туршлага' : 'Years Experience'}
               </div>
             </div>
@@ -292,7 +292,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-[#0F425C] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             {language === 'mn' 
@@ -300,7 +300,7 @@ export default function ProjectsPage() {
               : 'Let\'s Start Your Project'
             }
           </h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
             {language === 'mn'
               ? 'Чөлөөт зөвлөгөө авахын тулд бидэнтэй холбоо барина уу'
               : 'Contact us for a free consultation about your project'
@@ -309,14 +309,14 @@ export default function ProjectsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
+              className="bg-white text-[#0F425C] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center"
             >
               {t('common.contactUs')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
             <a
               href="tel:+976-11-123456"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center justify-center"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#0F425C] transition-colors inline-flex items-center justify-center"
             >
               +976 11 123 456
             </a>
