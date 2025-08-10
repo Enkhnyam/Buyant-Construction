@@ -1,0 +1,8 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#0F425C"/>
+  <circle cx="100" cy="120" r="40" fill="#F4F2EA"/>
+  <text x="100" y="130" text-anchor="middle" fill="#0F425C" font-family="Arial, sans-serif" font-size="24" font-weight="bold">B</text>
+  <text x="100" y="200" text-anchor="middle" fill="#F4F2EA" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Buyant</text>
+  <text x="100" y="220" text-anchor="middle" fill="#F4F2EA" font-family="Arial, sans-serif" font-size="12">Construction</text>
+  <text x="100" y="240" text-anchor="middle" fill="#F4F2EA" font-family="Arial, sans-serif" font-size="12">Specialist</text>
+</svg>

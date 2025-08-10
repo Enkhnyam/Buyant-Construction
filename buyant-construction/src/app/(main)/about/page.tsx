@@ -3,27 +3,29 @@
 import React from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Users, Award, Target, Heart, CheckCircle, Star } from 'lucide-react'
-import { TeamSection } from '@/components/TeamSection'
+import Image from 'next/image'
 
 export default function AboutPage() {
   const { language, t } = useLanguage()
 
   const teamMembers = [
     {
-      name: language === 'mn' ? 'Баянт' : 'Buyant',
+      name: language === 'mn' ? 'Буя Жадамба' : 'Buya Jadamba',
       role: language === 'mn' ? 'Барилгын мэргэжилтэн' : 'Construction Specialist',
       description: language === 'mn'
         ? '20 гаруй жилийн туршлагатай барилгын мэргэжилтэн. Олон төрлийн барилгын төсөл амжилттай гүйцэтгэсэн.'
         : 'Construction specialist with over 20 years of experience. Successfully completed various construction projects.',
-      expertise: language === 'mn' ? ['Орон сууцны барилга', 'Арилжааны барилга', 'Төслийн удирдлага'] : ['Residential Construction', 'Commercial Construction', 'Project Management']
+      expertise: language === 'mn' ? ['Орон сууцны барилга', 'Арилжааны барилга', 'Төслийн удирдлага'] : ['Residential Construction', 'Commercial Construction', 'Project Management'],
+      image: '/about/builder.jpg'
     },
     {
-      name: language === 'mn' ? 'Батцэцэг' : 'Battsetseg',
+      name: language === 'mn' ? 'Гэрэлтуяа Жадамба' : 'Gereltuya Jadamba',
       role: language === 'mn' ? 'Хуулийн зөвлөх' : 'Legal Consultant',
       description: language === 'mn'
         ? '15 гаруй жилийн туршлагатай хуулийн зөвлөх. Барилгын хуулийн асуудлын мэргэжлийн зөвлөгөө.'
         : 'Legal consultant with over 15 years of experience. Specialized in construction law consultation.',
-      expertise: language === 'mn' ? ['Барилгын зөвшөөрөл', 'Гэрээ, хэлцэл', 'Маргааны шийдвэрлэлт'] : ['Construction Permits', 'Contracts & Agreements', 'Dispute Resolution']
+      expertise: language === 'mn' ? ['Барилгын зөвшөөрөл', 'Гэрээ, хэлцэл', 'Маргааны шийдвэрлэлт'] : ['Construction Permits', 'Contracts & Agreements', 'Dispute Resolution'],
+      image: '/about/laywer.jpg'
     }
   ]
 
@@ -117,10 +119,16 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="bg-[#F4F2EA] rounded-xl p-8">
+            <div className="bg-[#F4F2EA] rounded-xl p-8 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-24 h-24 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-white text-3xl font-bold">Б</span>
+                <div className="relative w-48 h-48 mx-auto mb-6">
+                  <Image
+                    src="/logoMainRound.png"
+                    alt="Buyant Construction Logo"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
                   {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
@@ -133,6 +141,67 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Members */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
+              {language === 'mn' ? 'Манай баг' : 'Our Team'}
+            </h2>
+            <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
+              {language === 'mn'
+                ? 'Чадвартай, туршлагатай мэргэжлийн баг'
+                : 'Skilled and experienced professional team'
+              }
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden max-w-sm mx-auto">
+                {/* Image Section */}
+                <div className="relative w-full h-80 overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-6 lg:p-8">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-[#0F425C] mb-3">{member.name}</h3>
+                    <p className="text-[#0F425C] font-semibold text-lg">{member.role}</p>
+                  </div>
+                  
+                  <p className="text-[#0F425C]/80 leading-relaxed mb-6 text-center lg:text-left">
+                    {member.description}
+                  </p>
+                  
+                  <div className="border-t border-[#0F425C]/20 pt-6">
+                    <h4 className="font-semibold text-[#0F425C] mb-4 text-center lg:text-left">
+                      {language === 'mn' ? 'Мэргэшил:' : 'Expertise:'}
+                    </h4>
+                    <ul className="space-y-3">
+                      {member.expertise.map((skill, skillIndex) => (
+                        <li key={skillIndex} className="flex items-center text-[#0F425C]/80">
+                          <CheckCircle className="w-5 h-5 text-[#0F425C] mr-3 flex-shrink-0" />
+                          <span className="text-sm lg:text-base">{skill}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -173,56 +242,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Members */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
-              {language === 'mn' ? 'Манай баг' : 'Our Team'}
-            </h2>
-            <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
-              {language === 'mn'
-                ? 'Чадвартай, туршлагатай мэргэжлийн баг'
-                : 'Skilled and experienced professional team'
-              }
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-[#F4F2EA] rounded-xl p-8">
-                <div className="text-center mb-6">
-                  <div className="w-24 h-24 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white text-2xl font-bold">{member.name.charAt(0)}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#0F425C] mb-2">{member.name}</h3>
-                  <p className="text-[#0F425C] font-semibold">{member.role}</p>
-                </div>
-                <p className="text-[#0F425C]/80 leading-relaxed mb-6">{member.description}</p>
-                <div>
-                  <h4 className="font-semibold text-[#0F425C] mb-3">
-                    {language === 'mn' ? 'Мэргэшил:' : 'Expertise:'}
-                  </h4>
-                  <ul className="space-y-2">
-                    {member.expertise.map((skill, skillIndex) => (
-                      <li key={skillIndex} className="flex items-center text-[#0F425C]/80">
-                        <CheckCircle className="w-4 h-4 text-[#0F425C] mr-2 flex-shrink-0" />
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section with Photos */}
-      <TeamSection />
-
       {/* Company Values */}
-      <section className="py-20 bg-[#F4F2EA]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
