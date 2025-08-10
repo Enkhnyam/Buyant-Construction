@@ -261,16 +261,16 @@ export default function ServicesPage() {
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
             <a
-              href="tel:+976-11-123456"
+              href="tel:+976-99054762"
               className="border-2 border-white text-white px-6 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#0F425C] transition-colors inline-flex items-center justify-center"
             >
-              +976 11 123 456
+              +976 99054762
             </a>
             <a
-              href="mailto:info@buyant.mn"
+              href="mailto:gerlee_jad@yahoo.com"
               className="border-2 border-white text-white px-6 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#0F425C] transition-colors inline-flex items-center justify-center"
             >
-              info@buyant.mn
+              gerlee_jad@yahoo.com
             </a>
           </div>
         </div>

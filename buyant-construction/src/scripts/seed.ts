@@ -42,13 +42,13 @@ async function main() {
     where: { id: 1 },
     update: {},
     create: {
-      phone: '+976 11 123 456',
-      email: 'info@buyantconstruction.mn',
+      phone: '+976 99054762',
+      email: 'gerlee_jad@yahoo.com',
       addressMn: 'Сүхбаатар дүүрэг, 1-р хороо, Баянзүрх гудамж, 15-р байр',
       addressEn: 'Sukhbaatar District, 1st Khoroo, Bayanzurkh Street, Building 15',
       workingHoursMn: 'Даваа-Баасан: 09:00-18:00, Бямба: 09:00-14:00',
       workingHoursEn: 'Monday-Friday: 09:00-18:00, Saturday: 09:00-14:00',
-      whatsapp: '+976 99 123 456',
+      whatsapp: '+976 99054762',
       telegram: '@buyantconstruction'
     }
   })

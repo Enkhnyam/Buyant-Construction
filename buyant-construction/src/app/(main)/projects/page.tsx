@@ -368,10 +368,10 @@ export default function ProjectsPage() {
               <ArrowRight className="ml-2 w-5 h-5" />
             </a>
             <a
-              href="tel:+976-11-123456"
+              href="tel:+976-99054762"
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#0F425C] transition-colors inline-flex items-center justify-center"
             >
-              +976 11 123 456
+              +976 99054762
             </a>
           </div>
         </div>

@@ -87,14 +87,14 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-[#0F425C] mr-3" />
-                <a href="tel:+976-11-123456" className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors">
-                  +976 11 123 456
+                <a href="tel:+976-99054762" className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors">
+                  +976 99054762
                 </a>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 text-[#0F425C] mr-3" />
-                <a href="mailto:info@buyant.mn" className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors">
-                  info@buyant.mn
+                <a href="mailto:gerlee_jad@yahoo.com" className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors">
+                  gerlee_jad@yahoo.com
                 </a>
               </div>
               <div className="flex items-center">

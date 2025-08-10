@@ -164,7 +164,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent"
-                      placeholder={language === 'mn' ? '+976 11 123 456' : '+976 11 123 456'}
+                      placeholder={language === 'mn' ? '+976 99054762' : '+976 99054762'}
                     />
                   </div>
                   
@@ -245,10 +245,10 @@ export default function ContactPage() {
                       {language === 'mn' ? 'Утас' : 'Phone'}
                     </h3>
                     <a
-                      href="tel:+976-11-123456"
+                      href="tel:+976-99054762"
                       className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors text-lg"
                     >
-                      +976 11 123 456
+                      +976 99054762
                     </a>
                   </div>
                 </div>
@@ -262,10 +262,10 @@ export default function ContactPage() {
                       {language === 'mn' ? 'И-мэйл' : 'Email'}
                     </h3>
                     <a
-                      href="mailto:info@buyant.mn"
+                      href="mailto:gerlee_jad@yahoo.com"
                       className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors text-lg"
                     >
-                      info@buyant.mn
+                      gerlee_jad@yahoo.com
                     </a>
                   </div>
                 </div>
