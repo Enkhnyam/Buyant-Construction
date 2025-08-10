@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import { unlink, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
+import { PrismaClient } from '@prisma/client'
 
 export async function PUT(
   request: NextRequest,
@@ -44,7 +45,7 @@ export async function PUT(
     }
 
     // Start a transaction to update both project and images
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>) => {
       // Update project
       const project = await tx.project.update({
         where: { id: projectId },
