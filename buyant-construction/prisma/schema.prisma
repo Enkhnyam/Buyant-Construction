@@ -1,0 +1,145 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Admin user for content management
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Projects table
+model Project {
+  id              Int      @id @default(autoincrement())
+  titleMn         String   // Mongolian title
+  titleEn         String   // English title
+  descriptionMn   String   // Mongolian description
+  descriptionEn   String   // English description
+  category        String   // 'residential' or 'commercial'
+  location        String
+  completionDate  DateTime?
+  clientName      String?
+  testimonialMn   String?  // Mongolian testimonial
+  testimonialEn   String?  // English testimonial
+  featured        Boolean  @default(false)
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  images          ProjectImage[]
+  
+  @@map("projects")
+}
+
+// Project Images table
+model ProjectImage {
+  id          Int      @id @default(autoincrement())
+  projectId   Int
+  imageUrl    String
+  captionMn   String?  // Mongolian caption
+  captionEn   String?  // English caption
+  isPrimary   Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@map("project_images")
+}
+
+// Services table
+model Service {
+  id              Int      @id @default(autoincrement())
+  titleMn         String   // Mongolian title
+  titleEn         String   // English title
+  descriptionMn   String   // Mongolian description
+  descriptionEn   String   // English description
+  shortDescriptionMn String // Short Mongolian description
+  shortDescriptionEn String // Short English description
+  icon            String?  // Icon name or URL
+  order           Int      @default(0)
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("services")
+}
+
+// Testimonials table
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  clientName  String
+  clientTitle String?
+  contentMn   String  // Mongolian testimonial
+  contentEn   String  // English testimonial
+  rating      Int      @default(5)
+  featured    Boolean @default(false)
+  published   Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("testimonials")
+}
+
+// Contact information
+model ContactInfo {
+  id          Int      @id @default(autoincrement())
+  phone       String
+  email       String
+  addressMn   String  // Mongolian address
+  addressEn   String  // English address
+  workingHoursMn String // Mongolian working hours
+  workingHoursEn String // English working hours
+  whatsapp    String?
+  telegram    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("contact_info")
+}
+
+// Company information
+model CompanyInfo {
+  id              Int      @id @default(autoincrement())
+  nameMn          String   // Mongolian company name
+  nameEn          String   // English company name
+  aboutMn         String   // Mongolian about text
+  aboutEn         String   // English about text
+  missionMn       String?  // Mongolian mission
+  missionEn       String?  // English mission
+  visionMn        String?  // Mongolian vision
+  visionEn        String?  // English vision
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@map("company_info")
+}
+
+// Contact form submissions
+model ContactSubmission {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  service   String?  // Which service they're interested in
+  status    String   @default("new") // new, contacted, completed
+  createdAt DateTime @default(now())
+  
+  @@map("contact_submissions")
+}
