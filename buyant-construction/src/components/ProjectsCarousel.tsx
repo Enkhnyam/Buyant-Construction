@@ -220,8 +220,8 @@ export default function ProjectsCarousel() {
 
       {/* Project Detail Dialog */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={closeProjectDialog}>
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
             {/* Dialog Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h2 className="text-2xl font-bold text-[#0F425C]">
@@ -237,60 +237,6 @@ export default function ProjectsCarousel() {
 
             {/* Dialog Content - Scrollable */}
             <div className="overflow-y-auto max-h-[calc(90vh-120px)]">
-              {/* Main Hero Image */}
-              {selectedProject.images && selectedProject.images.length > 0 && (
-                <div className="relative">
-                  <div className="aspect-[16/9] bg-gray-200 overflow-hidden relative">
-                    <img
-                      src={selectedProject.images[currentImageIndex].imageUrl}
-                      alt={language === 'mn' ? selectedProject.images[currentImageIndex].captionMn : selectedProject.images[currentImageIndex].captionEn}
-                      className="w-full h-full object-cover"
-                    />
-                    
-                    {/* Image Navigation */}
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200"
-                        >
-                          <ChevronLeft className="w-5 h-5 text-[#0F425C]" />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200"
-                        >
-                          <ChevronRight className="w-5 h-5 text-[#0F425C]" />
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Image Thumbnails */}
-                  {selectedProject.images.length > 1 && (
-                    <div className="flex gap-2 p-6 justify-center border-b border-gray-200">
-                      {selectedProject.images.map((image, index) => (
-                        <button
-                          key={image.id}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                            index === currentImageIndex 
-                              ? 'border-[#0F425C] scale-110' 
-                              : 'border-gray-200 hover:border-[#0F425C]/50'
-                          }`}
-                        >
-                          <img
-                            src={image.imageUrl}
-                            alt={language === 'mn' ? image.captionMn : image.captionEn}
-                            className="w-full h-full object-cover"
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
               {/* Project Details */}
               <div className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -330,20 +276,29 @@ export default function ProjectsCarousel() {
                 </div>
 
                 {/* All Project Images Gallery */}
-                {selectedProject.images && selectedProject.images.length > 1 && (
+                {selectedProject.images && selectedProject.images.length > 0 && (
                   <div className="border-t border-gray-200 pt-6">
                     <h3 className="text-lg font-semibold text-[#0F425C] mb-4">
                       {getText('Төслийн бүх зураг', 'All Project Images')}
                     </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="space-y-6">
                       {selectedProject.images.map((image, index) => (
-                        <div key={image.id} className="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-                          <img
-                            src={image.imageUrl}
-                            alt={language === 'mn' ? image.captionMn : image.captionEn}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-200 cursor-pointer"
-                            onClick={() => setCurrentImageIndex(index)}
-                          />
+                        <div key={image.id} className="flex flex-col md:flex-row gap-4 items-start">
+                          <div className="w-full md:w-1/2 aspect-video bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                            <img
+                              src={image.imageUrl}
+                              alt={language === 'mn' ? image.captionMn : image.captionEn}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-[#0F425C] mb-2">
+                              {getText('Зураг', 'Image')} {index + 1}
+                            </h4>
+                            <p className="text-gray-700 leading-relaxed">
+                              {language === 'mn' ? image.captionMn : image.captionEn}
+                            </p>
+                          </div>
                         </div>
                       ))}
                     </div>
