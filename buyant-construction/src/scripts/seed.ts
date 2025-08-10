@@ -178,6 +178,71 @@ async function main() {
   ])
   console.log('✅ Projects created:', projects.length)
 
+  // Create sample project images
+  const projectImages = await Promise.all([
+    prisma.projectImage.upsert({
+      where: { id: 1 },
+      update: {},
+      create: {
+        projectId: 1,
+        imageUrl: '/uploads/project1-main.svg',
+        captionMn: 'Сүхбаатар дүүргийн орон сууцны барилга - Үндсэн зураг',
+        captionEn: 'Sukhbaatar District Residential Building - Main Image',
+        isPrimary: true,
+        order: 1
+      }
+    }),
+    prisma.projectImage.upsert({
+      where: { id: 2 },
+      update: {},
+      create: {
+        projectId: 1,
+        imageUrl: '/uploads/project1-interior.svg',
+        captionMn: 'Сүхбаатар дүүргийн орон сууцны барилга - Доторх хэсэг',
+        captionEn: 'Sukhbaatar District Residential Building - Interior',
+        isPrimary: false,
+        order: 2
+      }
+    }),
+    prisma.projectImage.upsert({
+      where: { id: 3 },
+      update: {},
+      create: {
+        projectId: 2,
+        imageUrl: '/uploads/project2-main.svg',
+        captionMn: 'Баянзүрх дүүргийн арилжааны төв - Үндсэн зураг',
+        captionEn: 'Bayanzurkh District Commercial Center - Main Image',
+        isPrimary: true,
+        order: 1
+      }
+    }),
+    prisma.projectImage.upsert({
+      where: { id: 4 },
+      update: {},
+      create: {
+        projectId: 2,
+        imageUrl: '/uploads/project2-exterior.svg',
+        captionMn: 'Баянзүрх дүүргийн арилжааны төв - Гаднах хэсэг',
+        captionEn: 'Bayanzurkh District Commercial Center - Exterior',
+        isPrimary: false,
+        order: 2
+      }
+    }),
+    prisma.projectImage.upsert({
+      where: { id: 5 },
+      update: {},
+      create: {
+        projectId: 3,
+        imageUrl: '/uploads/project3-main.svg',
+        captionMn: 'Хан-Уул дүүргийн гэр засвар - Үндсэн зураг',
+        captionEn: 'Khan-Uul District House Renovation - Main Image',
+        isPrimary: true,
+        order: 1
+      }
+    })
+  ])
+  console.log('✅ Project images created:', projectImages.length)
+
   // Create testimonials
   const testimonials = await Promise.all([
     prisma.testimonial.upsert({
@@ -227,6 +292,7 @@ async function main() {
   console.log(`- Admin user: ${admin.username}`)
   console.log(`- Services: ${services.length}`)
   console.log(`- Projects: ${projects.length}`)
+  console.log(`- Project images: ${projectImages.length}`)
   console.log(`- Testimonials: ${testimonials.length}`)
   console.log('\n🔑 Login credentials:')
   console.log(`Username: ${admin.username}`)

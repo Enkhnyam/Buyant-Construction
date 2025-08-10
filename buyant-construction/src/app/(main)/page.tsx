@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ArrowRight, Home, FileText, CheckCircle } from 'lucide-react'
-import ProjectsShowcase from '@/components/ProjectsShowcase'
+import ProjectsCarousel from '@/components/ProjectsCarousel'
 import TestimonialsSection from '@/components/TestimonialsSection'
 
 export default function HomePage() {
@@ -76,6 +76,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Projects Carousel */}
+      <ProjectsCarousel />
+
       {/* Services Overview */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,9 +143,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Projects Section */}
-      <ProjectsShowcase />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
