@@ -17,7 +17,7 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
-  const { language } = useLanguage()
+  const { language, isHydrated } = useLanguage()
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -69,17 +69,19 @@ export default function TestimonialsSection() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {getText('Хэрэглэгчдийн сэтгэгдэл', 'Client Testimonials')}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {getText(
-              'Бидний үйлчилгээг ашигласан хэрэглэгчдийн сэтгэгдэл',
-              'What our clients say about our services'
-            )}
-          </p>
-        </div>
+        {isHydrated && (
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {getText('Хэрэглэгчдийн сэтгэгдэл', 'Client Testimonials')}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {getText(
+                'Бидний үйлчилгээг ашигласан хэрэглэгчдийн сэтгэгдэл',
+                'What our clients say about our services'
+              )}
+            </p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
@@ -95,29 +97,32 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Content */}
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {language === 'mn' ? testimonial.contentMn : testimonial.contentEn}
-              </p>
+              {isHydrated && (
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  {language === 'mn' ? testimonial.contentMn : testimonial.contentEn}
+                </p>
+              )}
 
               {/* Client Info */}
-              <div className="border-t border-gray-200 pt-4">
-                <div className="flex items-center gap-3">
-                  {testimonial.clientImageId && (
-                    <TestimonialImage 
-                      clientId={testimonial.clientImageId} 
-                      className="w-12 h-12"
+              <div className="flex items-center">
+                {testimonial.clientImageId && (
+                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                    <TestimonialImage
+                      clientId={testimonial.clientImageId}
+                      alt={testimonial.clientName}
+                      className="w-full h-full object-cover"
                     />
-                  )}
-                  <div>
-                    <div className="font-semibold text-gray-900">
-                      {testimonial.clientName}
-                    </div>
-                    {testimonial.clientTitle && (
-                      <div className="text-sm text-gray-600">
-                        {testimonial.clientTitle}
-                      </div>
-                    )}
                   </div>
+                )}
+                <div>
+                  {isHydrated && (
+                    <>
+                      <p className="font-semibold text-gray-900">{testimonial.clientName}</p>
+                      {testimonial.clientTitle && (
+                        <p className="text-sm text-gray-600">{testimonial.clientTitle}</p>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>

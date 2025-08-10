@@ -8,6 +8,7 @@ interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
   t: (key: string) => string
+  isHydrated: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -88,18 +89,31 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('mn')
+  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
-    // Load language preference from localStorage
-    const savedLanguage = localStorage.getItem('language') as Language
-    if (savedLanguage && (savedLanguage === 'mn' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage)
+    // Mark as hydrated first
+    setIsHydrated(true)
+    
+    // Then load language preference from localStorage
+    try {
+      const savedLanguage = localStorage.getItem('language') as Language
+      if (savedLanguage && (savedLanguage === 'mn' || savedLanguage === 'en')) {
+        setLanguage(savedLanguage)
+      }
+    } catch (error) {
+      // Handle case where localStorage is not available
+      console.warn('localStorage not available:', error)
     }
   }, [])
 
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang)
-    localStorage.setItem('language', lang)
+    try {
+      localStorage.setItem('language', lang)
+    } catch (error) {
+      console.warn('Failed to save language to localStorage:', error)
+    }
   }
 
   const t = (key: string): string => {
@@ -110,7 +124,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     <LanguageContext.Provider value={{
       language,
       setLanguage: handleLanguageChange,
-      t
+      t,
+      isHydrated
     }}>
       {children}
     </LanguageContext.Provider>

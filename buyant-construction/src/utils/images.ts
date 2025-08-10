@@ -1,20 +1,34 @@
-// Project image utilities
-export const getProjectMainImage = (projectId: string) => {
-  return `/projects/${projectId}/main.webp`;
+// Project image utilities - Pure Database-Driven Approach
+export const getProjectImageUrl = (imageUrl: string) => {
+  // Use the URL stored in database directly
+  return imageUrl;
 };
 
-export const getProjectThumbnail = (projectId: string) => {
-  return `/projects/${projectId}/thumbnail.webp`;
+// Helper function to get primary image from project images array
+export const getPrimaryProjectImage = (images: Array<{ imageUrl: string; isPrimary: boolean }>) => {
+  const primaryImage = images.find(img => img.isPrimary);
+  return primaryImage ? primaryImage.imageUrl : images[0]?.imageUrl || '';
 };
 
-export const getProjectGalleryImages = (projectId: string) => {
-  // This could be dynamic based on what images exist
-  const galleryTypes = ['interior', 'exterior', 'progress', 'detail'];
-  return galleryTypes.map(type => ({
-    src: `/projects/${projectId}/gallery/${type}1.webp`,
-    alt: `${projectId} ${type} view`,
-    type
-  }));
+// Helper function to get all gallery images
+export const getProjectGalleryImages = (images: Array<{ 
+  id: number; 
+  imageUrl: string; 
+  captionMn?: string; 
+  captionEn?: string; 
+  isPrimary: boolean; 
+  order: number 
+}>) => {
+  return images
+    .sort((a, b) => a.order - b.order)
+    .map(img => ({
+      src: img.imageUrl,
+      alt: img.captionMn || img.captionEn || 'Project image',
+      captionMn: img.captionMn,
+      captionEn: img.captionEn,
+      isPrimary: img.isPrimary,
+      order: img.order
+    }));
 };
 
 // Testimonial image utilities

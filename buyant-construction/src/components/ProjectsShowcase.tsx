@@ -18,8 +18,10 @@ interface Project {
   featured: boolean
   images: Array<{
     id: number
-    url: string
-    alt: string
+    imageUrl: string
+    captionMn?: string
+    captionEn?: string
+    isPrimary: boolean
     order: number
   }>
 }
@@ -96,7 +98,7 @@ export default function ProjectsShowcase() {
               <div className="aspect-video bg-gray-200 relative overflow-hidden">
                 {project.images && project.images.length > 0 ? (
                   <img
-                    src={project.images[0].url}
+                    src={project.images[0].imageUrl}
                     alt={language === 'mn' ? project.titleMn : project.titleEn}
                     className="w-full h-full object-cover"
                   />

@@ -1,111 +1,58 @@
-# Image Management System
-
-This document explains how to use the optimized image management system for Buyant Construction.
+# Image System Documentation - Database-Driven Approach
 
 ## Overview
 
-The system provides optimized image handling for three main categories:
-- **Projects**: Main images, thumbnails, and gallery images
-- **Testimonials**: Client photos
-- **About Us**: Team member photos, office images, and company photos
+The Buyant Construction website uses a **pure database-driven image system** where all project images are managed through the admin interface and stored in the database. This approach provides immediate frontend updates and consistent content management.
 
-## Directory Structure
+## How It Works
 
-```
-public/
-├── projects/
-│   ├── project1/
-│   │   ├── main.webp          # Main carousel image
-│   │   ├── thumbnail.webp     # Smaller version for lists
-│   │   └── gallery/           # Additional project images
-│   │       ├── interior1.webp
-│   │       ├── exterior1.webp
-│   │       └── progress1.webp
-│   ├── project2/
-│   └── project3/
-├── testimonials/
-│   ├── client1.webp
-│   ├── client2.webp
-│   └── client3.webp
-└── about/
-    ├── team/
-    │   ├── ceo.webp
-    │   ├── architect1.webp
-    │   └── engineer1.webp
-    ├── office/
-    │   ├── office-main.webp
-    │   └── meeting-room.webp
-    └── company/
-        ├── history1.webp
-        └── awards.webp
+### 1. **Image Upload Flow**
+- Images uploaded through admin interface → saved to `/public/uploads/`
+- Image metadata stored in `ProjectImage` table
+- Frontend components fetch data from API and display images directly
+
+### 2. **Database Structure**
+```prisma
+model Project {
+  id: Int @id
+  // ... other fields
+  images: ProjectImage[]
+}
+
+model ProjectImage {
+  id: Int @id
+  projectId: Int
+  imageUrl: String        // Full URL to uploaded image
+  captionMn: String?      // Mongolian caption
+  captionEn: String?      // English caption
+  isPrimary: Boolean      // Primary image flag
+  order: Int             // Display order
+}
 ```
 
-## Components
-
-### ProjectImage
-Displays project images with optimization.
-
-```tsx
-import { ProjectImage } from '@/components/ProjectImage';
-
-// Main project image (carousel)
-<ProjectImage 
-  projectId="project1" 
-  variant="main" 
-  priority={true}
-  className="rounded-lg shadow-lg"
-/>
-
-// Thumbnail version (project lists)
-<ProjectImage 
-  projectId="project1" 
-  variant="thumbnail"
-  className="rounded-md hover:scale-105"
-/>
-```
-
-### TestimonialImage
-Displays client testimonial photos.
-
-```tsx
-import { TestimonialImage } from '@/components/TestimonialImage';
-
-<TestimonialImage 
-  clientId="client1" 
-  className="w-16 h-16"
-/>
-```
-
-### TeamMemberImage
-Displays team member photos.
-
-```tsx
-import { TeamMemberImage } from '@/components/TeamMemberImage';
-
-<TeamMemberImage 
-  memberId="ceo" 
-  className="w-64 h-80 rounded-lg"
-/>
-```
+### 3. **Frontend Display**
+- Components fetch project data from `/api/projects`
+- Images displayed using `imageUrl` from database
+- No hardcoded file paths
 
 ## Utility Functions
 
 ### Project Images
 ```tsx
 import { 
-  getProjectMainImage, 
-  getProjectThumbnail, 
+  getProjectImageUrl,
+  getPrimaryProjectImage, 
   getProjectGalleryImages 
 } from '@/utils/images';
 
-// Get main project image path
-const mainImagePath = getProjectMainImage('project1');
+// Get primary image from project images array
+const primaryImage = getPrimaryProjectImage(project.images);
 
-// Get thumbnail path
-const thumbnailPath = getProjectThumbnail('project1');
+// Get all gallery images with metadata
+const galleryImages = getProjectGalleryImages(project.images);
 
-// Get gallery images
-const galleryImages = getProjectGalleryImages('project1');
+// Use database URL directly
+const imageUrl = getProjectImageUrl(project.images[0].imageUrl);
 ```
 
 ### Testimonial Images
@@ -132,17 +79,25 @@ The system automatically:
 
 ## Adding New Images
 
-### 1. Add the image file to the appropriate directory
-### 2. Use the corresponding component or utility function
-### 3. The system will automatically optimize and serve the image
+### 1. **Through Admin Interface (Recommended)**
+- Go to Admin → Projects
+- Upload images through the image gallery manager
+- Set captions, order, and primary image flag
+- Images automatically appear on frontend
+
+### 2. **Manual File Addition**
+- Add image file to `/public/uploads/`
+- Update database with image metadata
+- Use appropriate utility functions
 
 ## Best Practices
 
-1. **Use WebP format** for best compression
+1. **Use Admin Interface** for all project images
 2. **Optimize images** before uploading (compress, resize)
-3. **Use descriptive filenames** (e.g., `project1-main.webp`)
-4. **Keep consistent naming** conventions
-5. **Use appropriate image sizes** for different use cases
+3. **Use descriptive captions** in both languages
+4. **Set primary images** for each project
+5. **Order images logically** for gallery display
+6. **Use consistent naming** for uploaded files
 
 ## Example Usage in Components
 
@@ -151,12 +106,35 @@ The system automatically:
 {projects.map((project, index) => (
   <ProjectImage 
     key={project.id}
-    projectId={project.id.toString()} 
-    variant="main" 
+    src={project.images[0].imageUrl}
+    alt={project.images[0].captionEn}
+    width={400}
+    height={300}
     priority={index === 0}
     className="w-full h-full hover:scale-110"
   />
 ))}
+```
+
+### Projects Grid
+```tsx
+{projects.map((project) => {
+  const primaryImage = getPrimaryProjectImage(project.images);
+  
+  return (
+    <div key={project.id}>
+      {primaryImage ? (
+        <img
+          src={primaryImage}
+          alt={project.titleEn}
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <div className="placeholder">No image</div>
+      )}
+    </div>
+  );
+})}
 ```
 
 ### Testimonials Section
@@ -187,30 +165,77 @@ The system automatically:
 ))}
 ```
 
+## Benefits of Database-Driven Approach
+
+### ✅ **Immediate Updates**
+- Admin changes reflect instantly on website
+- No need to rebuild or redeploy
+
+### ✅ **Content Management**
+- Non-technical users can manage all content
+- Centralized image management
+
+### ✅ **Scalability**
+- Easy to add new image types
+- Simple to implement CDN, optimization
+
+### ✅ **Consistency**
+- Single source of truth for all content
+- Consistent data structure
+
+## File Organization
+
+### Current Structure
+```
+public/uploads/
+  ├── 2-1754848821296-0.jpeg          # Example uploaded image
+  ├── project1-interior.svg            # Project-specific images
+  ├── project1-main.svg
+  ├── project2-exterior.svg
+  └── project3-main.svg
+```
+
+### Recommended Future Structure
+```
+public/uploads/
+  └── projects/
+      ├── project-1/
+      │   ├── main.jpg
+      │   ├── thumbnail.jpg
+      │   └── gallery/
+      │       ├── interior-1.jpg
+      │       └── exterior-1.jpg
+      └── project-2/
+          └── ...
+```
+
 ## Troubleshooting
 
-### Image not loading
-- Check if the file exists in the correct directory
-- Verify the file path in the utility function
-- Ensure the image format is supported (WebP recommended)
+### Common Issues
 
-### Performance issues
-- Use `priority={true}` for above-the-fold images
-- Implement lazy loading for below-the-fold images
-- Optimize image sizes before uploading
+1. **Images not displaying**
+   - Check if `imageUrl` exists in database
+   - Verify file exists in `/public/uploads/`
+   - Check file permissions
 
-## Migration from Old System
+2. **Wrong image order**
+   - Update `order` field in database
+   - Use admin interface to reorder images
 
-If you're migrating from the old image system:
-1. Move images to the new directory structure
-2. Update component imports to use new components
-3. Replace `img` tags with appropriate image components
-4. Update image paths to use utility functions
+3. **Missing primary image**
+   - Set `isPrimary: true` for one image per project
+   - Use `getPrimaryProjectImage()` utility
 
-## Support
+### Debug Steps
 
-For questions or issues with the image system, check:
-1. This documentation
-2. Component source code
-3. Utility function implementations
-4. Next.js Image component documentation
+1. Check browser console for errors
+2. Verify API response contains image data
+3. Confirm image URLs are accessible
+4. Check database for image records
+
+## Future Enhancements
+
+1. **Image Cleanup**: Automatic removal of unused images
+2. **CDN Integration**: Cloud storage for better performance
+3. **Advanced Optimization**: Automatic WebP conversion, resizing
+4. **Image Analytics**: Track image usage and performance

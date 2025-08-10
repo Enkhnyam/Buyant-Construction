@@ -7,7 +7,7 @@ import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Footer() {
-  const { language, t } = useLanguage()
+  const { language, t, isHydrated } = useLanguage()
 
   const currentYear = new Date().getFullYear()
 
@@ -25,23 +25,29 @@ export default function Footer() {
                 height={40}
                 className="w-10 h-10"
               />
-              <span className="ml-3 text-xl font-bold">
-                {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
-              </span>
+              {isHydrated && (
+                <span className="ml-3 text-xl font-bold">
+                  {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
+                </span>
+              )}
             </div>
-            <p className="text-[#0F425C]/80 mb-4 max-w-md">
-              {language === 'mn' 
-                ? 'Монголын гэр бүлийн барилгын үйлчилгээ. Чадвартай барилгын үйлчилгээ, хуулийн зөвлөгөө.'
-                : 'Mongolia\'s family construction service. Professional construction services and legal consultation.'
-              }
-            </p>
+            {isHydrated && (
+              <p className="text-[#0F425C]/80 mb-4 max-w-md">
+                {language === 'mn' 
+                  ? 'Монголын гэр бүлийн барилгын үйлчилгээ. Чадвартай барилгын үйлчилгээ, хуулийн зөвлөгөө.'
+                  : 'Mongolia\'s family construction service. Professional construction services and legal consultation.'
+                }
+              </p>
+            )}
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">
-              {language === 'mn' ? 'Холбоосууд' : 'Quick Links'}
-            </h3>
+            {isHydrated && (
+              <h3 className="text-lg font-semibold mb-4">
+                {language === 'mn' ? 'Холбоосууд' : 'Quick Links'}
+              </h3>
+            )}
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-[#0F425C]/80 hover:text-[#0F425C] transition-colors">
@@ -73,9 +79,11 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">
-              {language === 'mn' ? 'Холбоо барих' : 'Contact Info'}
-            </h3>
+            {isHydrated && (
+              <h3 className="text-lg font-semibold mb-4">
+                {language === 'mn' ? 'Холбоо барих' : 'Contact Info'}
+              </h3>
+            )}
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-[#0F425C] mr-3" />
@@ -91,15 +99,19 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 text-[#0F425C] mr-3" />
-                <span className="text-[#0F425C]/80">
-                  {language === 'mn' ? 'Улаанбаатар хот' : 'Ulaanbaatar, Mongolia'}
-                </span>
+                {isHydrated && (
+                  <span className="text-[#0F425C]/80">
+                    {language === 'mn' ? 'Улаанбаатар хот' : 'Ulaanbaatar, Mongolia'}
+                  </span>
+                )}
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 text-[#0F425C] mr-3" />
-                <span className="text-[#0F425C]/80">
-                  {language === 'mn' ? 'Да-Ня: 9:00-18:00' : 'Mon-Fri: 9:00-18:00'}
-                </span>
+                {isHydrated && (
+                  <span className="text-[#0F425C]/80">
+                    {language === 'mn' ? 'Да-Ня: 9:00-18:00' : 'Mon-Fri: 9:00-18:00'}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -107,12 +119,16 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#0F425C]/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-[#0F425C]/60 text-sm">
-            © {currentYear} {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}. {t('footer.rights')}
-          </p>
-          <p className="text-[#0F425C]/60 text-sm mt-2 md:mt-0">
-            {t('footer.developedBy')} Buyant Team
-          </p>
+          {isHydrated && (
+            <p className="text-[#0F425C]/60 text-sm">
+              © {currentYear} {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}. {t('footer.rights')}
+            </p>
+          )}
+          {isHydrated && (
+            <p className="text-[#0F425C]/60 text-sm mt-2 md:mt-0">
+              {t('footer.developedBy')} Buyant Team
+            </p>
+          )}
         </div>
       </div>
     </footer>

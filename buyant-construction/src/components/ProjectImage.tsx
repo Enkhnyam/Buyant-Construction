@@ -1,33 +1,30 @@
 import Image from 'next/image';
-import { getProjectMainImage, getProjectThumbnail } from '@/utils/images';
 
 interface ProjectImageProps {
-  projectId: string;
-  variant?: 'main' | 'thumbnail';
+  src: string;
   alt?: string;
   className?: string;
   priority?: boolean;
+  width?: number;
+  height?: number;
 }
 
 export const ProjectImage = ({ 
-  projectId, 
-  variant = 'main', 
+  src, 
   alt, 
   className = '',
-  priority = false 
+  priority = false,
+  width = 800,
+  height = 600
 }: ProjectImageProps) => {
-  const src = variant === 'main' 
-    ? getProjectMainImage(projectId)
-    : getProjectThumbnail(projectId);
-    
-  const defaultAlt = alt || `${projectId} project ${variant}`;
+  const defaultAlt = alt || 'Project image';
   
   return (
     <Image
       src={src}
       alt={defaultAlt}
-      width={variant === 'main' ? 800 : 400}
-      height={variant === 'main' ? 600 : 300}
+      width={width}
+      height={height}
       priority={priority}
       className={`object-cover ${className}`}
     />

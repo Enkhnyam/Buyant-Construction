@@ -11,7 +11,7 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
-  const { language } = useLanguage()
+  const { language, isHydrated } = useLanguage()
   const router = useRouter()
   const pathname = usePathname()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -101,28 +101,32 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <h1 className="text-2xl font-bold text-gray-900">
                 Buyant Construction
               </h1>
-              <div className="hidden md:flex items-center space-x-1 text-sm text-gray-500">
-                <Shield className="w-4 h-4" />
-                <span>{getText('Админ хэсэг', 'Admin Panel')}</span>
-              </div>
+              {isHydrated && (
+                <div className="hidden md:flex items-center space-x-1 text-sm text-gray-500">
+                  <Shield className="w-4 h-4" />
+                  <span>{getText('Админ хэсэг', 'Admin Panel')}</span>
+                </div>
+              )}
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <User className="w-4 h-4" />
-                <span>{user?.name || user?.username}</span>
-              </div>
+              {isHydrated && (
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <User className="w-4 h-4" />
+                  <span>{user?.name || user?.username}</span>
+                </div>
+              )}
               <button
                 onClick={() => router.push('/')}
                 className="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                title={getText('Үндсэн хуудас руу буцах', 'Back to main site')}
+                title={isHydrated ? getText('Үндсэн хуудас руу буцах', 'Back to main site') : ''}
               >
                 <Home className="w-4 h-4" />
               </button>
               <button
                 onClick={handleLogout}
                 className="text-red-600 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition-colors"
-                title={getText('Гарах', 'Logout')}
+                title={isHydrated ? getText('Гарах', 'Logout') : ''}
               >
                 <LogOut className="w-4 h-4" />
               </button>

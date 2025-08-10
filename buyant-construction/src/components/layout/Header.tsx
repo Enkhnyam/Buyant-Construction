@@ -7,7 +7,7 @@ import { Menu, X, Globe } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Header() {
-  const { language, setLanguage, t } = useLanguage()
+  const { language, setLanguage, t, isHydrated } = useLanguage()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navigation = [
@@ -37,9 +37,11 @@ export default function Header() {
                 className="h-16 w-auto"
                 priority
               />
-              <span className="ml-3 text-xl font-bold text-[#0F425C] hidden sm:block">
-                {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
-              </span>
+              {isHydrated && (
+                <span className="ml-3 text-xl font-bold text-[#0F425C] hidden sm:block">
+                  {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
+                </span>
+              )}
             </Link>
           </div>
 
@@ -58,15 +60,17 @@ export default function Header() {
 
           {/* Language Switcher and Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-2 text-[#0F425C] hover:text-[#0F425C]/80 transition-colors"
-            >
-              <Globe className="w-5 h-5" />
-              <span className="text-sm font-medium">
-                {language === 'mn' ? 'EN' : 'МН'}
-              </span>
-            </button>
+            {isHydrated && (
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center space-x-2 text-[#0F425C] hover:text-[#0F425C]/80 transition-colors"
+              >
+                <Globe className="w-5 h-5" />
+                <span className="text-sm font-medium">
+                  {language === 'mn' ? 'EN' : 'МН'}
+                </span>
+              </button>
+            )}
 
             {/* Mobile menu button */}
             <button

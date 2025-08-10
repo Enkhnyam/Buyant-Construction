@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Filter, Search, Loader2 } from 'lucide-react'
+import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Search, Loader2 } from 'lucide-react'
+import { getPrimaryProjectImage } from '@/utils/images'
 
 interface ProjectImage {
   id: number
@@ -214,7 +215,7 @@ export default function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => {
                 const displayData = getProjectDisplayData(project)
-                const primaryImage = project.images.find(img => img.isPrimary) || project.images[0]
+                const primaryImage = getPrimaryProjectImage(project.images)
                 
                 return (
                   <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -222,7 +223,7 @@ export default function ProjectsPage() {
                     <div className="h-48 bg-gradient-to-br from-[#0F425C]/10 to-[#0F425C]/20 flex items-center justify-center overflow-hidden">
                       {primaryImage ? (
                         <img
-                          src={primaryImage.imageUrl}
+                          src={primaryImage}
                           alt={displayData.title}
                           className="w-full h-full object-cover"
                         />

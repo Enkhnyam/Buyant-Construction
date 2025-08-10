@@ -1,20 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Save, 
-  X, 
-  Star, 
-  Upload,
-  Eye,
-  EyeOff,
-  User,
-  MessageSquare
-} from 'lucide-react'
+import { Plus, Edit, Trash2, X, Save, Loader2, Star, Upload, User, Eye, EyeOff } from 'lucide-react'
 
 interface Testimonial {
   id?: number

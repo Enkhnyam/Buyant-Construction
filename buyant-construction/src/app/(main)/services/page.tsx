@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, FileText, CheckCircle, ArrowRight, Phone, Mail, MapPin, Clock, Loader2 } from 'lucide-react'
+import { Building2, FileText, CheckCircle, ArrowRight, Loader2 } from 'lucide-react'
 
 interface Service {
   id: number
