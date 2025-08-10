@@ -17,7 +17,8 @@ export default function HomePage() {
       description: t('services.construction.description'),
       href: '/services',
       color: 'bg-[#0F425C]/10',
-      iconColor: 'text-[#0F425C]'
+      iconColor: 'text-[#0F425C]',
+      image: '/services/material.jpg'
     },
     {
       icon: FileText,
@@ -25,7 +26,8 @@ export default function HomePage() {
       description: t('services.legal.description'),
       href: '/services',
       color: 'bg-[#0F425C]/10',
-      iconColor: 'text-[#0F425C]'
+      iconColor: 'text-[#0F425C]',
+      image: '/services/mayagt.jpg'
     }
   ]
 
@@ -102,20 +104,34 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow border border-[#0F425C]/10">
-                <div className={`w-16 h-16 ${service.color} rounded-lg flex items-center justify-center mb-6`}>
-                  <service.icon className={`w-8 h-8 ${service.iconColor}`} />
+              <Link key={index} href={service.href} className="block">
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#0F425C]/10 overflow-hidden group cursor-pointer">
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {/* Overlay with icon */}
+                    <div className="absolute top-4 right-4">
+                      <div className={`w-12 h-12 ${service.color} rounded-lg flex items-center justify-center backdrop-blur-sm bg-white/80`}>
+                        <service.icon className={`w-6 h-6 ${service.iconColor}`} />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Service Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-[#0F425C] mb-4 group-hover:text-[#0F425C]/80 transition-colors">{service.title}</h3>
+                    <p className="text-[#0F425C]/80 mb-4">{service.description}</p>
+                    <div className="flex items-center text-[#0F425C] font-medium group-hover:text-[#0F425C]/80 transition-colors">
+                      <span>{t('common.learnMore')}</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-[#0F425C] mb-4">{service.title}</h3>
-                <p className="text-[#0F425C]/80 mb-6">{service.description}</p>
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center text-[#0F425C] font-medium hover:text-[#0F425C]/80 transition-colors"
-                >
-                  {t('common.learnMore')}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
