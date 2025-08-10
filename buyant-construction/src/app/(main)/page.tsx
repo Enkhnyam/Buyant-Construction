@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ArrowRight, Home, FileText, CheckCircle } from 'lucide-react'
 import ProjectsCarousel from '@/components/ProjectsCarousel'
-import TestimonialsSection from '@/components/TestimonialsSection'
+import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 
 export default function HomePage() {
   const { language, t, isHydrated } = useLanguage()
@@ -156,6 +156,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <TestimonialsCarousel />
+
       {/* CTA Section */}
       <section className="py-20 bg-[#0F425C] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -181,9 +184,6 @@ export default function HomePage() {
           )}
         </div>
       </section>
-
-      {/* Testimonials */}
-      <TestimonialsSection />
     </div>
   )
 }
