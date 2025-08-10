@@ -3,6 +3,7 @@
 import React from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Users, Award, Target, Heart, CheckCircle, Star } from 'lucide-react'
+import { TeamSection } from '@/components/TeamSection'
 
 export default function AboutPage() {
   const { language, t } = useLanguage()
@@ -216,6 +217,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Team Section with Photos */}
+      <TeamSection />
 
       {/* Company Values */}
       <section className="py-20 bg-[#F4F2EA]">

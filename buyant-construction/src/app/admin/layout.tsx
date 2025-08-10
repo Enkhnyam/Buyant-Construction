@@ -4,7 +4,7 @@ import React from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { LogOut, User, Shield, Home } from 'lucide-react'
+import { LogOut, User, Shield, Home, Building2, Wrench, Star, Image, BarChart3 } from 'lucide-react'
 
 interface AdminLayoutProps {
   children: React.ReactNode
@@ -62,6 +62,18 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     }
   }
 
+  const navigation = [
+    { name: getText('Хяналтын самбар', 'Dashboard'), href: '/admin', icon: BarChart3 },
+    { name: getText('Төслүүд', 'Projects'), href: '/admin/projects', icon: Building2 },
+    { name: getText('Үйлчилгээнүүд', 'Services'), href: '/admin/services', icon: Wrench },
+    { name: getText('Сэтгэгдлүүд', 'Testimonials'), href: '/admin/testimonials', icon: Star },
+    { name: getText('Медиа сан', 'Media Library'), href: '/admin/media', icon: Image },
+  ]
+
+  function getText(mn: string, en: string) {
+    return language === 'mn' ? mn : en
+  }
+
   // If we're on the login page, just render the children without the admin layout
   if (isLoginPage) {
     return <>{children}</>
@@ -91,7 +103,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               </h1>
               <div className="hidden md:flex items-center space-x-1 text-sm text-gray-500">
                 <Shield className="w-4 h-4" />
-                <span>{language === 'mn' ? 'Админ хэсэг' : 'Admin Panel'}</span>
+                <span>{getText('Админ хэсэг', 'Admin Panel')}</span>
               </div>
             </div>
             
@@ -103,19 +115,44 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <button
                 onClick={() => router.push('/')}
                 className="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                title={language === 'mn' ? 'Үндсэн хуудас руу буцах' : 'Back to main site'}
+                title={getText('Үндсэн хуудас руу буцах', 'Back to main site')}
               >
                 <Home className="w-4 h-4" />
               </button>
               <button
                 onClick={handleLogout}
                 className="text-red-600 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition-colors"
-                title={language === 'mn' ? 'Гарах' : 'Logout'}
+                title={getText('Гарах', 'Logout')}
               >
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex space-x-8">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => router.push(item.href)}
+                  className={`flex items-center px-3 py-4 text-sm font-medium border-b-2 transition-colors ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  <item.icon className="w-4 h-4 mr-2" />
+                  {item.name}
+                </button>
+              )
+            })}
+          </nav>
         </div>
       </div>
 

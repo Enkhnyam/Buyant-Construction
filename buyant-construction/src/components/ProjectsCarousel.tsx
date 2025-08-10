@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ChevronLeft, ChevronRight, X, MapPin, Calendar, User, ArrowRight } from 'lucide-react'
+import { ProjectImage } from './ProjectImage';
 
 interface Project {
   id: number
@@ -42,7 +43,7 @@ export default function ProjectsCarousel() {
       const response = await fetch('/api/projects?limit=8&featured=true')
       if (response.ok) {
         const data = await response.json()
-        setProjects(data.projects)
+        setProjects(data)
       }
     } catch (error) {
       console.error('Failed to fetch projects:', error)
@@ -165,10 +166,12 @@ export default function ProjectsCarousel() {
                     {/* Project Image */}
                     <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                       {project.images && project.images.length > 0 ? (
-                        <img
-                          src={project.images[0].imageUrl}
+                        <ProjectImage
+                          projectId={project.id.toString()}
+                          variant="main"
+                          priority={index === 0}
                           alt={language === 'mn' ? project.images[0].captionMn : project.images[0].captionEn}
-                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full hover:scale-110 transition-transform duration-300"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
@@ -285,10 +288,11 @@ export default function ProjectsCarousel() {
                       {selectedProject.images.map((image, index) => (
                         <div key={image.id} className="flex flex-col md:flex-row gap-4 items-start">
                           <div className="w-full md:w-1/2 aspect-video bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
-                            <img
-                              src={image.imageUrl}
+                            <ProjectImage
+                              projectId={selectedProject.id.toString()}
+                              variant="main"
                               alt={language === 'mn' ? image.captionMn : image.captionEn}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full"
                             />
                           </div>
                           <div className="flex-1">

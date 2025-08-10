@@ -11,6 +11,7 @@ import {
   Wrench,
   CheckCircle
 } from 'lucide-react'
+import ImageGalleryManager from '@/components/admin/ImageGalleryManager'
 
 interface Service {
   id: number
@@ -23,6 +24,18 @@ interface Service {
   icon: string
   order: number
   active: boolean
+  images: ServiceImage[]
+}
+
+interface ServiceImage {
+  id?: number
+  imageUrl: string
+  captionMn: string
+  captionEn: string
+  isPrimary: boolean
+  order: number
+  file?: File
+  preview?: string
 }
 
 interface ServiceFormData {
@@ -54,6 +67,7 @@ export default function AdminServicesPage() {
     order: 0,
     active: true
   })
+  const [serviceImages, setServiceImages] = useState<ServiceImage[]>([])
 
   const iconOptions = [
     { value: 'wrench', label: 'Wrench', icon: '🔧' },
@@ -93,10 +107,32 @@ export default function AdminServicesPage() {
     }))
   }
 
+  const handleImagesChange = (images: ServiceImage[]) => {
+    setServiceImages(images)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     try {
+      const formDataToSend = new FormData()
+      
+      // Add service data
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataToSend.append(key, String(value))
+      })
+      
+      // Add images
+      serviceImages.forEach((image, index) => {
+        if (image.file) {
+          formDataToSend.append('images', image.file)
+        }
+        formDataToSend.append(`imageCaptions[${index}][mn]`, image.captionMn || '')
+        formDataToSend.append(`imageCaptions[${index}][en]`, image.captionEn || '')
+        formDataToSend.append(`imageOrder[${index}]`, String(image.order))
+        formDataToSend.append(`imagePrimary[${index}]`, String(image.isPrimary))
+      })
+
       const url = editingService 
         ? `/api/admin/services/${editingService.id}`
         : '/api/admin/services'
@@ -105,10 +141,7 @@ export default function AdminServicesPage() {
       
       const response = await fetch(url, {
         method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
+        body: formDataToSend
       })
 
       if (response.ok) {
@@ -145,6 +178,14 @@ export default function AdminServicesPage() {
       order: service.order,
       active: service.active
     })
+    // Convert existing images to the format expected by ImageGalleryManager
+    const formattedImages = (service.images || []).map((img, index) => ({
+      ...img,
+      order: index,
+      file: undefined,
+      preview: img.imageUrl
+    }))
+    setServiceImages(formattedImages)
     setShowForm(true)
   }
 
@@ -188,6 +229,7 @@ export default function AdminServicesPage() {
       order: 0,
       active: true
     })
+    setServiceImages([])
   }
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
@@ -388,6 +430,21 @@ export default function AdminServicesPage() {
               <span className="text-sm font-medium text-gray-700">
                 {getText('Идэвхтэй үйлчилгээ', 'Active Service')}
               </span>
+            </div>
+
+            {/* Image Gallery Management */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {getText('Зурагнууд', 'Images')}
+              </label>
+              <ImageGalleryManager
+                images={serviceImages}
+                onImagesChange={handleImagesChange}
+                language={language}
+                maxImages={5}
+                acceptedFileTypes={['image/jpeg', 'image/png', 'image/webp']}
+                maxFileSize={5 * 1024 * 1024} // 5MB
+              />
             </div>
 
             {/* Submit Button */}

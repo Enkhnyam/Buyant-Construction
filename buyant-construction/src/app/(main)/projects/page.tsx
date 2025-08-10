@@ -1,13 +1,44 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Filter, Search } from 'lucide-react'
+import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Filter, Search, Loader2 } from 'lucide-react'
+
+interface ProjectImage {
+  id: number
+  imageUrl: string
+  captionMn?: string
+  captionEn?: string
+  isPrimary: boolean
+  order: number
+}
+
+interface Project {
+  id: number
+  titleMn: string
+  titleEn: string
+  descriptionMn: string
+  descriptionEn: string
+  category: string
+  location: string
+  completionDate?: string
+  clientName?: string
+  testimonialMn?: string
+  testimonialEn?: string
+  featured: boolean
+  published: boolean
+  createdAt: string
+  updatedAt: string
+  images: ProjectImage[]
+}
 
 export default function ProjectsPage() {
   const { language, t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const categories = [
     { id: 'all', name: language === 'mn' ? 'Бүгд' : 'All' },
@@ -16,91 +47,99 @@ export default function ProjectsPage() {
     { id: 'renovation', name: language === 'mn' ? 'Засалт' : 'Renovation' }
   ]
 
-  const projects = [
-    {
-      id: 1,
-      title: language === 'mn' ? 'Сүхбаатар дүүргийн орон сууцны барилга' : 'Sukhbaatar District Residential Building',
-      category: 'residential',
-      location: language === 'mn' ? 'Сүхбаатар дүүрэг, Улаанбаатар' : 'Sukhbaatar District, Ulaanbaatar',
-      year: '2024',
-      area: '2,500',
-      areaUnit: language === 'mn' ? 'м²' : 'm²',
-      duration: language === 'mn' ? '18 сар' : '18 months',
-      team: '15',
-      description: language === 'mn' 
-        ? '5 давхар орон сууцны барилга, нийт 20 айл. Орчин үеийн дизайн, чанартай барилгын материал.'
-        : '5-story residential building with 20 apartments. Modern design and quality construction materials.',
-      features: language === 'mn' 
-        ? ['Централ халаалт', 'Хаалганы систем', 'Хажуугийн засвар', 'Газрын тосны систем']
-        : ['Central heating', 'Door system', 'Side finishing', 'Oil system'],
-      status: 'completed',
-      image: '/uploads/project1.jpg'
-    },
-    {
-      id: 2,
-      title: language === 'mn' ? 'Баянзүрх дүүргийн арилжааны төв' : 'Bayanzurkh District Commercial Center',
-      category: 'commercial',
-      location: language === 'mn' ? 'Баянзүрх дүүрэг, Улаанбаатар' : 'Bayanzurkh District, Ulaanbaatar',
-      year: '2023',
-      area: '5,000',
-      areaUnit: language === 'mn' ? 'м²' : 'm²',
-      duration: language === 'mn' ? '24 сар' : '24 months',
-      team: '25',
-      description: language === 'mn'
-        ? 'Олон давхар арилжааны төв, дэлгүүр, ресторан, оффисын байр. Орчин үеийн архитектур.'
-        : 'Multi-story commercial center with shops, restaurants, and office spaces. Modern architecture.',
-      features: language === 'mn'
-        ? ['Цахилгаан шат', 'Хажуугийн засвар', 'Дээврийн засвар', 'Хаалганы систем']
-        : ['Electric elevator', 'Side finishing', 'Roof finishing', 'Door system'],
-      status: 'completed',
-      image: '/uploads/project2.jpg'
-    },
-    {
-      id: 3,
-      title: language === 'mn' ? 'Хан-Уул дүүргийн гэр засвар' : 'Khan-Uul District House Renovation',
-      category: 'renovation',
-      location: language === 'mn' ? 'Хан-Уул дүүрэг, Улаанбаатар' : 'Khan-Uul District, Ulaanbaatar',
-      year: '2024',
-      area: '180',
-      areaUnit: language === 'mn' ? 'м²' : 'm²',
-      duration: language === 'mn' ? '3 сар' : '3 months',
-      team: '8',
-      description: language === 'mn'
-        ? 'Хуучин гэрний бүрэн засвар, дотор, гадна хэсгийн шинэчлэл. Орчин үеийн дизайн.'
-        : 'Complete renovation of an old house, interior and exterior updates. Modern design.',
-      features: language === 'mn'
-        ? ['Дотор засвар', 'Гадна засвар', 'Цахилгаан', 'Халаалт']
-        : ['Interior finishing', 'Exterior finishing', 'Electrical', 'Heating'],
-      status: 'completed',
-      image: '/uploads/project3.jpg'
-    },
-    {
-      id: 4,
-      title: language === 'mn' ? 'Сонгинохайрхан дүүргийн орон сууцны комплекс' : 'Songinokhairkhan District Residential Complex',
-      category: 'residential',
-      location: language === 'mn' ? 'Сонгинохайрхан дүүрэг, Улаанбаатар' : 'Songinokhairkhan District, Ulaanbaatar',
-      year: '2023',
-      area: '8,000',
-      areaUnit: language === 'mn' ? 'м²' : 'm²',
-      duration: language === 'mn' ? '30 сар' : '30 months',
-      team: '35',
-      description: language === 'mn'
-        ? 'Том орон сууцны комплекс, нийт 60 айл. Хүүхдийн тоглоомын талбай, цэцэрлэг.'
-        : 'Large residential complex with 60 apartments. Children\'s playground and garden.',
-      features: language === 'mn'
-        ? ['Хүүхдийн тоглоомын талбай', 'Цэцэрлэг', 'Хажуугийн засвар', 'Хаалганы систем']
-        : ['Children\'s playground', 'Garden', 'Side finishing', 'Door system'],
-      status: 'completed',
-      image: '/uploads/project4.jpg'
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const response = await fetch('/api/projects')
+      if (!response.ok) {
+        throw new Error('Failed to fetch projects')
+      }
+      
+      const data = await response.json()
+      setProjects(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch projects')
+      console.error('Error fetching projects:', err)
+    } finally {
+      setLoading(false)
     }
-  ]
+  }
 
   const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.location.toLowerCase().includes(searchTerm.toLowerCase())
+    const title = language === 'mn' ? project.titleMn : project.titleEn
+    const location = project.location
+    const matchesSearch = title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         location.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesCategory && matchesSearch
   })
+
+  const getProjectDisplayData = (project: Project) => {
+    const title = language === 'mn' ? project.titleMn : project.titleEn
+    const description = language === 'mn' ? project.descriptionMn : project.descriptionEn
+    const year = project.completionDate ? new Date(project.completionDate).getFullYear().toString() : 'N/A'
+    
+    // Default values if no specific data
+    const area = 'N/A'
+    const areaUnit = language === 'mn' ? 'м²' : 'm²'
+    const duration = language === 'mn' ? 'N/A' : 'N/A'
+    const team = 'N/A'
+    
+    // Default features based on category
+    const features = language === 'mn' 
+      ? ['Централ халаалт', 'Хаалганы систем', 'Хажуугийн засвар', 'Газрын тосны систем']
+      : ['Central heating', 'Door system', 'Side finishing', 'Oil system']
+
+    return {
+      title,
+      description,
+      year,
+      area,
+      areaUnit,
+      duration,
+      team,
+      features
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-[#0F425C] animate-spin mx-auto mb-4" />
+          <p className="text-[#0F425C] text-lg">
+            {language === 'mn' ? 'Төслүүд ачаалж байна...' : 'Loading projects...'}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Building2 className="w-16 h-16 text-[#0F425C]/40 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-[#0F425C]/60 mb-2">
+            {language === 'mn' ? 'Алдаа гарлаа' : 'Error occurred'}
+          </h3>
+          <p className="text-[#0F425C]/50 mb-4">{error}</p>
+          <button
+            onClick={fetchProjects}
+            className="bg-[#0F425C] text-white px-6 py-3 rounded-lg hover:bg-[#0F425C]/90 transition-colors"
+          >
+            {language === 'mn' ? 'Дахин оролдох' : 'Try again'}
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen">
@@ -173,75 +212,88 @@ export default function ProjectsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project) => (
-                <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  {/* Project Image Placeholder */}
-                  <div className="h-48 bg-gradient-to-br from-[#0F425C]/10 to-[#0F425C]/20 flex items-center justify-center">
-                    <Building2 className="w-16 h-16 text-[#0F425C]" />
+              {filteredProjects.map((project) => {
+                const displayData = getProjectDisplayData(project)
+                const primaryImage = project.images.find(img => img.isPrimary) || project.images[0]
+                
+                return (
+                  <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    {/* Project Image */}
+                    <div className="h-48 bg-gradient-to-br from-[#0F425C]/10 to-[#0F425C]/20 flex items-center justify-center overflow-hidden">
+                      {primaryImage ? (
+                        <img
+                          src={primaryImage.imageUrl}
+                          alt={displayData.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <Building2 className="w-16 h-16 text-[#0F425C]" />
+                      )}
+                    </div>
+
+                    {/* Project Info */}
+                    <div className="p-6">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          project.category === 'residential' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
+                          project.category === 'commercial' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
+                          'bg-[#0F425C]/10 text-[#0F425C]'
+                        }`}>
+                          {categories.find(c => c.id === project.category)?.name}
+                        </span>
+                        <span className="text-sm text-[#0F425C]/50">{displayData.year}</span>
+                      </div>
+
+                      <h3 className="text-xl font-bold text-[#0F425C] mb-3">{displayData.title}</h3>
+                      
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center text-sm text-[#0F425C]/80">
+                          <MapPin className="w-4 h-4 mr-2" />
+                          {project.location}
+                        </div>
+                        <div className="flex items-center text-sm text-[#0F425C]/80">
+                          <Home className="w-4 h-4 mr-2" />
+                          {displayData.area} {displayData.areaUnit}
+                        </div>
+                        <div className="flex items-center text-sm text-[#0F425C]/80">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {displayData.duration}
+                        </div>
+                        <div className="flex items-center text-sm text-[#0F425C]/80">
+                          <Users className="w-4 h-4 mr-2" />
+                          {language === 'mn' ? `${displayData.team} хүн` : `${displayData.team} people`}
+                        </div>
+                      </div>
+
+                      <p className="text-[#0F425C]/80 text-sm mb-4 line-clamp-3">{displayData.description}</p>
+
+                      {/* Project Features */}
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-[#0F425C] mb-2 text-sm">
+                          {language === 'mn' ? 'Онцлог шийдэл:' : 'Key Features:'}
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {displayData.features.slice(0, 3).map((feature, index) => (
+                            <span key={index} className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
+                              {feature}
+                            </span>
+                          ))}
+                          {displayData.features.length > 3 && (
+                            <span className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
+                              +{displayData.features.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <button className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-colors inline-flex items-center justify-center">
+                        {language === 'mn' ? 'Дэлгэрэнгүй' : 'View Details'}
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-
-                  {/* Project Info */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.category === 'residential' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
-                        project.category === 'commercial' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
-                        'bg-[#0F425C]/10 text-[#0F425C]'
-                      }`}>
-                        {categories.find(c => c.id === project.category)?.name}
-                      </span>
-                      <span className="text-sm text-[#0F425C]/50">{project.year}</span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-[#0F425C] mb-3">{project.title}</h3>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-[#0F425C]/80">
-                        <MapPin className="w-4 h-4 mr-2" />
-                        {project.location}
-                      </div>
-                      <div className="flex items-center text-sm text-[#0F425C]/80">
-                        <Home className="w-4 h-4 mr-2" />
-                        {project.area} {project.areaUnit}
-                      </div>
-                      <div className="flex items-center text-sm text-[#0F425C]/80">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        {project.duration}
-                      </div>
-                      <div className="flex items-center text-sm text-[#0F425C]/80">
-                        <Users className="w-4 h-4 mr-2" />
-                        {language === 'mn' ? `${project.team} хүн` : `${project.team} people`}
-                      </div>
-                    </div>
-
-                    <p className="text-[#0F425C]/80 text-sm mb-4 line-clamp-3">{project.description}</p>
-
-                    {/* Project Features */}
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-[#0F425C] mb-2 text-sm">
-                        {language === 'mn' ? 'Онцлог шийдэл:' : 'Key Features:'}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.features.slice(0, 3).map((feature, index) => (
-                          <span key={index} className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
-                            {feature}
-                          </span>
-                        ))}
-                        {project.features.length > 3 && (
-                          <span className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
-                            +{project.features.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <button className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-colors inline-flex items-center justify-center">
-                      {language === 'mn' ? 'Дэлгэрэнгүй' : 'View Details'}
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           )}
         </div>
@@ -264,7 +316,7 @@ export default function ProjectsPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">50+</div>
+              <div className="text-4xl md:text-5xl font-bold text-[#0F425C] mb-2">{projects.length}+</div>
               <div className="text-[#0F425C]/80">
                 {language === 'mn' ? 'Амжилттай төсөл' : 'Successful Projects'}
               </div>

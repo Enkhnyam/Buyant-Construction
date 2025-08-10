@@ -5,30 +5,28 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
-    const search = searchParams.get('search')
-    const limit = parseInt(searchParams.get('limit') || '10')
-    const offset = parseInt(searchParams.get('offset') || '0')
-
+    const featured = searchParams.get('featured')
+    const published = searchParams.get('published')
+    const limit = searchParams.get('limit')
+    
     // Build where clause
-    const where: any = {
-      published: true
-    }
-
+    const where: any = {}
+    
     if (category && category !== 'all') {
       where.category = category
     }
-
-    if (search) {
-      where.OR = [
-        { titleMn: { contains: search, mode: 'insensitive' } },
-        { titleEn: { contains: search, mode: 'insensitive' } },
-        { descriptionMn: { contains: search, mode: 'insensitive' } },
-        { descriptionEn: { contains: search, mode: 'insensitive' } },
-        { location: { contains: search, mode: 'insensitive' } }
-      ]
+    
+    if (featured !== null) {
+      where.featured = featured === 'true'
+    }
+    
+    if (published !== null) {
+      where.published = published === 'true'
+    } else {
+      // Default to only published projects for public API
+      where.published = true
     }
 
-    // Fetch projects with images
     const projects = await prisma.project.findMany({
       where,
       include: {
@@ -36,26 +34,16 @@ export async function GET(request: NextRequest) {
           orderBy: { order: 'asc' }
         }
       },
-      orderBy: { createdAt: 'desc' },
-      take: limit,
-      skip: offset
+      orderBy: [
+        { featured: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      ...(limit && { take: parseInt(limit) })
     })
 
-    // Get total count for pagination
-    const total = await prisma.project.count({ where })
-
-    return NextResponse.json({
-      success: true,
-      projects,
-      pagination: {
-        total,
-        limit,
-        offset,
-        hasMore: offset + limit < total
-      }
-    })
+    return NextResponse.json(projects)
   } catch (error) {
-    console.error('Projects fetch error:', error)
+    console.error('Failed to fetch projects:', error)
     return NextResponse.json(
       { error: 'Failed to fetch projects' },
       { status: 500 }

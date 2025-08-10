@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Star, Quote } from 'lucide-react'
+import { TestimonialImage } from './TestimonialImage'
 
 interface Testimonial {
   id: number
@@ -12,6 +13,7 @@ interface Testimonial {
   contentEn: string
   rating: number
   featured: boolean
+  clientImageId?: string
 }
 
 export default function TestimonialsSection() {
@@ -99,14 +101,24 @@ export default function TestimonialsSection() {
 
               {/* Client Info */}
               <div className="border-t border-gray-200 pt-4">
-                <div className="font-semibold text-gray-900">
-                  {testimonial.clientName}
-                </div>
-                {testimonial.clientTitle && (
-                  <div className="text-sm text-gray-600">
-                    {testimonial.clientTitle}
+                <div className="flex items-center gap-3">
+                  {testimonial.clientImageId && (
+                    <TestimonialImage 
+                      clientId={testimonial.clientImageId} 
+                      className="w-12 h-12"
+                    />
+                  )}
+                  <div>
+                    <div className="font-semibold text-gray-900">
+                      {testimonial.clientName}
+                    </div>
+                    {testimonial.clientTitle && (
+                      <div className="text-sm text-gray-600">
+                        {testimonial.clientTitle}
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           ))}
