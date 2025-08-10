@@ -46,6 +46,68 @@ export default function ServicesPage() {
             </p>
           </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+            {/* Image Section */}
+            <div className="order-2 lg:order-1">
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/services/mayagt.jpg" 
+                  alt={language === 'mn' ? 'А Маягт зөвшөөрөл' : 'A Mayagt Permit'}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+
+            {/* A Mayagt Content */}
+            <div className="order-1 lg:order-2">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
+                    {language === 'mn' ? 'А Маягт гэж юу вэ?' : 'What is A Mayagt?'}
+                  </h3>
+                  <p className="text-[#0F425C]/80 leading-relaxed">
+                    {language === 'mn'
+                      ? 'А Маягт нь орон сууцны цогцолбор, оффисын барилга барих компаниудад заавал шаардлагатай зөвшөөрөл юм. Энэ нь барилгын төслийн хэрэгжүүлэлтийн зөвшөөрөл бөгөөд Монгол Улсын хуулиар заавал авах шаардлагатай.'
+                      : 'A Mayagt is a mandatory permit required for companies building apartment complexes and office buildings. This is a construction project implementation permit that is legally required according to Mongolian law.'
+                    }
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-semibold text-[#0F425C] mb-3">
+                    {language === 'mn' ? 'Хэрэгтэй үед:' : 'When it\'s needed:'}
+                  </h4>
+                  <ul className="space-y-2">
+                    {language === 'mn' 
+                      ? [
+                          'Орон сууцны цогцолбор барих үед',
+                          'Оффисын барилга барих үед',
+                          'Худалдааны төв барих үед',
+                          'Олон давхар барилга барих үед'
+                        ].map((item, index) => (
+                          <li key={index} className="flex items-start">
+                            <CheckCircle className="w-5 h-5 text-[#0F425C] mr-3 mt-0.5 flex-shrink-0" />
+                            <span className="text-[#0F425C]/80">{item}</span>
+                          </li>
+                        ))
+                      : [
+                          'When building apartment complexes',
+                          'When constructing office buildings',
+                          'When building shopping centers',
+                          'When constructing multi-story buildings'
+                        ].map((item, index) => (
+                          <li key={index} className="flex items-start">
+                            <CheckCircle className="w-5 h-5 text-[#0F425C] mr-3 mt-0.5 flex-shrink-0" />
+                            <span className="text-[#0F425C]/80">{item}</span>
+                          </li>
+                        ))
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow border border-[#0F425C]/10">
               <div className="w-16 h-16 bg-[#0F425C] rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
