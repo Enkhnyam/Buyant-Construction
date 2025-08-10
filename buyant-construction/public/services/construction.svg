@@ -1,0 +1,49 @@
+<svg width="600" height="450" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="450" fill="#0F425C"/>
+  <rect x="50" y="50" width="500" height="350" fill="#FFFFFF" fill-opacity="0.1"/>
+  
+  <!-- House under construction -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <!-- Foundation -->
+    <rect x="150" y="300" width="300" height="50"/>
+    
+    <!-- Walls -->
+    <rect x="170" y="200" width="260" height="100"/>
+    
+    <!-- Roof -->
+    <polygon points="170,200 300,150 430,200"/>
+    
+    <!-- Windows -->
+    <rect x="200" y="220" width="60" height="60" fill="#0F425C"/>
+    <rect x="340" y="220" width="60" height="60" fill="#0F425C"/>
+    
+    <!-- Door -->
+    <rect x="270" y="250" width="40" height="50" fill="#0F425C"/>
+  </g>
+  
+  <!-- Construction crane -->
+  <g stroke="#FFFFFF" stroke-width="3" fill="none">
+    <line x1="500" y1="100" x2="500" y2="350"/>
+    <line x1="450" y1="100" x2="550" y2="100"/>
+    <line x1="500" y1="100" x2="500" y2="80"/>
+    <circle cx="500" cy="80" r="15"/>
+  </g>
+  
+  <!-- Workers -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <circle cx="180" cy="280" r="8"/>
+    <rect x="176" y="288" width="8" height="12"/>
+    <circle cx="420" cy="280" r="8"/>
+    <rect x="416" y="288" width="8" height="12"/>
+  </g>
+  
+  <!-- Progress indicator -->
+  <rect x="100" y="380" width="400" height="20" rx="10" fill="#FFFFFF" opacity="0.3"/>
+  <rect x="100" y="380" width="300" height="20" rx="10" fill="#FFFFFF" opacity="0.8"/>
+  <text x="300" y="395" text-anchor="middle" fill="#0F425C" font-family="Arial, sans-serif" font-size="12" font-weight="bold">75% Complete</text>
+  
+  <!-- Text -->
+  <text x="300" y="420" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    Construction & Building
+  </text>
+</svg>
