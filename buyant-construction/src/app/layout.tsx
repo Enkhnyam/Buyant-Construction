@@ -6,10 +6,10 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Buyant Construction - Монголын гэр бүлийн барилгын үйлчилгээ',
-  description: 'Professional construction services and legal consultation in Mongolia. Full-service home building and legal documentation services.',
-  keywords: 'construction, Mongolia, legal services, residential building, А маягт, барилга, хуулийн үйлчилгээ',
-  authors: [{ name: 'Buyant Construction Team' }],
+  title: 'Буяант Барилга - Монголын гэр бүлийн барилгын үйлчилгээ',
+  description: 'Монголын гэр бүлийн барилгын үйлчилгээ - Буяант Барилга',
+  authors: [{ name: 'Буяант Барилга Team' }],
+  keywords: ['барилга', 'construction', 'mongolia', 'mongol', 'buyant', 'буяант'],
   icons: {
     icon: [
       { url: '/logoMainRound.png', type: 'image/png' },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Buyant Construction - Монголын гэр бүлийн барилгын үйлчилгээ',
+    title: 'Буяант Барилга - Монголын гэр бүлийн барилгын үйлчилгээ',
     description: 'Professional construction services and legal consultation in Mongolia',
     type: 'website',
     locale: 'mn_MN',

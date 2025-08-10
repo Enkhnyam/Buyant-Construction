@@ -106,9 +106,9 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-lg text-[#0F425C]/80 leading-relaxed">
                 <p>
-                  {language === 'mn'
-                    ? 'Баянт Барилга нь 2003 онд үүсч, Монголын барилгын салбарт 20 гаруй жилийн туршлагатай гэр бүлийн бизнес юм. Бид эхлээд жижиг барилгын ажилгаас эхлээд, одоо орон сууцны болон арилжааны барилгын бүрэн үйлчилгээ үзүүлж байна.'
-                    : 'Buyant Construction was established in 2003 and is a family business with over 20 years of experience in Mongolia\'s construction sector. We started with small construction projects and now provide comprehensive services for residential and commercial construction.'
+                  {language === 'mn' 
+                    ? 'Буяант Барилга нь 2003 онд байгуулагдсан, Монголын барилгын салбарт 20 гаруй жилийн туршлагатай гэр бүлийн бизнес юм. Бид жижиг барилгын төслүүдээс эхлээд одоо нэгдсэн барилгын үйлчилгээ үзүүлдэг болсон.'
+                    : 'Буяант Барилга was established in 2003 and is a family business with over 20 years of experience in Mongolia\'s construction sector. We started with small construction projects and now provide comprehensive construction services.'
                   }
                 </p>
                 <p>
@@ -123,15 +123,15 @@ export default function AboutPage() {
               <div className="text-center">
                 <div className="relative w-48 h-48 mx-auto mb-6">
                   <Image
-                    src="/logoMainRound.png"
-                    alt="Buyant Construction Logo"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    src="/buyant-placeholder.svg"
+                    alt="Буяант Барилга Logo"
+                    width={200}
+                    height={200}
+                    className="w-32 h-32 object-contain"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-[#0F425C] mb-4">
-                  {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}
                 </h3>
                 <p className="text-[#0F425C]/80">
                   {language === 'mn'

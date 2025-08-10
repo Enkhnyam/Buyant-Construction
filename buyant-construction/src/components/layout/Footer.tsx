@@ -19,15 +19,15 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <Image
-                src="/logoMain.png"
-                alt="Buyant Construction Logo"
-                width={40}
-                height={40}
-                className="w-10 h-10"
+                src="/logoMainRound.png"
+                alt="Буяант Барилга Logo"
+                width={120}
+                height={120}
+                className="h-20 w-20"
               />
               {isHydrated && (
                 <span className="ml-3 text-xl font-bold">
-                  {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
+                  {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}
                 </span>
               )}
             </div>
@@ -121,7 +121,7 @@ export default function Footer() {
         <div className="border-t border-[#0F425C]/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           {isHydrated && (
             <p className="text-[#0F425C]/60 text-sm">
-              © {currentYear} {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}. {t('footer.rights')}
+              © {currentYear} {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}. {t('footer.rights')}
             </p>
           )}
           {isHydrated && (

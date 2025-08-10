@@ -31,15 +31,14 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/logoMain.png"
-                alt="Buyant Construction Logo"
-                width={180}
-                height={72}
-                className="h-16 w-auto"
-                priority
+                alt="Буяант Барилга Logo"
+                width={150}
+                height={50}
+                className="h-12 w-auto"
               />
               {isHydrated && (
-                <span className="ml-3 text-xl font-bold text-[#0F425C] hidden sm:block">
-                  {language === 'mn' ? 'Баянт Барилга' : 'Buyant Construction'}
+                <span className="text-xl font-bold text-gray-800">
+                  {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}
                 </span>
               )}
             </Link>
