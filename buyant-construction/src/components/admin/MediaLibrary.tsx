@@ -67,7 +67,7 @@ export default function MediaLibrary({
 
   // Filter and sort media items
   const filteredAndSortedItems = useMemo(() => {
-    let filtered = mediaItems.filter(item => {
+    const filtered = mediaItems.filter(item => {
       const matchesSearch = 
         item.filename.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.captionMn.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -80,7 +80,7 @@ export default function MediaLibrary({
 
     // Sort items
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any
+      let aValue: string | number, bValue: string | number
       
       switch (sortBy) {
         case 'date':
@@ -240,7 +240,7 @@ export default function MediaLibrary({
           <div>
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as 'date' | 'name' | 'size' | 'type')}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {sortOptions.map(option => (

@@ -9,7 +9,10 @@ export async function GET(request: NextRequest) {
     const limit = searchParams.get('limit')
     
     // Build where clause
-    const where: any = {}
+    const where: {
+      active?: boolean
+      featured?: boolean
+    } = {}
     
     if (active !== null) {
       where.active = active === 'true'

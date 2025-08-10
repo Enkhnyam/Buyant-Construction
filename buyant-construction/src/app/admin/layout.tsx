@@ -16,19 +16,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ name?: string; username?: string } | null>(null)
 
   // Check if we're on the login page
   const isLoginPage = pathname === '/admin/login'
-
-  useEffect(() => {
-    // Don't check auth for login page
-    if (isLoginPage) {
-      setIsLoading(false)
-      return
-    }
-    checkAuth()
-  }, [isLoginPage])
 
   const checkAuth = async () => {
     try {
@@ -50,6 +41,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    // Don't check auth for login page
+    if (isLoginPage) {
+      setIsLoading(false)
+      return
+    }
+    checkAuth()
+  }, [isLoginPage])
 
   const handleLogout = async () => {
     try {

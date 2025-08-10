@@ -5,10 +5,11 @@ const prisma = new PrismaClient()
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const { id } = await params
+    const testimonialId = parseInt(id)
     const formData = await request.formData()
     
     const clientNameMn = formData.get('clientNameMn') as string
@@ -32,7 +33,20 @@ export async function PUT(
       clientPhoto = `/uploads/testimonials/${Date.now()}-${photoFile.name}`
     }
 
-    const updateData: any = {
+    const updateData: {
+      clientNameMn: string
+      clientNameEn: string
+      clientPositionMn: string
+      clientPositionEn: string
+      companyMn: string
+      companyEn: string
+      contentMn: string
+      contentEn: string
+      rating: number
+      featured: boolean
+      published: boolean
+      clientPhoto?: string
+    } = {
       clientNameMn,
       clientNameEn,
       clientPositionMn,
@@ -52,7 +66,7 @@ export async function PUT(
     }
 
     const testimonial = await prisma.testimonial.update({
-      where: { id },
+      where: { id: testimonialId },
       data: updateData
     })
 
@@ -68,13 +82,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id)
+    const { id } = await params
+    const testimonialId = parseInt(id)
     
     await prisma.testimonial.delete({
-      where: { id }
+      where: { id: testimonialId }
     })
 
     return NextResponse.json({ message: 'Testimonial deleted successfully' })

@@ -99,21 +99,23 @@ export async function POST(request: NextRequest) {
     const images = formData.getAll('images') as File[]
     const imageCaptions = formData.getAll('imageCaptions') as string[]
     const imageOrder = formData.getAll('imageOrder') as string[]
+    const imagePrimary = formData.getAll('imagePrimary') as string[]
 
     if (images.length > 0) {
       const imagePromises = images.map(async (file, index) => {
         const imageUrl = await saveFile(file, uploadsDir)
         
-        // Parse captions
+        // Parse captions from new format: [mn][en]
         let captionMn = ''
         let captionEn = ''
         
-        try {
-          const captions = JSON.parse(imageCaptions[index] || '{}')
-          captionMn = captions.mn || ''
-          captionEn = captions.en || ''
-        } catch (e) {
-          console.warn('Failed to parse image captions:', e)
+        if (index < imageCaptions.length) {
+          const captionData = imageCaptions[index]
+          const captionMatch = captionData.match(/\[(.*?)\]\[(.*?)\]/)
+          if (captionMatch) {
+            captionMn = captionMatch[1] || ''
+            captionEn = captionMatch[2] || ''
+          }
         }
 
         return prisma.projectImage.create({
@@ -122,8 +124,8 @@ export async function POST(request: NextRequest) {
             imageUrl,
             captionMn,
             captionEn,
-            isPrimary: index === 0, // First image is primary
-            order: parseInt(imageOrder[index] || '0')
+            isPrimary: index < imagePrimary.length ? imagePrimary[index] === 'true' : index === 0,
+            order: index < imageOrder.length ? parseInt(imageOrder[index] || '0') : index
           }
         })
       })
@@ -202,21 +204,23 @@ export async function PUT(request: NextRequest) {
     const images = formData.getAll('images') as File[]
     const imageCaptions = formData.getAll('imageCaptions') as string[]
     const imageOrder = formData.getAll('imageOrder') as string[]
+    const imagePrimary = formData.getAll('imagePrimary') as string[]
 
     if (images.length > 0) {
       const imagePromises = images.map(async (file, index) => {
         const imageUrl = await saveFile(file, uploadsDir)
         
-        // Parse captions
+        // Parse captions from new format: [mn][en]
         let captionMn = ''
         let captionEn = ''
         
-        try {
-          const captions = JSON.parse(imageCaptions[index] || '{}')
-          captionMn = captions.mn || ''
-          captionEn = captions.en || ''
-        } catch (e) {
-          console.warn('Failed to parse image captions:', e)
+        if (index < imageCaptions.length) {
+          const captionData = imageCaptions[index]
+          const captionMatch = captionData.match(/\[(.*?)\]\[(.*?)\]/)
+          if (captionMatch) {
+            captionMn = captionMatch[1] || ''
+            captionEn = captionMatch[2] || ''
+          }
         }
 
         return prisma.projectImage.create({
@@ -225,8 +229,8 @@ export async function PUT(request: NextRequest) {
             imageUrl,
             captionMn,
             captionEn,
-            isPrimary: false, // Don't change primary image on update
-            order: parseInt(imageOrder[index] || '0')
+            isPrimary: index < imagePrimary.length ? imagePrimary[index] === 'true' : false,
+            order: index < imageOrder.length ? parseInt(imageOrder[index] || '0') : index
           }
         })
       })

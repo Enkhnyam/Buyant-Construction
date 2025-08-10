@@ -10,7 +10,11 @@ export async function GET(request: NextRequest) {
     const limit = searchParams.get('limit')
     
     // Build where clause
-    const where: any = {}
+    const where: {
+      category?: string
+      featured?: boolean
+      published?: boolean
+    } = {}
     
     if (category && category !== 'all') {
       where.category = category

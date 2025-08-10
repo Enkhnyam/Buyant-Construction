@@ -6,12 +6,8 @@ import {
   Plus, 
   Edit, 
   Trash2, 
-  Eye, 
-  EyeOff, 
-  Upload, 
-  X,
   Save,
-  ArrowLeft
+  X
 } from 'lucide-react'
 import ImageGalleryManager from '@/components/admin/ImageGalleryManager'
 
@@ -33,7 +29,7 @@ interface Project {
 }
 
 interface ProjectImage {
-  id?: number
+  id?: number | string
   imageUrl: string
   captionMn: string
   captionEn: string
@@ -41,6 +37,7 @@ interface ProjectImage {
   order: number
   file?: File
   preview?: string
+  isExisting?: boolean // Added for tracking existing images
 }
 
 interface ProjectFormData {
@@ -127,15 +124,22 @@ export default function AdminProjectsPage() {
         formDataToSend.append(key, String(value))
       })
       
-      // Add images
-      projectImages.forEach((image, index) => {
+      // Add images with proper tracking of existing vs. new
+      projectImages.forEach((image) => {
         if (image.file) {
+          // New image file
           formDataToSend.append('images', image.file)
+          formDataToSend.append('imageTypes', 'new')
+        } else if (image.isExisting) {
+          // Existing image - send the URL
+          formDataToSend.append('existingImageUrls', image.imageUrl)
+          formDataToSend.append('imageTypes', 'existing')
         }
-        formDataToSend.append(`imageCaptions[${index}][mn]`, image.captionMn || '')
-        formDataToSend.append(`imageCaptions[${index}][en]`, image.captionEn || '')
-        formDataToSend.append(`imageOrder[${index}]`, String(image.order))
-        formDataToSend.append(`imagePrimary[${index}]`, String(image.isPrimary))
+        
+        // Add caption and metadata for all images
+        formDataToSend.append('imageCaptions', `[${image.captionMn || ''}][${image.captionEn || ''}]`)
+        formDataToSend.append('imageOrder', String(image.order))
+        formDataToSend.append('imagePrimary', String(image.isPrimary))
       })
 
       const url = editingProject 
@@ -154,9 +158,14 @@ export default function AdminProjectsPage() {
         setEditingProject(null)
         resetForm()
         fetchProjects()
+      } else {
+        const errorData = await response.json()
+        console.error('Failed to save project:', errorData)
+        alert(language === 'mn' ? 'Төслийг хадгалахад алдаа гарлаа' : 'Failed to save project')
       }
     } catch (error) {
       console.error('Failed to save project:', error)
+      alert(language === 'mn' ? 'Төслийг хадгалахад алдаа гарлаа' : 'Failed to save project')
     }
   }
 
@@ -181,7 +190,8 @@ export default function AdminProjectsPage() {
       ...img,
       order: index,
       file: undefined,
-      preview: img.imageUrl
+      preview: img.imageUrl,
+      isExisting: true // Mark as existing image
     }))
     setProjectImages(formattedImages)
     setShowForm(true)
@@ -472,10 +482,7 @@ export default function AdminProjectsPage() {
               <ImageGalleryManager
                 images={projectImages}
                 onImagesChange={handleImagesChange}
-                language={language}
                 maxImages={10}
-                acceptedFileTypes={['image/jpeg', 'image/png', 'image/webp']}
-                maxFileSize={5 * 1024 * 1024} // 5MB
               />
             </div>
 

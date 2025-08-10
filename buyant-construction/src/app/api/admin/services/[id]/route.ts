@@ -3,24 +3,23 @@ import { prisma } from '@/lib/db'
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const serviceId = parseInt(params.id)
-    const body = await request.json()
+    const { id } = await params
+    const serviceId = parseInt(id)
+    const formData = await request.formData()
     
     // Extract service data
-    const {
-      titleMn,
-      titleEn,
-      descriptionMn,
-      descriptionEn,
-      shortDescriptionMn,
-      shortDescriptionEn,
-      icon,
-      order,
-      active
-    } = body
+    const titleMn = formData.get('titleMn') as string
+    const titleEn = formData.get('titleEn') as string
+    const descriptionMn = formData.get('descriptionMn') as string
+    const descriptionEn = formData.get('descriptionEn') as string
+    const shortDescriptionMn = formData.get('shortDescriptionMn') as string
+    const shortDescriptionEn = formData.get('shortDescriptionEn') as string
+    const icon = formData.get('icon') as string
+    const order = parseInt(formData.get('order') as string) || 0
+    const active = formData.get('active') === 'true'
 
     // Validate required fields
     if (!titleMn || !titleEn || !descriptionMn || !descriptionEn || !shortDescriptionMn || !shortDescriptionEn) {
@@ -41,8 +40,8 @@ export async function PUT(
         shortDescriptionMn,
         shortDescriptionEn,
         icon: icon || '',
-        order: order || 0,
-        active: active !== undefined ? active : true
+        order,
+        active
       }
     })
 
@@ -61,10 +60,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const serviceId = parseInt(params.id)
+    const { id } = await params
+    const serviceId = parseInt(id)
 
     // Delete service
     await prisma.service.delete({

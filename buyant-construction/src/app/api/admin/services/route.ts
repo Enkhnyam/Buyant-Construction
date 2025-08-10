@@ -19,20 +19,18 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const formData = await request.formData()
     
     // Extract service data
-    const {
-      titleMn,
-      titleEn,
-      descriptionMn,
-      descriptionEn,
-      shortDescriptionMn,
-      shortDescriptionEn,
-      icon,
-      order,
-      active
-    } = body
+    const titleMn = formData.get('titleMn') as string
+    const titleEn = formData.get('titleEn') as string
+    const descriptionMn = formData.get('descriptionMn') as string
+    const descriptionEn = formData.get('descriptionEn') as string
+    const shortDescriptionMn = formData.get('shortDescriptionMn') as string
+    const shortDescriptionEn = formData.get('shortDescriptionEn') as string
+    const icon = formData.get('icon') as string
+    const order = parseInt(formData.get('order') as string) || 0
+    const active = formData.get('active') === 'true'
 
     // Validate required fields
     if (!titleMn || !titleEn || !descriptionMn || !descriptionEn || !shortDescriptionMn || !shortDescriptionEn) {
@@ -52,8 +50,8 @@ export async function POST(request: NextRequest) {
         shortDescriptionMn,
         shortDescriptionEn,
         icon: icon || '',
-        order: order || 0,
-        active: active !== undefined ? active : true
+        order,
+        active
       }
     })
 

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Lock, Eye, EyeOff, AlertCircle } from 'lucide-react'
+import Link from 'next/link'
 
 export default function AdminLoginPage() {
   const { language } = useLanguage()
@@ -173,12 +174,12 @@ export default function AdminLoginPage() {
             </div>
 
             <div className="mt-6">
-              <a
+              <Link
                 href="/"
                 className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 {language === 'mn' ? 'Үндсэн хуудас руу буцах' : 'Back to Homepage'}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

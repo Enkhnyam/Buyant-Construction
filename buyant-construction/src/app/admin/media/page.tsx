@@ -85,12 +85,12 @@ export default function AdminMediaLibraryPage() {
       const mockFiles: MediaFile[] = [
         {
           id: '1',
-          filename: 'project1-main.jpg',
-          originalName: 'project1-main.jpg',
-          mimeType: 'image/jpeg',
-          size: 2048576,
-          url: '/uploads/project1-main.jpg',
-          thumbnailUrl: '/uploads/project1-main.jpg',
+          filename: 'project1-main.svg',
+          originalName: 'project1-main.svg',
+          mimeType: 'image/svg+xml',
+          size: 738,
+          url: '/uploads/project1-main.svg',
+          thumbnailUrl: '/uploads/project1-main.svg',
           uploadedAt: '2024-01-15T10:30:00Z',
           uploadedBy: 'admin',
           category: 'projects',
@@ -99,17 +99,17 @@ export default function AdminMediaLibraryPage() {
         },
         {
           id: '2',
-          filename: 'service-renovation.jpg',
-          originalName: 'service-renovation.jpg',
-          mimeType: 'image/jpeg',
-          size: 1536000,
-          url: '/uploads/service-renovation.jpg',
-          thumbnailUrl: '/uploads/service-renovation.jpg',
+          filename: 'project2-main.svg',
+          originalName: 'project2-main.svg',
+          mimeType: 'image/svg+xml',
+          size: 876,
+          url: '/uploads/project2-main.svg',
+          thumbnailUrl: '/uploads/project2-main.svg',
           uploadedAt: '2024-01-14T14:20:00Z',
           uploadedBy: 'admin',
-          category: 'services',
-          tags: ['renovation', 'interior'],
-          usage: ['renovation-service']
+          category: 'projects',
+          tags: ['exterior', 'commercial'],
+          usage: ['project2']
         }
       ]
       

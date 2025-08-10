@@ -9,15 +9,12 @@ import {
   Star, 
   Trash2, 
   Move, 
-  Download,
-  RotateCw,
-  Crop,
   Image as ImageIcon
 } from 'lucide-react'
 import { useDropzone } from 'react-dropzone'
 
 interface ProjectImage {
-  id?: number
+  id?: number | string
   imageUrl: string
   captionMn: string
   captionEn: string
@@ -25,6 +22,7 @@ interface ProjectImage {
   order: number
   file?: File
   preview?: string
+  isExisting?: boolean // Flag to track if this is an existing image
 }
 
 interface ImageGalleryManagerProps {
@@ -39,22 +37,22 @@ export default function ImageGalleryManager({
   maxImages = 20 
 }: ImageGalleryManagerProps) {
   const { language } = useLanguage()
-  const [selectedImages, setSelectedImages] = useState<Set<number>>(new Set())
+  const [selectedImages, setSelectedImages] = useState<Set<number | string>>(new Set())
   const [showPreview, setShowPreview] = useState<ProjectImage | null>(null)
-  const [editingImage, setEditingImage] = useState<ProjectImage | null>(null)
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newImages: ProjectImage[] = acceptedFiles.map((file, index) => ({
-      id: Date.now() + index, // Temporary ID for new images
+      id: `new-${Date.now()}-${index}`, // Temporary ID for new images
       imageUrl: '',
       captionMn: '',
       captionEn: '',
       isPrimary: images.length === 0, // First image is primary if no images exist
       order: images.length + index,
       file,
-      preview: URL.createObjectURL(file)
+      preview: URL.createObjectURL(file),
+      isExisting: false
     }))
 
     const updatedImages = [...images, ...newImages]
@@ -70,7 +68,7 @@ export default function ImageGalleryManager({
     disabled: images.length >= maxImages
   })
 
-  const removeImage = (imageId: number) => {
+  const removeImage = (imageId: number | string) => {
     const updatedImages = images.filter(img => img.id !== imageId)
     // If we removed the primary image, make the first remaining image primary
     if (images.find(img => img.id === imageId)?.isPrimary && updatedImages.length > 0) {
@@ -84,7 +82,7 @@ export default function ImageGalleryManager({
     })
   }
 
-  const setPrimaryImage = (imageId: number) => {
+  const setPrimaryImage = (imageId: number | string) => {
     const updatedImages = images.map(img => ({
       ...img,
       isPrimary: img.id === imageId
@@ -92,20 +90,7 @@ export default function ImageGalleryManager({
     onImagesChange(updatedImages)
   }
 
-  const reorderImages = (fromIndex: number, toIndex: number) => {
-    const updatedImages = [...images]
-    const [movedImage] = updatedImages.splice(fromIndex, 1)
-    updatedImages.splice(toIndex, 0, movedImage)
-    
-    // Update order numbers
-    updatedImages.forEach((img, index) => {
-      img.order = index
-    })
-    
-    onImagesChange(updatedImages)
-  }
-
-  const toggleImageSelection = (imageId: number) => {
+  const toggleImageSelection = (imageId: number | string) => {
     setSelectedImages(prev => {
       const newSet = new Set(prev)
       if (newSet.has(imageId)) {
@@ -127,7 +112,7 @@ export default function ImageGalleryManager({
     setSelectedImages(new Set())
   }
 
-  const updateImageCaption = (imageId: number, field: 'captionMn' | 'captionEn', value: string) => {
+  const updateImageCaption = (imageId: number | string, field: 'captionMn' | 'captionEn', value: string) => {
     const updatedImages = images.map(img => 
       img.id === imageId ? { ...img, [field]: value } : img
     )
@@ -201,7 +186,7 @@ export default function ImageGalleryManager({
       {/* Images Grid */}
       {images.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((image, index) => (
+          {images.map((image) => (
             <div
               key={image.id}
               className={`relative group border-2 rounded-lg overflow-hidden ${
@@ -224,6 +209,16 @@ export default function ImageGalleryManager({
                   <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                     <Star className="w-3 h-3 mr-1" />
                     {getText('Үндсэн', 'Primary')}
+                  </span>
+                </div>
+              )}
+
+              {/* Existing Image Badge */}
+              {image.isExisting && (
+                <div className="absolute top-2 left-8 z-10">
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <ImageIcon className="w-3 h-3 mr-1" />
+                    {getText('Байгаа', 'Existing')}
                   </span>
                 </div>
               )}
@@ -283,7 +278,7 @@ export default function ImageGalleryManager({
                   placeholder={getText('Тайлбар (Англи)', 'Caption (English)')}
                   value={image.captionEn}
                   onChange={(e) => updateImageCaption(image.id!, 'captionEn', e.target.value)}
-                  className="w-full px-2 py-1 text-xs border border-gray-300 rounded"
+                  className="w-full px-3 py-1 text-xs border border-gray-300 rounded"
                 />
               </div>
 
@@ -321,6 +316,11 @@ export default function ImageGalleryManager({
                 {showPreview.isPrimary && (
                   <p className="text-xs text-blue-600 mt-1">
                     {getText('Үндсэн зураг', 'Primary Image')}
+                  </p>
+                )}
+                {showPreview.isExisting && (
+                  <p className="text-xs text-green-600 mt-1">
+                    {getText('Байгаа зураг', 'Existing Image')}
                   </p>
                 )}
               </div>
