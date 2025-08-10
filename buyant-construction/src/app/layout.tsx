@@ -10,6 +10,16 @@ export const metadata: Metadata = {
   description: 'Professional construction services and legal consultation in Mongolia. Full-service home building and legal documentation services.',
   keywords: 'construction, Mongolia, legal services, residential building, А маягт, барилга, хуулийн үйлчилгээ',
   authors: [{ name: 'Buyant Construction Team' }],
+  icons: {
+    icon: [
+      { url: '/logoMainRound.png', type: 'image/png' },
+      { url: '/logoMainRound.png', type: 'image/png', sizes: '32x32' },
+      { url: '/logoMainRound.png', type: 'image/png', sizes: '16x16' },
+    ],
+    shortcut: '/logoMainRound.png',
+    apple: '/logoMainRound.png',
+  },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'Buyant Construction - Монголын гэр бүлийн барилгын үйлчилгээ',
     description: 'Professional construction services and legal consultation in Mongolia',

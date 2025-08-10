@@ -1,0 +1,21 @@
+{
+  "name": "Buyant Construction",
+  "short_name": "Buyant",
+  "description": "Professional construction services and legal consultation in Mongolia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0F425C",
+  "icons": [
+    {
+      "src": "/logoMainRound.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logoMainRound.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
