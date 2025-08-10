@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { LogOut, User, Shield, Home } from 'lucide-react'
@@ -13,13 +13,22 @@ interface AdminLayoutProps {
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const { language } = useLanguage()
   const router = useRouter()
+  const pathname = usePathname()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState<any>(null)
 
+  // Check if we're on the login page
+  const isLoginPage = pathname === '/admin/login'
+
   useEffect(() => {
+    // Don't check auth for login page
+    if (isLoginPage) {
+      setIsLoading(false)
+      return
+    }
     checkAuth()
-  }, [])
+  }, [isLoginPage])
 
   const checkAuth = async () => {
     try {
@@ -51,6 +60,11 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     } catch (error) {
       console.error('Logout failed:', error)
     }
+  }
+
+  // If we're on the login page, just render the children without the admin layout
+  if (isLoginPage) {
+    return <>{children}</>
   }
 
   if (isLoading) {
