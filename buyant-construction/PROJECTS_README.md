@@ -2,15 +2,61 @@
 
 This website now uses static data instead of a database for projects. This eliminates database connection issues and makes the site completely static.
 
+## Project Organization Structure
+
+Projects are now organized in individual folders for better management:
+
+```
+public/uploads/
+├── project-1/           # Residential Building
+│   ├── main-view.svg    # Main project image
+│   └── interior-view.svg # Interior view
+├── project-2/           # Commercial Center
+│   ├── main-view.svg    # Main project image
+│   └── exterior-view.svg # Exterior view
+├── project-3/           # Renovation Project
+│   └── main-view.svg    # Main project image
+├── project-4/           # Private House
+│   ├── main-view.jpeg   # Main project image
+│   └── side-view.jpeg   # Side view
+├── project-5/           # Office Building
+│   ├── main-view.jpeg   # Main project image
+│   ├── environment-view.jpeg # Environment view
+│   ├── side-view.jpeg   # Side view
+│   ├── detail-view.jpeg # Detail view
+│   └── additional-view.jpeg # Additional view
+└── project-6/           # Hostel Building
+    ├── main-view.jpeg   # Main project image
+    ├── side-view.jpeg   # Side view
+    ├── detail-view.jpeg # Detail view
+    ├── additional-view.jpeg # Additional view
+    ├── interior-view.jpeg # Interior view
+    ├── exterior-view.jpeg # Exterior view
+    ├── closeup-view.jpeg # Closeup view
+    └── wide-view.jpeg   # Wide view
+```
+
 ## How to Add a New Project
 
-### 1. Upload Project Images
+### 1. Create Project Folder
 
-1. Add your project images to the `public/uploads/` directory
-2. Use descriptive filenames (e.g., `project7-main.jpg`, `project7-interior.jpg`)
+1. Create a new folder in `public/uploads/` with the naming convention: `project-7`, `project-8`, etc.
+2. This keeps your project images organized and easy to manage
+
+### 2. Upload Project Images
+
+1. Add your project images to the new project folder
+2. Use descriptive filenames following this convention:
+   - `main-view.jpg` - Main/cover image (required)
+   - `side-view.jpg` - Side view
+   - `interior-view.jpg` - Interior view
+   - `exterior-view.jpg` - Exterior view
+   - `detail-view.jpg` - Detail/closeup view
+   - `environment-view.jpg` - Environment/surroundings
+   - `additional-view.jpg` - Additional angles
 3. Supported formats: JPG, PNG, SVG, WebP
 
-### 2. Update the Projects Data File
+### 3. Update the Projects Data File
 
 Edit `src/data/projects.ts` and add a new project object:
 
@@ -35,16 +81,16 @@ Edit `src/data/projects.ts` and add a new project object:
   features: ['Feature 1', 'Feature 2', 'Feature 3'], // Key features (optional)
   images: [
     {
-      url: '/uploads/project7-main.jpg', // Image path relative to public directory
+      url: '/uploads/project-7/main-view.jpg', // Image path relative to public directory
       captionMn: 'Үндсэн харагдах байдал', // Mongolian caption
       captionEn: 'Main view', // English caption
       isPrimary: true, // Set to true for the main/cover image
       order: 1 // Display order
     },
     {
-      url: '/uploads/project7-interior.jpg',
-      captionMn: 'Дотор харагдах байдал',
-      captionEn: 'Interior view',
+      url: '/uploads/project-7/side-view.jpg',
+      captionMn: 'Хажуугийн харагдах байдал',
+      captionEn: 'Side view',
       isPrimary: false,
       order: 2
     }
@@ -52,20 +98,21 @@ Edit `src/data/projects.ts` and add a new project object:
 }
 ```
 
-### 3. Image Guidelines
+### 4. Image Guidelines
 
-- **Primary Image**: Set `isPrimary: true` for the main project image
+- **Primary Image**: Set `isPrimary: true` for the main project image (required)
 - **Image Order**: Use `order` field to control display sequence
 - **Captions**: Provide both Mongolian and English captions
-- **File Paths**: Always start with `/uploads/` (relative to public directory)
+- **File Paths**: Always use the format `/uploads/project-X/filename.ext`
+- **Naming Convention**: Use descriptive names like `main-view`, `side-view`, `interior-view`
 
-### 4. Project Categories
+### 5. Project Categories
 
 - `residential` - Орон сууцны / Residential
 - `commercial` - Арилжааны / Commercial  
 - `renovation` - Засалт / Renovation
 
-### 5. Deployment
+### 6. Deployment
 
 After adding a new project:
 
@@ -73,25 +120,23 @@ After adding a new project:
 2. Deploy to your hosting platform
 3. The new project will appear automatically
 
-## Benefits of This Approach
+## Benefits of This Organization
 
-✅ **No Database Required** - Everything is static files
-✅ **Faster Loading** - No API calls needed
-✅ **Easier Deployment** - Just static files
-✅ **Version Control** - Project changes tracked in git
-✅ **Simple Maintenance** - Edit one file to update projects
+✅ **Clear Structure** - Each project has its own folder  
+✅ **Easy Management** - Find and edit project images quickly  
+✅ **Descriptive Names** - Understand what each image shows  
+✅ **Scalable** - Easy to add more projects and images  
+✅ **Professional** - Organized file structure for clients  
 
-## Example Project Structure
+## Example: Adding Project 7
 
-```
-public/uploads/
-├── project1-main.svg
-├── project1-interior.svg
-├── project2-main.svg
-├── project2-exterior.svg
-├── project3-main.svg
-└── new-project-main.jpg  ← Add your new images here
-```
+1. **Create folder**: `public/uploads/project-7/`
+2. **Add images**:
+   - `project-7/main-view.jpg` (main image)
+   - `project-7/interior-view.jpg` (interior)
+   - `project-7/exterior-view.jpg` (exterior)
+3. **Update** `src/data/projects.ts`
+4. **Deploy** - done!
 
 ## Need Help?
 

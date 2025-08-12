@@ -46,14 +46,14 @@ export const projects: Project[] = [
     features: ['Central heating', 'Door system', 'Side finishing', 'Oil system'],
     images: [
       {
-        url: '/uploads/project1-main.svg',
+        url: '/uploads/project-1/main-view.svg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/project1-interior.svg',
+        url: '/uploads/project-1/interior-view.svg',
         captionMn: 'Дотор харагдах байдал',
         captionEn: 'Interior view',
         isPrimary: false,
@@ -79,14 +79,14 @@ export const projects: Project[] = [
     features: ['Modern facade', 'Parking system', 'Security system', 'HVAC'],
     images: [
       {
-        url: '/uploads/project2-main.svg',
+        url: '/uploads/project-2/main-view.svg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/project2-exterior.svg',
+        url: '/uploads/project-2/exterior-view.svg',
         captionMn: 'Гадна харагдах байдал',
         captionEn: 'Exterior view',
         isPrimary: false,
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
     images: [
       {
-        url: '/uploads/project3-main.svg',
+        url: '/uploads/project-3/main-view.svg',
         captionMn: 'Засалтын дараа',
         captionEn: 'After renovation',
         isPrimary: true,
@@ -138,14 +138,14 @@ export const projects: Project[] = [
     features: ['Workshop space', 'Storage rooms', 'Garden area', 'Garage'],
     images: [
       {
-        url: '/uploads/1-1754851522531-0.jpeg',
+        url: '/uploads/project-4/main-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/1-1754851522532-1.jpeg',
+        url: '/uploads/project-4/side-view.jpeg',
         captionMn: 'Хажуугийн харагдах байдал',
         captionEn: 'Side view',
         isPrimary: false,
@@ -171,18 +171,39 @@ export const projects: Project[] = [
     features: ['Smart building system', 'Conference rooms', 'Cafeteria', 'Parking garage'],
     images: [
       {
-        url: '/uploads/2-1754848821296-0.jpeg',
+        url: '/uploads/project-5/main-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/2-1754851072231-0.jpeg',
+        url: '/uploads/project-5/environment-view.jpeg',
         captionMn: 'Орчны харагдах байдал',
         captionEn: 'Environment view',
         isPrimary: false,
         order: 2
+      },
+      {
+        url: '/uploads/project-5/side-view.jpeg',
+        captionMn: 'Хажуугийн харагдах байдал',
+        captionEn: 'Side view',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-5/detail-view.jpeg',
+        captionMn: 'Дэлгэрэнгүй харагдах байдал',
+        captionEn: 'Detail view',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-5/additional-view.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал',
+        captionEn: 'Additional view',
+        isPrimary: false,
+        order: 5
       }
     ]
   },
@@ -204,18 +225,60 @@ export const projects: Project[] = [
     features: ['Shared kitchen', 'Study rooms', 'Laundry facilities', 'Security system'],
     images: [
       {
-        url: '/uploads/3-1754851428378-0.jpeg',
+        url: '/uploads/project-6/main-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/3-1754851428383-1.jpeg',
+        url: '/uploads/project-6/side-view.jpeg',
         captionMn: 'Хажуугийн харагдах байдал',
         captionEn: 'Side view',
         isPrimary: false,
         order: 2
+      },
+      {
+        url: '/uploads/project-6/detail-view.jpeg',
+        captionMn: 'Дэлгэрэнгүй харагдах байдал',
+        captionEn: 'Detail view',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-6/additional-view.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал',
+        captionEn: 'Additional view',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-6/interior-view.jpeg',
+        captionMn: 'Дотор харагдах байдал',
+        captionEn: 'Interior view',
+        isPrimary: false,
+        order: 5
+      },
+      {
+        url: '/uploads/project-6/exterior-view.jpeg',
+        captionMn: 'Гадна харагдах байдал',
+        captionEn: 'Exterior view',
+        isPrimary: false,
+        order: 6
+      },
+      {
+        url: '/uploads/project-6/closeup-view.jpeg',
+        captionMn: 'Ойр харагдах байдал',
+        captionEn: 'Closeup view',
+        isPrimary: false,
+        order: 7
+      },
+      {
+        url: '/uploads/project-6/wide-view.jpeg',
+        captionMn: 'Өргөн харагдах байдал',
+        captionEn: 'Wide view',
+        isPrimary: false,
+        order: 8
       }
     ]
   }
