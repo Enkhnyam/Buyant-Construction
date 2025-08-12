@@ -330,12 +330,12 @@ export default function ProjectsPage() {
           onClick={closeProjectDialog}
         >
           <div 
-            className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h2 className="text-2xl font-bold text-[#0F425C]">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-8">
+                <h2 className="text-3xl font-bold text-[#0F425C]">
                   {getText(selectedProject.titleMn, selectedProject.titleEn)}
                 </h2>
                 <button
@@ -346,53 +346,62 @@ export default function ProjectsPage() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <img
-                    src={selectedProject.images.find(img => img.isPrimary)?.url || selectedProject.images[0]?.url || ''}
-                    alt={getText(selectedProject.titleMn, selectedProject.titleEn)}
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
-                </div>
-                <div>
-                  <p className="text-[#0F425C]/80 mb-4">
-                    {getText(selectedProject.descriptionMn, selectedProject.descriptionEn)}
-                  </p>
-                  <div className="space-y-2 text-sm text-[#0F425C]/60">
-                    <div>
-                      <span className="font-medium">Category:</span> {getCategoryText(selectedProject.category)}
-                    </div>
-                    <div>
-                      <span className="font-medium">Location:</span> {selectedProject.location}
-                    </div>
-                    <div>
-                      <span className="font-medium">Completion Date:</span> {selectedProject.completionDate ? new Date(selectedProject.completionDate).getFullYear() : 'N/A'}
-                    </div>
-                    <div>
-                      <span className="font-medium">Client:</span> {selectedProject.clientName || 'N/A'}
-                    </div>
+              {/* Project Description and Details */}
+              <div className="mb-10">
+                <p className="text-[#0F425C]/80 mb-8 text-lg leading-relaxed">
+                  {getText(selectedProject.descriptionMn, selectedProject.descriptionEn)}
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#0F425C]/60">
+                  <div className="bg-[#0F425C]/5 p-3 rounded-lg">
+                    <span className="font-medium">Category:</span> {getCategoryText(selectedProject.category)}
+                  </div>
+                  <div className="bg-[#0F425C]/5 p-3 rounded-lg">
+                    <span className="font-medium">Location:</span> {selectedProject.location}
+                  </div>
+                  <div className="bg-[#0F425C]/5 p-3 rounded-lg">
+                    <span className="font-medium">Completion Date:</span> {selectedProject.completionDate ? new Date(selectedProject.completionDate).getFullYear() : 'N/A'}
+                  </div>
+                  <div className="bg-[#0F425C]/5 p-3 rounded-lg">
+                    <span className="font-medium">Client:</span> {selectedProject.clientName || 'N/A'}
                   </div>
                 </div>
               </div>
 
-              {/* Additional Images */}
-              {selectedProject.images.length > 1 && (
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold text-[#0F425C] mb-4">
-                    {getText('Нэмэлт зурагнууд', 'Additional Images')}
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {selectedProject.images.slice(1).map((image, index) => (
+              {/* All Project Images - Alternating Layout */}
+              <div className="space-y-10">
+                <h3 className="text-2xl font-semibold text-[#0F425C] mb-8">
+                  {getText('Төслийн зурагнууд', 'Project Images')}
+                </h3>
+                {selectedProject.images.map((image, index) => (
+                  <div key={index} className={`flex items-center gap-10 ${index % 2 === 1 ? 'flex-row-reverse' : ''}`}>
+                    <div className="flex-1">
                       <img
-                        key={index}
                         src={image.url}
-                        alt={getText(image.captionMn || '', image.captionEn || '')}
-                        className="w-full h-24 object-cover rounded-lg transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-lg transform"
+                        alt={getText(image.captionMn || '', image.captionEn || '') || `Project image ${index + 1}`}
+                        className="w-full h-80 object-cover rounded-lg transition-all duration-300 ease-in-out cursor-pointer hover:scale-[1.02] hover:shadow-xl transform"
                       />
-                    ))}
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center">
+                      <h4 className="text-lg font-semibold text-[#0F425C] mb-4">
+                        {getText(image.captionMn || `Image ${index + 1}`, image.captionEn || `Image ${index + 1}`)}
+                      </h4>
+                      <p className="text-[#0F425C]/70 text-sm leading-relaxed">
+                        {index === 0 ? (
+                          getText(
+                            'Энэ бол төслийн үндсэн зураг бөгөөд төслийн ерөнхий харагдах байдлыг харуулж байна.',
+                            'This is the main project image showing the overall view of the project.'
+                          )
+                        ) : (
+                          getText(
+                            'Төслийн дэлгэрэнгүй харагдах байдлыг харуулж буй зураг.',
+                            'Detailed view of the project showing specific aspects and features.'
+                          )
+                        )}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )}
+                ))}
+              </div>
             </div>
           </div>
         </div>
