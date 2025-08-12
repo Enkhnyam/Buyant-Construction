@@ -75,9 +75,23 @@ export default function ProjectsShowcase() {
                     </div>
                   )}
                   <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white">
-                      {getCategoryText(project.category)}
-                    </span>
+                    {project.status && (
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-semibold border backdrop-blur-sm ${
+                          project.status === 'available'
+                            ? 'bg-green-100 text-green-800 border-green-200'
+                            : project.status === 'in_construction'
+                            ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                            : 'bg-gray-100 text-gray-700 border-gray-200'
+                        }`}
+                      >
+                        {project.status === 'available'
+                          ? (language === 'mn' ? 'Байгаа' : 'Available')
+                          : project.status === 'in_construction'
+                          ? (language === 'mn' ? 'Баригдаж байна' : 'In Construction')
+                          : (language === 'mn' ? 'Зарагдсан' : 'Sold')}
+                      </span>
+                    )}
                   </div>
                 </div>
 

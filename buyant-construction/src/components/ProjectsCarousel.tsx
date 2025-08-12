@@ -214,9 +214,23 @@ export default function ProjectsCarousel() {
                           className="object-cover"
                         />
                         <div className="absolute top-3 left-3">
-                          <span className="bg-[#0F425C] text-white px-2 py-1 rounded-full text-xs font-medium">
-                            {getCategoryText(project.category)}
-                          </span>
+                          {project.status && (
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs font-semibold border backdrop-blur-sm ${
+                                project.status === 'available'
+                                  ? 'bg-green-100 text-green-800 border-green-200'
+                                  : project.status === 'in_construction'
+                                  ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                                  : 'bg-gray-100 text-gray-700 border-gray-200'
+                              }`}
+                            >
+                              {project.status === 'available'
+                                ? (language === 'mn' ? 'Байгаа' : 'Available')
+                                : project.status === 'in_construction'
+                                ? (language === 'mn' ? 'Баригдаж байна' : 'In Construction')
+                                : (language === 'mn' ? 'Зарагдсан' : 'Sold')}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="p-3 md:p-4">
@@ -315,7 +329,7 @@ export default function ProjectsCarousel() {
           aria-describedby="project-description"
         >
           <div 
-            className="bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-8">
@@ -391,8 +405,8 @@ export default function ProjectsCarousel() {
                 ))}
               </div>
 
-              {/* Fix 5: Add navigation button in modal to projects page */}
-              <div className="mt-10 text-center">
+              {/* Actions in modal */}
+              <div className="mt-10 text-center flex items-center justify-center gap-3">
                 <Link
                   href="/projects"
                   className="inline-flex items-center px-6 py-3 bg-[#0F425C] text-white rounded-lg hover:bg-[#0F425C]/90 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-[#0F425C] focus:ring-offset-2"
@@ -400,8 +414,18 @@ export default function ProjectsCarousel() {
                   {language === 'mn' ? 'Бүх төслүүдийг харах' : 'View All Projects'}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
+                {selectedProject?.status === 'available' && (
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                  >
+                    {language === 'mn' ? 'Холбоо барих' : 'Contact Us'}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                )}
               </div>
             </div>
+            {/* Floating FAB removed per request */}
           </div>
         </div>
       )}

@@ -155,7 +155,7 @@ export default function ProjectsPage() {
                   return (
                     <div 
                       key={project.id} 
-                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1 h-full flex flex-col"
                       onClick={() => openProjectDialog(project)}
                     >
                       {/* Project Image */}
@@ -172,7 +172,7 @@ export default function ProjectsPage() {
                       </div>
 
                       {/* Project Info */}
-                      <div className="p-6">
+                      <div className="p-6 flex flex-col flex-1">
                         <div className="flex items-center justify-between mb-3">
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                             project.category === 'residential' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
@@ -226,16 +226,18 @@ export default function ProjectsPage() {
                           </div>
                         </div>
 
-                        <div 
-                          className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:shadow-lg"
+                        <button
+                          type="button"
+                          className="w-full mt-auto inline-flex items-center justify-center gap-2 bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:shadow-lg group"
                           onClick={(e) => {
                             e.stopPropagation();
                             openProjectDialog(project);
                           }}
                         >
                           {language === 'mn' ? 'Дэлгэрэнгүй' : 'View Details'}
-                          <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                        </div>
+                          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </button>
+                        {/* Removed contact button from cards per request */}
                       </div>
                     </div>
                   )
@@ -402,6 +404,19 @@ export default function ProjectsPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Actions - show contact button for available projects */}
+              {selectedProject?.status === 'available' && (
+                <div className="mt-10 text-center">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  >
+                    {language === 'mn' ? 'Холбоо барих' : 'Contact Us'}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

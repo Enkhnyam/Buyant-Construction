@@ -25,9 +25,44 @@ export interface Project {
   duration?: string
   team?: string
   features?: string[]
+  status?: 'sold' | 'in_construction' | 'available'
 }
 
 export const projects: Project[] = [
+  {
+    id: 'project-4',
+    titleMn: 'Хувийн байшин',
+    titleEn: 'Private House',
+    descriptionMn: 'Гэр бүлийн хэрэгцээнд тохирсон, 2 давхар хувийн байшин. Багаж хэрэгсэл, хадгалах өрөөтэй.',
+    descriptionEn: '2-story private house designed for family needs. Includes workshop and storage rooms.',
+    category: 'residential',
+    location: 'Baganuur, Mongolia',
+    completionDate: '2023-03-20',
+    clientName: 'Family Residence',
+    featured: false,
+    published: true,
+    status: 'available',
+    area: '450',
+    duration: '10 months',
+    team: '6',
+    features: ['Workshop space', 'Storage rooms', 'Garden area', 'Garage'],
+    images: [
+      {
+        url: '/uploads/project-4/main-view.jpeg',
+        captionMn: 'Үндсэн харагдах байдал',
+        captionEn: 'Main view',
+        isPrimary: true,
+        order: 1
+      },
+      {
+        url: '/uploads/project-4/side-view.jpeg',
+        captionMn: 'Хажуугийн харагдах байдал',
+        captionEn: 'Side view',
+        isPrimary: false,
+        order: 2
+      }
+    ]
+  },
   {
     id: 'project-1',
     titleMn: 'Орон сууцны барилга',
@@ -40,6 +75,7 @@ export const projects: Project[] = [
     clientName: 'Private Client',
     featured: true,
     published: true,
+    status: 'sold',
     area: '2,500',
     duration: '18 months',
     team: '15',
@@ -94,6 +130,7 @@ export const projects: Project[] = [
     clientName: 'Darkhan LLC',
     featured: true,
     published: true,
+    status: 'sold',
     area: '1,800',
     duration: '12 months',
     team: '12',
@@ -141,6 +178,7 @@ export const projects: Project[] = [
     clientName: 'Erdenet Corporation',
     featured: false,
     published: true,
+    status: 'sold',
     area: '1,200',
     duration: '8 months',
     team: '8',
@@ -183,39 +221,7 @@ export const projects: Project[] = [
       }
     ]
   },
-  {
-    id: 'project-4',
-    titleMn: 'Хувийн байшин',
-    titleEn: 'Private House',
-    descriptionMn: 'Гэр бүлийн хэрэгцээнд тохирсон, 2 давхар хувийн байшин. Багаж хэрэгсэл, хадгалах өрөөтэй.',
-    descriptionEn: '2-story private house designed for family needs. Includes workshop and storage rooms.',
-    category: 'residential',
-    location: 'Baganuur, Mongolia',
-    completionDate: '2023-03-20',
-    clientName: 'Family Residence',
-    featured: false,
-    published: true,
-    area: '450',
-    duration: '10 months',
-    team: '6',
-    features: ['Workshop space', 'Storage rooms', 'Garden area', 'Garage'],
-    images: [
-      {
-        url: '/uploads/project-4/main-view.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
-        isPrimary: true,
-        order: 1
-      },
-      {
-        url: '/uploads/project-4/side-view.jpeg',
-        captionMn: 'Хажуугийн харагдах байдал',
-        captionEn: 'Side view',
-        isPrimary: false,
-        order: 2
-      }
-    ]
-  },
+  
   {
     id: 'project-5',
     titleMn: 'Оффис барилга',
@@ -228,6 +234,7 @@ export const projects: Project[] = [
     clientName: 'Tech Solutions LLC',
     featured: true,
     published: true,
+    status: 'sold',
     area: '3,200',
     duration: '16 months',
     team: '18',
@@ -282,6 +289,7 @@ export const projects: Project[] = [
     clientName: 'Student Housing Association',
     featured: false,
     published: true,
+    status: 'sold',
     area: '2,800',
     duration: '14 months',
     team: '14',
