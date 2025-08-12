@@ -121,13 +121,14 @@ export default function AboutPage() {
             </div>
             <div className="bg-[#F4F2EA] rounded-xl p-8 flex items-center justify-center">
               <div className="text-center">
-                <div className="relative w-48 h-48 mx-auto mb-6">
+                <div className="relative mx-auto mb-6 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40">
                   <Image
-                    src="/buyant-placeholder.svg"
+                    src="/logoMainRound.png"
                     alt="Буяант Барилга Logo"
-                    width={200}
-                    height={200}
-                    className="w-32 h-32 object-contain"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
+                    className="object-contain"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800">
