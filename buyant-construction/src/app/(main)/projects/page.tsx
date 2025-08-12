@@ -1,45 +1,14 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Search, Loader2 } from 'lucide-react'
-import { getPrimaryProjectImage } from '@/utils/images'
-
-interface ProjectImage {
-  id: number
-  imageUrl: string
-  captionMn?: string
-  captionEn?: string
-  isPrimary: boolean
-  order: number
-}
-
-interface Project {
-  id: number
-  titleMn: string
-  titleEn: string
-  descriptionMn: string
-  descriptionEn: string
-  category: string
-  location: string
-  completionDate?: string
-  clientName?: string
-  testimonialMn?: string
-  testimonialEn?: string
-  featured: boolean
-  published: boolean
-  createdAt: string
-  updatedAt: string
-  images: ProjectImage[]
-}
+import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Search } from 'lucide-react'
+import { projects, Project } from '@/data/projects'
 
 export default function ProjectsPage() {
   const { language, t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
-  const [projects, setProjects] = useState<Project[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   const categories = [
     { id: 'all', name: language === 'mn' ? 'Бүгд' : 'All' },
@@ -47,30 +16,6 @@ export default function ProjectsPage() {
     { id: 'commercial', name: language === 'mn' ? 'Арилжааны' : 'Commercial' },
     { id: 'renovation', name: language === 'mn' ? 'Засалт' : 'Renovation' }
   ]
-
-  useEffect(() => {
-    fetchProjects()
-  }, [])
-
-  const fetchProjects = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      
-      const response = await fetch('/api/projects')
-      if (!response.ok) {
-        throw new Error('Failed to fetch projects')
-      }
-      
-      const data = await response.json()
-      setProjects(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch projects')
-      console.error('Error fetching projects:', err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory
@@ -86,16 +31,16 @@ export default function ProjectsPage() {
     const description = language === 'mn' ? project.descriptionMn : project.descriptionEn
     const year = project.completionDate ? new Date(project.completionDate).getFullYear().toString() : 'N/A'
     
-    // Default values if no specific data
-    const area = 'N/A'
+    // Use project data if available, otherwise default values
+    const area = project.area || 'N/A'
     const areaUnit = language === 'mn' ? 'м²' : 'm²'
-    const duration = language === 'mn' ? 'N/A' : 'N/A'
-    const team = 'N/A'
+    const duration = project.duration || 'N/A'
+    const team = project.team || 'N/A'
     
-    // Default features based on category
-    const features = language === 'mn' 
+    // Use project features if available, otherwise default features
+    const features = project.features || (language === 'mn' 
       ? ['Централ халаалт', 'Хаалганы систем', 'Хажуугийн засвар', 'Газрын тосны систем']
-      : ['Central heating', 'Door system', 'Side finishing', 'Oil system']
+      : ['Central heating', 'Door system', 'Side finishing', 'Oil system'])
 
     return {
       title,
@@ -107,39 +52,6 @@ export default function ProjectsPage() {
       team,
       features
     }
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 text-[#0F425C] animate-spin mx-auto mb-4" />
-          <p className="text-[#0F425C] text-lg">
-            {language === 'mn' ? 'Төслүүд ачаалж байна...' : 'Loading projects...'}
-          </p>
-        </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Building2 className="w-16 h-16 text-[#0F425C]/40 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-[#0F425C]/60 mb-2">
-            {language === 'mn' ? 'Алдаа гарлаа' : 'Error occurred'}
-          </h3>
-          <p className="text-[#0F425C]/50 mb-4">{error}</p>
-          <button
-            onClick={fetchProjects}
-            className="bg-[#0F425C] text-white px-6 py-3 rounded-lg hover:bg-[#0F425C]/90 transition-colors"
-          >
-            {language === 'mn' ? 'Дахин оролдох' : 'Try again'}
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -215,7 +127,7 @@ export default function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => {
                 const displayData = getProjectDisplayData(project)
-                const primaryImage = getPrimaryProjectImage(project.images)
+                const primaryImage = project.images.find(img => img.isPrimary)?.url || project.images[0]?.url
                 
                 return (
                   <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">

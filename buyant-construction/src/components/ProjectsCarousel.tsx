@@ -1,55 +1,18 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ProjectImage } from './ProjectImage'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
-
-interface Project {
-  id: number
-  titleMn: string
-  titleEn: string
-  descriptionMn: string
-  descriptionEn: string
-  category: string
-  location: string
-  completionDate: string
-  clientName: string
-  featured: boolean
-  images: Array<{
-    id: number
-    imageUrl: string
-    captionMn: string
-    captionEn: string
-    isPrimary: boolean
-    order: number
-  }>
-}
+import { getFeaturedProjects, Project } from '@/data/projects'
 
 export default function ProjectsCarousel() {
   const { language, isHydrated } = useLanguage()
-  const [projects, setProjects] = useState<Project[]>([])
-  const [isLoading, setIsLoading] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  useEffect(() => {
-    fetchProjects()
-  }, [])
-
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch('/api/projects?limit=8&featured=true')
-      if (response.ok) {
-        const data = await response.json()
-        setProjects(data)
-      }
-    } catch (error) {
-      console.error('Failed to fetch projects:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  // Get featured projects from static data
+  const projects = getFeaturedProjects().slice(0, 8)
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
 
@@ -58,6 +21,8 @@ export default function ProjectsCarousel() {
       return language === 'mn' ? 'Орон сууцны' : 'Residential'
     } else if (category === 'commercial') {
       return language === 'mn' ? 'Арилжааны' : 'Commercial'
+    } else if (category === 'renovation') {
+      return language === 'mn' ? 'Засалт' : 'Renovation'
     }
     return category
   }
@@ -80,18 +45,6 @@ export default function ProjectsCarousel() {
 
   const closeProjectDialog = () => {
     setSelectedProject(null)
-  }
-
-  if (isLoading) {
-    return (
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0F425C] mx-auto"></div>
-          </div>
-        </div>
-      </section>
-    )
   }
 
   if (projects.length === 0) {
@@ -127,7 +80,7 @@ export default function ProjectsCarousel() {
                     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                       <div className="relative">
                         <ProjectImage
-                          src={project.images.find(img => img.isPrimary)?.imageUrl || project.images[0]?.imageUrl || ''}
+                          src={project.images.find(img => img.isPrimary)?.url || project.images[0]?.url || ''}
                           alt={getText(project.titleMn, project.titleEn)}
                           className="w-full h-64 object-cover"
                         />
@@ -148,7 +101,7 @@ export default function ProjectsCarousel() {
                             </p>
                             <div className="flex items-center justify-between text-sm text-[#0F425C]/60">
                               <span>{project.location}</span>
-                              <span>{project.completionDate}</span>
+                              <span>{project.completionDate ? new Date(project.completionDate).getFullYear() : 'N/A'}</span>
                             </div>
                           </>
                         )}
@@ -217,7 +170,7 @@ export default function ProjectsCarousel() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <ProjectImage
-                    src={selectedProject.images.find(img => img.isPrimary)?.imageUrl || selectedProject.images[0]?.imageUrl || ''}
+                    src={selectedProject.images.find(img => img.isPrimary)?.url || selectedProject.images[0]?.url || ''}
                     alt={getText(selectedProject.titleMn, selectedProject.titleEn)}
                     className="w-full h-64 object-cover rounded-lg"
                   />
@@ -236,10 +189,10 @@ export default function ProjectsCarousel() {
                           <span className="font-medium">Location:</span> {selectedProject.location}
                         </div>
                         <div>
-                          <span className="font-medium">Completion Date:</span> {selectedProject.completionDate}
+                          <span className="font-medium">Completion Date:</span> {selectedProject.completionDate ? new Date(selectedProject.completionDate).getFullYear() : 'N/A'}
                         </div>
                         <div>
-                          <span className="font-medium">Client:</span> {selectedProject.clientName}
+                          <span className="font-medium">Client:</span> {selectedProject.clientName || 'N/A'}
                         </div>
                       </div>
                     </>
@@ -254,11 +207,11 @@ export default function ProjectsCarousel() {
                     {isHydrated ? (language === 'mn' ? 'Нэмэлт зурагнууд' : 'Additional Images') : ''}
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {selectedProject.images.slice(1).map((image) => (
+                    {selectedProject.images.slice(1).map((image, index) => (
                       <ProjectImage
-                        key={image.id}
-                        src={image.imageUrl}
-                        alt={getText(image.captionMn, image.captionEn)}
+                        key={index}
+                        src={image.url}
+                        alt={getText(image.captionMn || '', image.captionEn || '')}
                         className="w-full h-24 object-cover rounded-lg"
                       />
                     ))}

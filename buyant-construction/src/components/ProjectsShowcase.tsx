@@ -1,53 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { ArrowRight, MapPin, Calendar, User } from 'lucide-react'
-
-interface Project {
-  id: number
-  titleMn: string
-  titleEn: string
-  descriptionMn: string
-  descriptionEn: string
-  category: string
-  location: string
-  completionDate: string
-  clientName: string
-  featured: boolean
-  images: Array<{
-    id: number
-    imageUrl: string
-    captionMn?: string
-    captionEn?: string
-    isPrimary: boolean
-    order: number
-  }>
-}
+import { getFeaturedProjects, Project } from '@/data/projects'
 
 export default function ProjectsShowcase() {
   const { language } = useLanguage()
-  const [projects, setProjects] = useState<Project[]>([])
-  const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    fetchProjects()
-  }, [])
-
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch('/api/projects?limit=6&featured=true')
-      if (response.ok) {
-        const data = await response.json()
-        setProjects(data.projects)
-      }
-    } catch (error) {
-      console.error('Failed to fetch projects:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  // Get featured projects from static data
+  const projects = getFeaturedProjects().slice(0, 6)
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
 
@@ -56,20 +19,10 @@ export default function ProjectsShowcase() {
       return language === 'mn' ? 'Орон сууцны' : 'Residential'
     } else if (category === 'commercial') {
       return language === 'mn' ? 'Арилжааны' : 'Commercial'
+    } else if (category === 'renovation') {
+      return language === 'mn' ? 'Засалт' : 'Renovation'
     }
     return category
-  }
-
-  if (isLoading) {
-    return (
-      <div className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-600 mx-auto"></div>
-          </div>
-        </div>
-      </div>
-    )
   }
 
   if (projects.length === 0) {
@@ -98,7 +51,7 @@ export default function ProjectsShowcase() {
               <div className="aspect-video bg-gray-200 relative overflow-hidden">
                 {project.images && project.images.length > 0 ? (
                   <img
-                    src={project.images[0].imageUrl}
+                    src={project.images.find(img => img.isPrimary)?.url || project.images[0]?.url}
                     alt={language === 'mn' ? project.titleMn : project.titleEn}
                     className="w-full h-full object-cover"
                   />
@@ -132,11 +85,11 @@ export default function ProjectsShowcase() {
                   </div>
                   <div className="flex items-center text-sm text-gray-500">
                     <Calendar className="w-4 h-4 mr-2" />
-                    <span>{new Date(project.completionDate).toLocaleDateString()}</span>
+                    <span>{project.completionDate ? new Date(project.completionDate).getFullYear() : 'N/A'}</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-500">
                     <User className="w-4 h-4 mr-2" />
-                    <span>{project.clientName}</span>
+                    <span>{project.clientName || 'N/A'}</span>
                   </div>
                 </div>
 

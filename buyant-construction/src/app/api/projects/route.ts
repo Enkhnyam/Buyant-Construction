@@ -1,49 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
+import { getProjects, getProjectsByCategory } from '@/data/projects'
 
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
     const featured = searchParams.get('featured')
-    const published = searchParams.get('published')
     const limit = searchParams.get('limit')
     
-    // Build where clause
-    const where: {
-      category?: string
-      featured?: boolean
-      published?: boolean
-    } = {}
+    let projects = category ? getProjectsByCategory(category) : getProjects()
     
-    if (category && category !== 'all') {
-      where.category = category
+    if (featured === 'true') {
+      projects = projects.filter(p => p.featured)
     }
     
-    if (featured !== null) {
-      where.featured = featured === 'true'
+    if (limit) {
+      projects = projects.slice(0, parseInt(limit))
     }
-    
-    if (published !== null) {
-      where.published = published === 'true'
-    } else {
-      // Default to only published projects for public API
-      where.published = true
-    }
-
-    const projects = await prisma.project.findMany({
-      where,
-      include: {
-        images: {
-          orderBy: { order: 'asc' }
-        }
-      },
-      orderBy: [
-        { featured: 'desc' },
-        { createdAt: 'desc' }
-      ],
-      ...(limit && { take: parseInt(limit) })
-    })
 
     return NextResponse.json(projects)
   } catch (error) {
