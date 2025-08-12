@@ -53,7 +53,7 @@ export const projects: Project[] = [
         order: 1
       },
       {
-        url: '/uploads/project-1/side-view.jpeg',
+        url: '/uploads/project-1/additional-3.jpeg',
         captionMn: 'Хажуугийн харагдах байдал',
         captionEn: 'Side view',
         isPrimary: false,
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     features: ['Modern facade', 'Parking system', 'Security system', 'HVAC'],
     images: [
       {
-        url: '/uploads/project-2/main-view.jpeg',
+        url: '/uploads/project-2/additional-3.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
@@ -121,7 +121,7 @@ export const projects: Project[] = [
         order: 3
       },
       {
-        url: '/uploads/project-2/additional-3.jpeg',
+        url: '/uploads/project-2/main-view.jpeg',
         captionMn: 'Нэмэлт харагдах байдал 3',
         captionEn: 'Additional view 3',
         isPrimary: false,
@@ -180,13 +180,6 @@ export const projects: Project[] = [
         captionEn: 'Additional view 4',
         isPrimary: false,
         order: 5
-      },
-      {
-        url: '/uploads/project-3/additional-5.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 5',
-        captionEn: 'Additional view 5',
-        isPrimary: false,
-        order: 6
       }
     ]
   },
@@ -241,7 +234,7 @@ export const projects: Project[] = [
     features: ['Smart building system', 'Conference rooms', 'Cafeteria', 'Parking garage'],
     images: [
       {
-        url: '/uploads/project-5/main-view.jpeg',
+        url: '/uploads/project-5/wide-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
