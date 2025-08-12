@@ -204,7 +204,18 @@ export default function ProjectsCarousel() {
               >
                 {projects.map((project) => (
                   <div key={project.id} className="w-1/3 flex-shrink-0 px-3 md:px-3 px-2">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1">
+                    <div
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
+                      onClick={() => openProjectDialog(project)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          openProjectDialog(project)
+                        }
+                      }}
+                    >
                       <div className="relative h-32 md:h-48">
                         <ProjectImage
                           src={project.images.find(img => img.isPrimary)?.url || project.images[0]?.url || ''}
@@ -327,6 +338,7 @@ export default function ProjectsCarousel() {
           aria-modal="true"
           aria-labelledby="project-title"
           aria-describedby="project-description"
+          onClick={closeProjectDialog}
         >
           <div 
             className="bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto relative"
