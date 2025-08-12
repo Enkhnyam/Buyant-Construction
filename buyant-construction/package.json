@@ -11,6 +11,8 @@
     "db:seed": "tsx src/scripts/seed.ts",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset --force",
+    "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "docker:build": "docker build -t buyant-construction .",
     "docker:run": "docker run -p 3000:3000 buyant-construction"
@@ -25,13 +27,13 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.539.0",
     "next": "15.4.6",
+    "pg": "^8.11.3",
     "prisma": "^6.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.62.0",
     "react-intersection-observer": "^9.16.0",
-    "sqlite3": "^5.1.7",
     "zod": "^4.0.17"
   },
   "devDependencies": {
@@ -40,6 +42,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
+    "@types/pg": "^8.10.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",

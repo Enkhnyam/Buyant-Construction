@@ -8,7 +8,7 @@ A modern, professional website for Buyant Construction, a leading construction c
 - **Admin Panel**: Complete content management system for projects, services, and testimonials
 - **Multilingual**: Support for Mongolian and English languages
 - **Image Management**: Advanced image upload and gallery management
-- **Database**: Prisma ORM with SQLite (local) / PostgreSQL (production)
+- **Database**: Prisma ORM with PostgreSQL (production) / PostgreSQL (local development)
 - **Docker Ready**: Fully containerized for easy deployment
 
 ## 🚀 Getting Started
@@ -16,7 +16,8 @@ A modern, professional website for Buyant Construction, a leading construction c
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
-- Docker (optional, for containerized deployment)
+- Docker (optional, for containerized development)
+- PostgreSQL (for local development)
 
 ### Local Development
 
@@ -32,8 +33,24 @@ A modern, professional website for Buyant Construction, a leading construction c
    ```
 
 3. **Set up the database**
+   
+   **Option A: Use Docker (Recommended)**
    ```bash
-   npm run db:generate
+   # Start PostgreSQL
+   docker-compose up postgres -d
+   
+   # Wait for PostgreSQL to be ready, then:
+   npm run db:push
+   npm run db:seed
+   ```
+   
+   **Option B: Use Local PostgreSQL**
+   ```bash
+   # Create database
+   createdb buyant_construction_dev
+   
+   # Update .env with your credentials
+   # Then run:
    npm run db:push
    npm run db:seed
    ```
@@ -76,7 +93,9 @@ src/
 ## 🔧 Admin Access
 
 - **URL**: `/admin`
-- **Default credentials**: Check the seed script or contact administrator
+- **Default credentials**: 
+  - Username: `admin`
+  - Password: `admin123`
 - **Features**: Manage projects, services, testimonials, and media
 
 ## 🌍 Languages
