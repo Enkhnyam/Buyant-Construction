@@ -155,7 +155,7 @@ export default function ProjectsPage() {
                   return (
                     <div 
                       key={project.id} 
-                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
                       onClick={() => openProjectDialog(project)}
                     >
                       {/* Project Image */}
@@ -227,14 +227,14 @@ export default function ProjectsPage() {
                         </div>
 
                         <div 
-                          className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-colors inline-flex items-center justify-center cursor-pointer"
+                          className="w-full bg-[#0F425C] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#0F425C]/90 transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:shadow-lg"
                           onClick={(e) => {
                             e.stopPropagation();
                             openProjectDialog(project);
                           }}
                         >
                           {language === 'mn' ? 'Дэлгэрэнгүй' : 'View Details'}
-                          <ArrowRight className="ml-2 w-4 h-4" />
+                          <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
                       </div>
                     </div>
@@ -340,7 +340,7 @@ export default function ProjectsPage() {
                 </h2>
                 <button
                   onClick={closeProjectDialog}
-                  className="text-[#0F425C] hover:text-[#0F425C]/80 transition-colors"
+                  className="text-[#0F425C] hover:text-[#0F425C]/80 transition-all duration-300 ease-in-out p-2 rounded-full hover:bg-gray-100 transform hover:scale-110"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -387,7 +387,7 @@ export default function ProjectsPage() {
                         key={index}
                         src={image.url}
                         alt={getText(image.captionMn || '', image.captionEn || '')}
-                        className="w-full h-24 object-cover rounded-lg"
+                        className="w-full h-24 object-cover rounded-lg transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-lg transform"
                       />
                     ))}
                   </div>

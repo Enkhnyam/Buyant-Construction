@@ -58,7 +58,7 @@ export default function ProjectsShowcase() {
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out border border-gray-100 cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
                 onClick={() => openProjectDialog(project)}
               >
                 {/* Project Image */}
@@ -147,7 +147,7 @@ export default function ProjectsShowcase() {
                 </h2>
                 <button
                   onClick={closeProjectDialog}
-                  className="text-gray-500 hover:text-gray-700 transition-colors"
+                  className="text-gray-500 hover:text-gray-700 transition-all duration-300 ease-in-out p-2 rounded-full hover:bg-gray-100 transform hover:scale-110"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -190,11 +190,11 @@ export default function ProjectsShowcase() {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {selectedProject.images.slice(1).map((image, index) => (
-                      <ProjectImage
+                      <img
                         key={index}
                         src={image.url}
                         alt={getText(image.captionMn || '', image.captionEn || '')}
-                        className="w-full h-24 object-cover rounded-lg"
+                        className="w-full h-24 object-cover rounded-lg transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-lg transform"
                       />
                     ))}
                   </div>
