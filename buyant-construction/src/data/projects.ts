@@ -46,18 +46,39 @@ export const projects: Project[] = [
     features: ['Central heating', 'Door system', 'Side finishing', 'Oil system'],
     images: [
       {
-        url: '/uploads/project-1/main-view.svg',
+        url: '/uploads/project-1/main-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/project-1/interior-view.svg',
-        captionMn: 'Дотор харагдах байдал',
-        captionEn: 'Interior view',
+        url: '/uploads/project-1/side-view.jpeg',
+        captionMn: 'Хажуугийн харагдах байдал',
+        captionEn: 'Side view',
         isPrimary: false,
         order: 2
+      },
+      {
+        url: '/uploads/project-1/environment-view.jpeg',
+        captionMn: 'Орчны харагдах байдал',
+        captionEn: 'Environment view',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-1/detail-view.jpeg',
+        captionMn: 'Дэлгэрэнгүй харагдах байдал',
+        captionEn: 'Detail view',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-1/additional-view.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал',
+        captionEn: 'Additional view',
+        isPrimary: false,
+        order: 5
       }
     ]
   },
@@ -79,18 +100,32 @@ export const projects: Project[] = [
     features: ['Modern facade', 'Parking system', 'Security system', 'HVAC'],
     images: [
       {
-        url: '/uploads/project-2/main-view.svg',
+        url: '/uploads/project-2/main-view.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
       },
       {
-        url: '/uploads/project-2/exterior-view.svg',
-        captionMn: 'Гадна харагдах байдал',
-        captionEn: 'Exterior view',
+        url: '/uploads/project-2/additional-1.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 1',
+        captionEn: 'Additional view 1',
         isPrimary: false,
         order: 2
+      },
+      {
+        url: '/uploads/project-2/additional-2.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 2',
+        captionEn: 'Additional view 2',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-2/additional-3.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 3',
+        captionEn: 'Additional view 3',
+        isPrimary: false,
+        order: 4
       }
     ]
   },
@@ -112,11 +147,46 @@ export const projects: Project[] = [
     features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
     images: [
       {
-        url: '/uploads/project-3/main-view.svg',
-        captionMn: 'Засалтын дараа',
-        captionEn: 'After renovation',
+        url: '/uploads/project-3/main-view.jpeg',
+        captionMn: 'Үндсэн харагдах байдал',
+        captionEn: 'Main view',
         isPrimary: true,
         order: 1
+      },
+      {
+        url: '/uploads/project-3/additional-1.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 1',
+        captionEn: 'Additional view 1',
+        isPrimary: false,
+        order: 2
+      },
+      {
+        url: '/uploads/project-3/additional-2.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 2',
+        captionEn: 'Additional view 2',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-3/additional-3.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 3',
+        captionEn: 'Additional view 3',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-3/additional-4.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 4',
+        captionEn: 'Additional view 4',
+        isPrimary: false,
+        order: 5
+      },
+      {
+        url: '/uploads/project-3/additional-5.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 5',
+        captionEn: 'Additional view 5',
+        isPrimary: false,
+        order: 6
       }
     ]
   },
@@ -230,55 +300,6 @@ export const projects: Project[] = [
         captionEn: 'Main view',
         isPrimary: true,
         order: 1
-      },
-      {
-        url: '/uploads/project-6/side-view.jpeg',
-        captionMn: 'Хажуугийн харагдах байдал',
-        captionEn: 'Side view',
-        isPrimary: false,
-        order: 2
-      },
-      {
-        url: '/uploads/project-6/detail-view.jpeg',
-        captionMn: 'Дэлгэрэнгүй харагдах байдал',
-        captionEn: 'Detail view',
-        isPrimary: false,
-        order: 3
-      },
-      {
-        url: '/uploads/project-6/additional-view.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал',
-        captionEn: 'Additional view',
-        isPrimary: false,
-        order: 4
-      },
-      {
-        url: '/uploads/project-6/interior-view.jpeg',
-        captionMn: 'Дотор харагдах байдал',
-        captionEn: 'Interior view',
-        isPrimary: false,
-        order: 5
-      },
-      {
-        url: '/uploads/project-6/exterior-view.jpeg',
-        captionMn: 'Гадна харагдах байдал',
-        captionEn: 'Exterior view',
-        isPrimary: false,
-        order: 6
-      },
-      {
-        url: '/uploads/project-6/closeup-view.jpeg',
-        captionMn: 'Ойр харагдах байдал',
-        captionEn: 'Closeup view',
-        isPrimary: false,
-        order: 7
-      },
-      {
-        url: '/uploads/project-6/wide-view.jpeg',
-        captionMn: 'Өргөн харагдах байдал',
-        captionEn: 'Wide view',
-        isPrimary: false,
-        order: 8
       }
     ]
   }
