@@ -76,6 +76,19 @@ export default function ProjectsPage() {
     return category
   }
 
+  const getStatusText = (status?: 'sold' | 'in_construction' | 'available') => {
+    if (status === 'available') return language === 'mn' ? 'Байгаа' : 'Available'
+    if (status === 'in_construction') return language === 'mn' ? 'Баригдаж байна' : 'In Construction'
+    if (status === 'sold') return language === 'mn' ? 'Зарагдсан' : 'Sold'
+    return ''
+  }
+
+  const getStatusClass = (status?: 'sold' | 'in_construction' | 'available') => {
+    if (status === 'available') return 'bg-green-100 text-green-800 border-green-200'
+    if (status === 'in_construction') return 'bg-yellow-100 text-yellow-800 border-yellow-200'
+    return 'bg-gray-100 text-gray-700 border-gray-200'
+  }
+
   return (
     <>
       <div className="min-h-screen">
@@ -174,13 +187,13 @@ export default function ProjectsPage() {
                       {/* Project Info */}
                       <div className="p-6 flex flex-col flex-1">
                         <div className="flex items-center justify-between mb-3">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            project.category === 'residential' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
-                            project.category === 'commercial' ? 'bg-[#0F425C]/10 text-[#0F425C]' :
-                            'bg-[#0F425C]/10 text-[#0F425C]'
-                          }`}>
-                            {categories.find(c => c.id === project.category)?.name}
-                          </span>
+                          {project.status && (
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs font-semibold border ${getStatusClass(project.status)}`}
+                            >
+                              {getStatusText(project.status)}
+                            </span>
+                          )}
                           <span className="text-sm text-[#0F425C]/50">{displayData.year}</span>
                         </div>
 
