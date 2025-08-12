@@ -90,6 +90,7 @@ export default function HouseBuildingProcess() {
           {processSteps.map((step, index) => {
             const displayData = getStepDisplayData(step)
             const isEven = index % 2 === 0
+            const objectPositionClass = index >= 2 ? 'object-[center_35%]' : 'object-center'
             
             return (
               <div key={step.id} className={`flex flex-col lg:flex-row items-center gap-8 ${
@@ -102,7 +103,7 @@ export default function HouseBuildingProcess() {
                       <img
                         src={step.image}
                         alt={displayData.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className={`w-full h-full object-cover ${objectPositionClass} group-hover:scale-105 transition-transform duration-500`}
                       />
                     </div>
                     {/* Step Number Badge */}
