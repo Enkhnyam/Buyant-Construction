@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { Menu, X, Globe } from 'lucide-react'
@@ -9,6 +9,8 @@ import Image from 'next/image'
 export default function Header() {
   const { language, setLanguage, t, isHydrated } = useLanguage()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const servicesRef = useRef<HTMLDivElement | null>(null)
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -21,6 +23,18 @@ export default function Header() {
   const toggleLanguage = () => {
     setLanguage(language === 'mn' ? 'en' : 'mn')
   }
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <header className="bg-[#F4F2EA] shadow-lg sticky top-0 z-50">
@@ -60,23 +74,30 @@ export default function Header() {
               }
 
               return (
-                <div key={item.name} className="relative group">
+                <div key={item.name} className="relative" ref={servicesRef}>
                   <Link
                     href={item.href}
+                    aria-expanded={isServicesOpen}
                     className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setIsServicesOpen((prev) => !prev)
+                    }}
                   >
                     {item.name}
                   </Link>
-                  <div className="absolute left-0 top-full mt-2 w-56 rounded-lg border border-[#0F425C]/10 bg-white shadow-lg py-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition">
+                  <div className={`absolute left-0 top-full mt-2 w-56 rounded-lg border border-[#0F425C]/10 bg-white shadow-lg py-2 transition ${isServicesOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                     <Link
                       href="/services/building"
                       className="block px-4 py-2 text-sm text-[#0F425C] hover:bg-gray-50"
+                      onClick={() => setIsServicesOpen(false)}
                     >
                       {isHydrated && (language === 'mn' ? 'Барилгын үйлчилгээ' : 'Building Service')}
                     </Link>
                     <Link
                       href="/services/legal"
                       className="block px-4 py-2 text-sm text-[#0F425C] hover:bg-gray-50"
+                      onClick={() => setIsServicesOpen(false)}
                     >
                       {isHydrated && (language === 'mn' ? 'Хуулийн үйлчилгээ' : 'Legal Service')}
                     </Link>
