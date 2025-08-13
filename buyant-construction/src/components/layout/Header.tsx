@@ -66,7 +66,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-[#0F425C]/40"
                   >
                     {item.name}
                   </Link>
@@ -78,7 +78,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     aria-expanded={isServicesOpen}
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-all border-b-2 border-transparent hover:border-[#0F425C]/40"
                     onClick={(e) => {
                       e.preventDefault()
                       setIsServicesOpen((prev) => !prev)
@@ -146,7 +146,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors hover:underline underline-offset-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -158,21 +158,21 @@ export default function Header() {
                 <div key={item.name} className="space-y-1">
                   <Link
                     href={item.href}
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors hover:underline underline-offset-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                   <Link
                     href="/services/building"
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors hover:underline underline-offset-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {isHydrated && (language === 'mn' ? 'Барилгын үйлчилгээ' : 'Building Service')}
                   </Link>
                   <Link
                     href="/services/legal"
-                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors hover:underline underline-offset-4"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {isHydrated && (language === 'mn' ? 'Хуулийн үйлчилгээ' : 'Legal Service')}
