@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 
 export default function ContactPage() {
   const { language, t } = useLanguage()
-  const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || 'https://dummy.com'
+  const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || 'http://n8n-gs040cs0ooo8gcgscsgwkggc.128.140.39.128.sslip.io/webhook/16f61155-ee56-4424-acd1-d68c36a1b3c4'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
