@@ -18,7 +18,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
             {language === 'mn'
-              ? 'Байшингийн барилгын бүх төрлийн үйлчилгээ, хуулийн зөвлөгөө'
+              ? 'ГАЗАР ҮЛ ХӨДЛӨХ ХӨРӨНГӨ, ЗУСЛАН, АМИНЫ ОРОН СУУЦТАЙ ХОЛБООТОЙ  БҮХ ТӨРЛИЙН ҮЙЛЧИЛГЭЭ'
               : 'All types of house construction services and legal consultation'
             }
           </p>
@@ -40,7 +40,7 @@ export default function ServicesPage() {
             </h2>
             <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
-                ? 'Барилгын бүх төрлийн хуулийн асуудлын зөвлөгөө, зөвшөөрөл'
+                ? 'Газар үл хөдлөх хөрөнгө, зуслангийн сууц, амины орон сууцтай холбоотой зөвлөгөө'
                 : 'Legal consultation and permits for all types of construction matters'
               }
             </p>
@@ -52,7 +52,7 @@ export default function ServicesPage() {
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img 
                   src="/services/mayagt.jpg" 
-                  alt={language === 'mn' ? 'А Маягт зөвшөөрөл' : 'A Mayagt Permit'}
+                  alt={language === 'mn' ? 'Архитектур төлөвлөлтийн даалгавар /А даалгавар/' : 'A Mayagt Permit'}
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -67,7 +67,7 @@ export default function ServicesPage() {
                   </h3>
                   <p className="text-[#0F425C]/80 leading-relaxed">
                     {language === 'mn'
-                      ? 'А Маягт нь орон сууцны цогцолбор, оффисын барилга барих компаниудад заавал шаардлагатай зөвшөөрөл юм. Энэ нь барилгын төслийн хэрэгжүүлэлтийн зөвшөөрөл бөгөөд Монгол Улсын хуулиар заавал авах шаардлагатай.'
+                      ? 'Барилгын ажил эхлүүлэх эхний  шатны үйл ажиллагаа  нь архитектур төлөвлөлтийн даалгаврын зөвшөөрөл авахаас эхэлнэ.'
                       : 'A Mayagt is a mandatory permit required for companies building apartment complexes and office buildings. This is a construction project implementation permit that is legally required according to Mongolian law.'
                     }
                   </p>
@@ -80,10 +80,10 @@ export default function ServicesPage() {
                   <ul className="space-y-2">
                     {language === 'mn' 
                       ? [
-                          'Орон сууцны цогцолбор барих үед',
-                          'Оффисын барилга барих үед',
-                          'Худалдааны төв барих үед',
-                          'Олон давхар барилга барих үед'
+                          'Орон сууцны барилга',
+                          'Оффисын барилга',
+                          'Худалдааны төв',
+                          'Үйлчилгээний барилга'
                         ].map((item, index) => (
                           <li key={index} className="flex items-start">
                             <CheckCircle className="w-5 h-5 text-[#0F425C] mr-3 mt-0.5 flex-shrink-0" />
@@ -118,7 +118,7 @@ export default function ServicesPage() {
               </h3>
               <p className="text-[#0F425C]/80 mb-6 text-center leading-relaxed">
                 {language === 'mn'
-                  ? 'Байшингийн барилгын төслийн бүх төрлийн зөвшөөрөл, зөвлөгөө'
+                  ? 'Барилгатай холбоотой бүх төрлийн зөвлөгөө өгнө, шаардлагатай бичиг баримт бэлдэх туслалцаа үзүүлнэ.'
                   : 'All types of house construction project permits and consultation'
                 }
               </p>
@@ -145,18 +145,23 @@ export default function ServicesPage() {
                 <FileText className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-[#0F425C] mb-4 text-center">
-                {language === 'mn' ? 'Гэрээний зөвлөгөө' : 'Contract Consultation'}
+                {language === 'mn' ? 'Гэрээ, бичиг баримттай холбоотой зөвлөгөө' : 'Contract Consultation'}
               </h3>
               <p className="text-[#0F425C]/80 mb-6 text-center leading-relaxed">
                 {language === 'mn'
-                  ? 'Барилгын гэрээ, төслийн бүх төрлийн хуулийн асуудал'
+                  ? 'Бүх төрлийн гэрээ байгуулах'
                   : 'Construction contracts and all types of legal project matters'
                 }
               </p>
               
               <div className="space-y-3">
                 {language === 'mn' 
-                  ? ['Гэрээний бичиг', 'Гэрээний шалгалт', 'Хуулийн зөвлөгөө', 'Маргааны шийдвэрлэлт'].map((feature, index) => (
+                  ? [
+                      'Компани байгуулахтай холбоотой зөвлөгөө өгөх, мөн байгуулж өгөх бичиг баримт бүрдүүлэх бүх төрлийн ажил', 
+                      'Гэрээтэй холбоотой зөвлөгөө өгөх', 
+                      'Хуулийн зөвлөгөө', 
+                      'Газар үл хөдлөх хөрөнгө худалдан авахад зөвлөгөө өгөх чиглүүлэх'
+                    ].map((feature, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-5 h-5 text-[#0F425C] mr-3 flex-shrink-0" />
                       <span className="text-[#0F425C]/80">{feature}</span>
@@ -180,11 +185,11 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#0F425C] mb-4">
-              {language === 'mn' ? 'Яагаад биднийг сонгох вэ?' : 'Why Choose Us?'}
+              {language === 'mn' ? 'ЯАГААД БИДНИЙГ СОНГОХ ВЭ?' : 'Why Choose Us?'}
             </h2>
             <p className="text-xl text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
-                ? '20 гаруй жилийн туршлагатай барилгын компани'
+                ? '20 гаруй жилийн туршлагатай, чадварлаг баг хамт олон'
                 : 'Construction company with over 20 years of experience'
               }
             </p>

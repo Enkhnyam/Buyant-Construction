@@ -19,42 +19,62 @@ const processSteps: ProcessStep[] = [
   {
     id: 1,
     image: '/services/planning.png',
-    titleMn: 'Төлөвлөлт & Дизайн',
+    titleMn: 'Төлөвлөлт болон дизайн',
     titleEn: 'Planning & Design',
-    descriptionMn: 'Таны хүссэн байшингийн төлөвлөлт, дизайн, зураг төслийн бүх төрлийн ажил',
+    descriptionMn: 'Таны хүссэн байшингийн төлөвлөлт, дизайн, цахилгааны бүх төрлийн ажил',
     descriptionEn: 'Complete planning, design, and drawing services for your dream house',
-    featuresMn: ['Хэмжээний төлөвлөлт', 'Дизайн зураг', 'Зураг төсөл', 'Материалын тооцоо'],
+    featuresMn: [
+      'Амины орон сууц ба зуслангийн байшингийн  загвар хэмжээ', 
+      'Дизайн интерьер ', 
+      'Зураг', 
+      'Материалын тооцоо',
+      'Цахилгааны ажил',
+      'Террасны ажил '
+    ],
     featuresEn: ['Size planning', 'Design drawings', 'Technical drawings', 'Material calculations']
   },
   {
     id: 2,
     image: '/services/legal.png',
-    titleMn: 'Хуулийн зөвшөөрөл',
+    titleMn: 'Хуулийн зөвлөгөө',
     titleEn: 'Legal & Permits',
-    descriptionMn: 'Барилгын бүх төрлийн зөвшөөрөл, хуулийн зөвлөгөө, гэрээний асуудал',
+    descriptionMn: 'Амины орон сууц үл хөдлөх хөрөнгөтэй холбоотой бүх төрлийн хуулийн зөвлөгөө, гэрээ',
     descriptionEn: 'All types of construction permits, legal consultation, and contract matters',
-    featuresMn: ['Барилгын зөвшөөрөл', 'Хэрэглээний зөвшөөрөл', 'Хуулийн зөвлөгөө', 'Гэрээний бичиг'],
-    featuresEn: ['Construction permits', 'Usage permits', 'Legal consultation', 'Contract drafting']
+    featuresMn: [
+      'Газар үл хөдлөх хөрөнгөтэй холбоотой гэрээ,  хуулийн зөвлөгөө өгөх',
+      'Мөн газар үл хөдлөх хөрөнгөтэй холбоотой асуудлыг хөөцөлдөж өгөх',
+    ],
+    featuresEn: ['Construction permits', 'Usage permits']
   },
   {
     id: 3,
     image: '/services/material.jpg',
-    titleMn: 'Материал & Худалдан авалт',
+    titleMn: 'Материал ба худалдан авалт',
     titleEn: 'Materials & Procurement',
     descriptionMn: 'Чанартай барилгын материалын сонголт, худалдан авалт, хадгалалт',
     descriptionEn: 'Quality building material selection, procurement, and storage',
-    featuresMn: ['Материалын сонголт', 'Худалдан авалт', 'Хадгалалт', 'Чанарын хяналт'],
+    featuresMn: [
+      'Материалын сонголт', 
+      'Худалдан авалт', 
+      'Хадгалалт', 
+      'Чанарын хяналт',
+    ],
     featuresEn: ['Material selection', 'Procurement', 'Storage', 'Quality control']
   },
   {
     id: 4,
     image: '/services/construction.jpg',
-    titleMn: 'Барилга & Хийц',
+    titleMn: 'Амины орон сууц ба хийцлэл',
     titleEn: 'Construction & Building',
-    descriptionMn: 'Мэргэжлийн барилгын ажил, чанартай хийц, хугацаанд нь гүйцэтгэх',
+    descriptionMn: 'Мэргэжлийн баг барилгын ажил, чанартай хийц, хугацаанд нь хийж гүйцэтгэх',
     descriptionEn: 'Professional construction work, quality finishing, and timely completion',
-    featuresMn: ['Суурь барилга', 'Хана, дээвэр', 'Дотоод засвар', 'Гадна засвар'],
-    featuresEn: ['Foundation work', 'Walls & roof', 'Interior finishing', 'Exterior finishing']
+    featuresMn: [
+      'Барилгын суурь фундамент', 
+      'Хана, дээвэр', 
+      'Гадна фасад дулаалга', 
+      'Дотор засал ',
+    ],
+    featuresEn: ['Foundation work', 'Walls & roof', 'Interior finishing']
   }
 ]
 
@@ -79,7 +99,7 @@ export default function HouseBuildingProcess() {
           </h2>
           <p className="text-xl text-[#0F425C]/80 max-w-3xl mx-auto">
             {language === 'mn'
-              ? '4 алхамтай мэргэжлийн барилгын үйл явц - таны хүссэн байшинг бүтээхэд'
+              ? 'Амины орон сууц  болон зуслангийн сууцтай холбоотой бүх төрлийн үйлчилгээ цахилгааны ажил,  ландшафт,  терасс,  газар үл хөдлөх хөрөнгөтэй холбоотой зөвлөгөө'
               : '4-step professional construction process - building your dream house'
             }
           </p>
@@ -157,7 +177,7 @@ export default function HouseBuildingProcess() {
             </h3>
             <p className="text-lg text-[#0F425C]/80 max-w-2xl mx-auto">
               {language === 'mn'
-                ? 'Таны хүссэн байшин бэлэн болно. Бид бүх ажлыг чанартай, хугацаанд нь гүйцэтгэх болно.'
+                ? 'Таны хүссэн байшин бэлэн болно.Бид бүх ажлыг чанартай, хугацаанд нь хийж гүйцэтгэнэ.'
                 : 'Your dream house will be ready. We will complete all work with quality and on time.'
               }
             </p>
