@@ -45,16 +45,45 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => {
+              if (item.href !== '/services') {
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              }
+
+              return (
+                <div key={item.name} className="relative group">
+                  <Link
+                    href={item.href}
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 px-3 py-2 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                  <div className="absolute left-0 top-full mt-2 w-56 rounded-lg border border-[#0F425C]/10 bg-white shadow-lg py-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition">
+                    <Link
+                      href="/services/building"
+                      className="block px-4 py-2 text-sm text-[#0F425C] hover:bg-gray-50"
+                    >
+                      {isHydrated && (language === 'mn' ? 'Барилгын үйлчилгээ' : 'Building Service')}
+                    </Link>
+                    <Link
+                      href="/services/legal"
+                      className="block px-4 py-2 text-sm text-[#0F425C] hover:bg-gray-50"
+                    >
+                      {isHydrated && (language === 'mn' ? 'Хуулийн үйлчилгээ' : 'Legal Service')}
+                    </Link>
+                  </div>
+                </div>
+              )
+            })}
           </nav>
 
           {/* Language Switcher and Mobile Menu Button */}
@@ -90,16 +119,46 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#F4F2EA] border-t border-[#0F425C]/20">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              if (item.href !== '/services') {
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              }
+
+              return (
+                <div key={item.name} className="space-y-1">
+                  <Link
+                    href={item.href}
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-3 py-2 text-base font-medium transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  <Link
+                    href="/services/building"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {isHydrated && (language === 'mn' ? 'Барилгын үйлчилгээ' : 'Building Service')}
+                  </Link>
+                  <Link
+                    href="/services/legal"
+                    className="text-[#0F425C] hover:text-[#0F425C]/80 block px-5 py-2 text-sm transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {isHydrated && (language === 'mn' ? 'Хуулийн үйлчилгээ' : 'Legal Service')}
+                  </Link>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
