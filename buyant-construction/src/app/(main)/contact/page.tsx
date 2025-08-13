@@ -6,6 +6,7 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 
 export default function ContactPage() {
   const { language, t } = useLanguage()
+  const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || 'https://dummy.com'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,12 +30,25 @@ export default function ContactPage() {
     setIsSubmitting(true)
     
     try {
-      const response = await fetch('/api/contact', {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        language,
+        submittedAt: new Date().toISOString(),
+        source: 'website'
+      }
+
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-Buyant-Origin': 'contact-form'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
 
       if (response.ok) {
