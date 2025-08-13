@@ -10,6 +10,9 @@ export async function GET(request: NextRequest) {
     
     let projects = category ? getProjectsByCategory(category) : getProjects()
     
+    // Sort projects by order
+    projects = projects.sort((a, b) => a.order - b.order)
+    
     if (featured === 'true') {
       projects = projects.filter(p => p.featured)
     }

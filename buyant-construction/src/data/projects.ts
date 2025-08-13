@@ -21,6 +21,7 @@ export interface Project {
   featured: boolean
   published: boolean
   images: ProjectImage[]
+  order: number
   area?: string
   duration?: string
   team?: string
@@ -31,6 +32,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'project-4',
+    order: 1,
     titleMn: 'Хувийн байшин',
     titleEn: 'Private House',
     descriptionMn: 'Гэр бүлийн хэрэгцээнд тохирсон, 2 давхар хувийн байшин. Багаж хэрэгсэл, хадгалах өрөөтэй.',
@@ -65,6 +67,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-1',
+    order: 5,
     titleMn: 'Орон сууцны барилга',
     titleEn: 'Residential Building',
     descriptionMn: 'Орчин үеийн дизайнтай, 5 давхар орон сууцны барилга. Өндөр чанартай материал, эрчим хүчний хэмнэлттэй системтэй.',
@@ -120,6 +123,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-2',
+    order: 6,
     titleMn: 'Арилжааны төв',
     titleEn: 'Commercial Center',
     descriptionMn: 'Олон хэлтсийн арилжааны төв, 3 давхар. Орчин үеийн архитектур, хэрэглэгчидэд тохиромжтой.',
@@ -168,6 +172,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-3',
+    order: 3,
     titleMn: 'Засалтын ажил',
     titleEn: 'Renovation Project',
     descriptionMn: 'Хуучин барилгын засалт, шинэчлэл. Эрчим хүчний хэмнэлт, орчин үеийн дизайн.',
@@ -224,6 +229,7 @@ export const projects: Project[] = [
   
   {
     id: 'project-5',
+    order: 4,
     titleMn: 'Оффис барилга',
     titleEn: 'Office Building',
     descriptionMn: 'Орчин үеийн оффис барилга, 4 давхар. Хамгийн сүүлийн үеийн технологи, тохилог ажил орчин.',
@@ -279,6 +285,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-6',
+    order: 9,
     titleMn: 'Хостел барилга',
     titleEn: 'Hostel Building',
     descriptionMn: 'Оюутны хэрэгцээнд зориулсан хостел барилга. Хэмнэлттэй, тохилог орчин.',
@@ -303,7 +310,175 @@ export const projects: Project[] = [
         order: 1
       }
     ]
-  }
+  },
+  {
+    id: 'project-7',
+    order: 7,
+    titleMn: 'Засалтын ажил',
+    titleEn: 'Renovation Project',
+    descriptionMn: 'Хуучин барилгын засалт, шинэчлэл. Эрчим хүчний хэмнэлт, орчин үеийн дизайн.',
+    descriptionEn: 'Renovation and modernization of existing building. Energy efficiency and modern design.',
+    category: 'renovation',
+    location: 'Erdenet, Mongolia',
+    completionDate: '2023-09-30',
+    clientName: 'Erdenet Corporation',
+    featured: false,
+    published: true,
+    status: 'sold',
+    area: '1,200',
+    duration: '8 months',
+    team: '8',
+    features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
+    images: [
+      {
+        url: '/uploads/project-7/main-view.jpg',
+        captionMn: 'Үндсэн харагдах байдал',
+        captionEn: 'Main view',
+        isPrimary: true,
+        order: 1
+      },
+      {
+        url: '/uploads/project-7/first_floor.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 1',
+        captionEn: 'Additional view 1',
+        isPrimary: false,
+        order: 2
+      },
+      {
+        url: '/uploads/project-7/bedroom.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 2',
+        captionEn: 'Additional view 2',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-7/bathroom.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 3',
+        captionEn: 'Additional view 3',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-7/window.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 4',
+        captionEn: 'Additional view 4',
+        isPrimary: false,
+        order: 5
+      }
+    ]
+  },
+  {
+    id: 'project-8',
+    order: 8,
+    titleMn: 'Засалтын ажил',
+    titleEn: 'Renovation Project',
+    descriptionMn: 'Хуучин барилгын засалт, шинэчлэл. Эрчим хүчний хэмнэлт, орчин үеийн дизайн.',
+    descriptionEn: 'Renovation and modernization of existing building. Energy efficiency and modern design.',
+    category: 'renovation',
+    location: 'Erdenet, Mongolia',
+    completionDate: '2023-09-30',
+    clientName: 'Erdenet Corporation',
+    featured: false,
+    published: true,
+    status: 'sold',
+    area: '1,200',
+    duration: '8 months',
+    team: '8',
+    features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
+    images: [
+      {
+        url: '/uploads/project-8/main-view.jpg',
+        captionMn: 'Үндсэн харагдах байдал',
+        captionEn: 'Main view',
+        isPrimary: true,
+        order: 1
+      },
+      {
+        url: '/uploads/project-8/space.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 1',
+        captionEn: 'Additional view 1',
+        isPrimary: false,
+        order: 2
+      },
+      {
+        url: '/uploads/project-8/other_room.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 2',
+        captionEn: 'Additional view 2',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-8/bathroom.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 3',
+        captionEn: 'Additional view 3',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-8/night.jpg',
+        captionMn: 'Нэмэлт харагдах байдал 4',
+        captionEn: 'Additional view 4',
+        isPrimary: false,
+        order: 5
+      }
+    ]
+  },
+  {
+    id: 'project-9',
+    order: 2,
+    titleMn: 'Засалтын ажил',
+    titleEn: 'Renovation Project',
+    descriptionMn: 'Хуучин барилгын засалт, шинэчлэл. Эрчим хүчний хэмнэлт, орчин үеийн дизайн.',
+    descriptionEn: 'Renovation and modernization of existing building. Energy efficiency and modern design.',
+    category: 'renovation',
+    location: 'Erdenet, Mongolia',
+    completionDate: '2023-09-30',
+    clientName: 'Erdenet Corporation',
+    featured: false,
+    published: true,
+    status: 'sold',
+    area: '1,200',
+    duration: '8 months',
+    team: '8',
+    features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
+    images: [
+      {
+        url: '/uploads/project-9/main-view.jpeg',
+        captionMn: 'Үндсэн харагдах байдал',
+        captionEn: 'Main view',
+        isPrimary: true,
+        order: 1
+      },
+      {
+        url: '/uploads/project-9/living-room.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 1',
+        captionEn: 'Additional view 1',
+        isPrimary: false,
+        order: 2
+      },
+      {
+        url: '/uploads/project-9/bedroom.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 2',
+        captionEn: 'Additional view 2',
+        isPrimary: false,
+        order: 3
+      },
+      {
+        url: '/uploads/project-9/kitchen.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 3',
+        captionEn: 'Additional view 3',
+        isPrimary: false,
+        order: 4
+      },
+      {
+        url: '/uploads/project-9/outside.jpeg',
+        captionMn: 'Нэмэлт харагдах байдал 4',
+        captionEn: 'Additional view 4',
+        isPrimary: false,
+        order: 5
+      }
+    ]
+  },
 ]
 
 export const getProjects = () => projects.filter(p => p.published)

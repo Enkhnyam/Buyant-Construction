@@ -10,8 +10,8 @@ export default function ProjectsShowcase() {
   const { language } = useLanguage()
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  // Get featured projects from static data
-  const projects = getFeaturedProjects().slice(0, 6)
+  // Get featured projects from static data sorted by order
+  const projects = getFeaturedProjects().sort((a, b) => a.order - b.order)
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
 

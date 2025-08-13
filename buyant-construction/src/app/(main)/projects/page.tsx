@@ -25,7 +25,7 @@ export default function ProjectsPage() {
     const matchesSearch = title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          location.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesCategory && matchesSearch
-  })
+  }).sort((a, b) => a.order - b.order)
 
   const getProjectDisplayData = (project: Project) => {
     const title = language === 'mn' ? project.titleMn : project.titleEn

@@ -20,8 +20,8 @@ export default function ProjectsCarousel() {
   const carouselRef = useRef<HTMLDivElement>(null)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Use all published projects (up to 6)
-  const projects = getProjects().slice(0, 6)
+  // Use all published projects (up to 6) sorted by order
+  const projects = getProjects().sort((a, b) => a.order - b.order)
 
   // Sliding math
   const VISIBLE_CARDS = 3
@@ -203,7 +203,7 @@ export default function ProjectsCarousel() {
                 }}
               >
                 {projects.map((project) => (
-                  <div key={project.id} className="w-1/3 flex-shrink-0 px-3 md:px-3 px-2">
+                  <div key={project.id} className="w-1/4 flex-shrink-0 px-3 md:px-3 px-2">
                     <div
                       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer transform hover:scale-[1.02] hover:-translate-y-1"
                       onClick={() => openProjectDialog(project)}
