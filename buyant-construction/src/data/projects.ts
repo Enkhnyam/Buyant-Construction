@@ -190,7 +190,7 @@ export const projects: Project[] = [
     features: ['Structural reinforcement', 'New facade', 'Interior redesign', 'Energy efficiency'],
     images: [
       {
-        url: '/uploads/project-3/main-view.jpeg',
+        url: '/uploads/project-3/new_main.jpeg',
         captionMn: 'Үндсэн харагдах байдал',
         captionEn: 'Main view',
         isPrimary: true,

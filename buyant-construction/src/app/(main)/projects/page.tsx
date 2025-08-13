@@ -163,7 +163,15 @@ export default function ProjectsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredProjects.map((project) => {
                   const displayData = getProjectDisplayData(project)
-                  const primaryImage = project.images.find(img => img.isPrimary)?.url || project.images[0]?.url
+                  const primaryImage = (() => {
+                    // First try to find the primary image
+                    const primaryImg = project.images.find(img => img.isPrimary)
+                    if (primaryImg) {
+                      return primaryImg.url
+                    }
+                    // Fallback to first image if no primary image found
+                    return project.images[0]?.url || ''
+                  })()
                   
                   return (
                     <div 

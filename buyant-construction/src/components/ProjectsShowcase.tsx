@@ -65,7 +65,15 @@ export default function ProjectsShowcase() {
                 <div className="aspect-video bg-gray-200 relative overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <img
-                      src={project.images.find(img => img.isPrimary)?.url || project.images[0]?.url}
+                      src={(() => {
+                        // First try to find the primary image
+                        const primaryImage = project.images.find(img => img.isPrimary)
+                        if (primaryImage) {
+                          return primaryImage.url
+                        }
+                        // Fallback to first image if no primary image found
+                        return project.images[0]?.url || ''
+                      })()}
                       alt={language === 'mn' ? project.titleMn : project.titleEn}
                       className="w-full h-full object-cover"
                     />

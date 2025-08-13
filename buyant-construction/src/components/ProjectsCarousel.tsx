@@ -218,7 +218,15 @@ export default function ProjectsCarousel() {
                     >
                       <div className="relative h-32 md:h-48">
                         <ProjectImage
-                          src={project.images.find(img => img.isPrimary)?.url || project.images[0]?.url || ''}
+                          src={(() => {
+                            // First try to find the primary image
+                            const primaryImage = project.images.find(img => img.isPrimary)
+                            if (primaryImage) {
+                              return primaryImage.url
+                            }
+                            // Fallback to first image if no primary image found
+                            return project.images[0]?.url || ''
+                          })()}
                           alt={getText(project.titleMn, project.titleEn)}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
