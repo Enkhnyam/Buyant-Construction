@@ -107,8 +107,8 @@ export default function AboutPage() {
               <div className="space-y-4 text-lg text-[#0F425C]/80 leading-relaxed">
                 <p>
                   {language === 'mn' 
-                    ? 'Буяант Барилга нь 2003 онд байгуулагдсан, Монголын барилгын салбарт 20 гаруй жилийн туршлагатай гэр бүлийн бизнес юм. Бид жижиг барилгын төслүүдээс эхлээд одоо нэгдсэн барилгын үйлчилгээ үзүүлдэг болсон.'
-                    : 'Буяант Барилга was established in 2003 and is a family business with over 20 years of experience in Mongolia\'s construction sector. We started with small construction projects and now provide comprehensive construction services.'
+                    ? 'Буянт амины орон сууц нь 2003 онд байгуулагдсан, амины орон сууцны зарын салбарт 20 гаруй жилийн туршлагатай гэр бүлийн бизнес юм. Бид жижиг амины орон сууцаас эхлээд одоо олон төрлийн амины орон сууцны зарын үйлчилгээ үзүүлдэг болсон.'
+                    : 'Buyant House was established in 2003 and is a family business with over 20 years of experience in Mongolia\'s residential property sector. We started with small residential properties and now provide comprehensive residential property services.'
                   }
                 </p>
                 <p>
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 <div className="relative mx-auto mb-6 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40">
                   <Image
                     src="/logoMainRound.png"
-                    alt="Буяант Барилга Logo"
+                    alt="Буянт амины орон сууц Logo"
                     fill
                     priority
                     sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
@@ -132,7 +132,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800">
-                  {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}
+                  {language === 'mn' ? 'Буянт амины орон сууц' : 'Buyant House'}
                 </h3>
                 <p className="text-[#0F425C]/80">
                   {language === 'mn'

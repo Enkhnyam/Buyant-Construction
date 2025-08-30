@@ -45,14 +45,14 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/logoMain.png"
-                alt="Буяант Барилга Logo"
+                alt="Буянт амины орон сууц Logo"
                 width={150}
                 height={50}
                 className="h-12 w-auto"
               />
               {isHydrated && (
                 <span className="text-xl font-bold text-gray-800">
-                  {language === 'mn' ? 'Буяант Барилга' : 'Buyant Construction'}
+                  {language === 'mn' ? 'Буянт амины орон сууц' : 'Buyant House'}
                 </span>
               )}
             </Link>

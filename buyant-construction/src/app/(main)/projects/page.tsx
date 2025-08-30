@@ -7,24 +7,15 @@ import { projects, Project } from '@/data/projects'
 
 export default function ProjectsPage() {
   const { language, t } = useLanguage()
-  const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const categories = [
-    { id: 'all', name: language === 'mn' ? 'Бүгд' : 'All' },
-    { id: 'residential', name: language === 'mn' ? 'Орон сууцны' : 'Residential' },
-    { id: 'commercial', name: language === 'mn' ? 'Арилжааны' : 'Commercial' },
-    { id: 'renovation', name: language === 'mn' ? 'Засалт' : 'Renovation' }
-  ]
-
   const filteredProjects = projects.filter(project => {
-    const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory
     const title = language === 'mn' ? project.titleMn : project.titleEn
     const location = project.location
     const matchesSearch = title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          location.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesCategory && matchesSearch
+    return matchesSearch
   }).sort((a, b) => a.order - b.order)
 
   const getProjectDisplayData = (project: Project) => {
@@ -55,19 +46,10 @@ export default function ProjectsPage() {
 
   const getText = (mn: string, en: string) => language === 'mn' ? mn : en
 
-  const getCategoryText = (category: string) => {
-    if (category === 'residential') {
-      return language === 'mn' ? 'Орон сууцны' : 'Residential'
-    } else if (category === 'commercial') {
-      return language === 'mn' ? 'Арилжааны' : 'Commercial'
-    } else if (category === 'renovation') {
-      return language === 'mn' ? 'Засалт' : 'Renovation'
-    }
-    return category
-  }
+
 
   const getStatusText = (status?: 'sold' | 'in_construction' | 'available') => {
-    if (status === 'available') return language === 'mn' ? 'Байгаа' : 'Available'
+    if (status === 'available') return language === 'mn' ? 'Зарна' : 'For Sale'
     if (status === 'in_construction') return language === 'mn' ? 'Баригдаж байна' : 'In Construction'
     if (status === 'sold') return language === 'mn' ? 'Зарагдсан' : 'Sold'
     return ''
@@ -97,28 +79,10 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Filters and Search */}
+        {/* Search */}
         <section className="py-12 bg-[#F4F2EA]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-3">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                      selectedCategory === category.id
-                        ? 'bg-[#0F425C] text-white'
-                        : 'bg-white text-[#0F425C] hover:bg-[#0F425C]/10'
-                    }`}
-                  >
-                    {category.name}
-                  </button>
-                ))}
-              </div>
-
-              {/* Search */}
+            <div className="flex justify-center">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0F425C]/40 w-5 h-5" />
                 <input
@@ -337,10 +301,7 @@ export default function ProjectsPage() {
                 <p className="text-[#0F425C]/80 mb-8 text-lg leading-relaxed">
                   {getText(selectedProject.descriptionMn, selectedProject.descriptionEn)}
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-[#0F425C]/60">
-                  <div className="bg-[#0F425C]/5 p-3 rounded-lg">
-                    <span className="font-medium">Category:</span> {getCategoryText(selectedProject.category)}
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-[#0F425C]/60">
                   <div className="bg-[#0F425C]/5 p-3 rounded-lg">
                     <span className="font-medium">Location:</span> {selectedProject.location}
                   </div>

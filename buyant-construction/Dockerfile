@@ -1,4 +1,4 @@
-# Буяант Барилга (Buyant Construction) - Docker Configuration
+# Буянт амины орон сууц (Buyant House) - Docker Configuration
 # Build stage
 FROM node:18-alpine AS builder
 WORKDIR /app

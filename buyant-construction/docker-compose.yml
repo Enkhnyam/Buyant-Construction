@@ -1,4 +1,4 @@
-# Буяант Барилга (Buyant Construction) - Docker Compose Configuration
+# Буянт амины орон сууц (Buyant House) - Docker Compose Configuration
 version: '3.8'
 services:
   app:

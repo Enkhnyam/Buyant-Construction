@@ -6,9 +6,9 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Буяант Барилга - Монголын гэр бүлийн барилгын үйлчилгээ',
-  description: 'Монголын гэр бүлийн барилгын үйлчилгээ - Буяант Барилга',
-  authors: [{ name: 'Буяант Барилга Team' }],
+  title: 'Буянт амины орон сууц - Амины орон сууцны зарын үйлчилгээ',
+  description: 'Амины орон сууцны зарын үйлчилгээ - Буянт амины орон сууц',
+  authors: [{ name: 'Буянт амины орон сууц Team' }],
   keywords: ['барилга', 'construction', 'mongolia', 'mongol', 'buyant', 'буяант'],
   icons: {
     icon: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Буяант Барилга - Монголын гэр бүлийн барилгын үйлчилгээ',
+    title: 'Буянт амины орон сууц - Амины орон сууцны зарын үйлчилгээ',
     description: 'Professional construction services and legal consultation in Mongolia',
     type: 'website',
     locale: 'mn_MN',

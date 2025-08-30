@@ -40,7 +40,7 @@ export const projects: Project[] = [
     clientName: 'Хувийн захиалагч',
     featured: true,
     published: true,
-    status: 'in_construction',
+    status: 'available',
     area: '700',
     images: [
       {

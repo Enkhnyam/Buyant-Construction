@@ -25,8 +25,8 @@ async function main() {
     where: { id: 1 },
     update: {},
     create: {
-      nameMn: 'Буянт Барилга ХХК',
-      nameEn: 'Буяант Барилга LLC',
+      nameMn: 'Буянт амины орон сууц ХХК',
+      nameEn: 'Buyant House LLC',
       aboutMn: 'Монгол улсын тэргүүлэгч барилгын компани. Орон сууцны барилга, хуулийн үйлчилгээ, зөвлөгөө өгөх үйлчилгээг санал болгодог.',
       aboutEn: 'Leading construction company in Mongolia. We provide residential construction, legal services, and consultation services.',
       missionMn: 'Монголчуудын гэр бүлийн амьдралыг сайжруулах, чанартай орон сууцны барилга барих',

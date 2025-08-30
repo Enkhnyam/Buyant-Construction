@@ -113,8 +113,8 @@ export default function AdminDashboard() {
         </h1>
         <p className="mt-2 text-gray-600">
           {getText(
-            'Буянт Барилгын удирдлагын хэсэгт тавтай морил',
-            'Welcome to Буяант Барилга management panel'
+            'Буянт амины орон сууцны удирдлагын хэсэгт тавтай морил',
+            'Welcome to Buyant House management panel'
           )}
         </p>
       </div>

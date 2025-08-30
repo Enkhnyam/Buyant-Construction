@@ -99,7 +99,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
               <h1 className="text-2xl font-bold text-gray-900">
-                Буяант Барилга
+                Буянт амины орон сууц
               </h1>
               {isHydrated && (
                 <div className="hidden md:flex items-center space-x-1 text-sm text-gray-500">
