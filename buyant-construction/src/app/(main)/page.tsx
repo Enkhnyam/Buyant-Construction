@@ -172,8 +172,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <TestimonialsCarousel />
+      {/* Testimonials - Temporarily hidden, uncomment to restore */}
+      {/* <TestimonialsCarousel /> */}
 
       {/* CTA Section */}
       <section className="py-20 bg-[#0F425C] text-white">

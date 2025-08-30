@@ -66,7 +66,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: getText('Хяналтын самбар', 'Dashboard'), href: '/admin', icon: BarChart3 },
     { name: getText('Төслүүд', 'Projects'), href: '/admin/projects', icon: Building2 },
     { name: getText('Үйлчилгээнүүд', 'Services'), href: '/admin/services', icon: Wrench },
-    { name: getText('Сэтгэгдлүүд', 'Testimonials'), href: '/admin/testimonials', icon: Star },
+    // { name: getText('Сэтгэгдлүүд', 'Testimonials'), href: '/admin/testimonials', icon: Star }, // Temporarily hidden
     { name: getText('Медиа сан', 'Media Library'), href: '/admin/media', icon: Image },
   ]
 

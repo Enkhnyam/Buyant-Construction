@@ -120,7 +120,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
           <div className="flex items-center">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -149,7 +149,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+        {/* Testimonials stats card - Temporarily hidden, uncomment to restore */}
+        {/* <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
           <div className="flex items-center">
             <div className="p-2 bg-yellow-100 rounded-lg">
               <Star className="h-6 w-6 text-yellow-600" />
@@ -161,7 +162,7 @@ export default function AdminDashboard() {
               <p className="text-2xl font-bold text-gray-900">{stats.testimonials}</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
           <div className="flex items-center">
