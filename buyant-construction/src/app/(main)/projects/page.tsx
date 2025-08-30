@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, Home, MapPin, Calendar, Users, ArrowRight, Search, X } from 'lucide-react'
+import { Building2, Home, MapPin, ArrowRight, Search, X } from 'lucide-react'
 import { projects, Project } from '@/data/projects'
 
 export default function ProjectsPage() {
@@ -35,23 +35,13 @@ export default function ProjectsPage() {
     // Use project data if available, otherwise default values
     const area = project.area || 'N/A'
     const areaUnit = language === 'mn' ? 'м²' : 'm²'
-    const duration = project.duration || 'N/A'
-    const team = project.team || 'N/A'
-    
-    // Use project features if available, otherwise default features
-    const features = project.features || (language === 'mn' 
-      ? ['Централ халаалт', 'Хаалганы систем', 'Хажуугийн засвар', 'Газрын тосны систем']
-      : ['Central heating', 'Door system', 'Side finishing', 'Oil system'])
 
     return {
       title,
       description,
       year,
       area,
-      areaUnit,
-      duration,
-      team,
-      features
+      areaUnit
     }
   }
 
@@ -216,36 +206,9 @@ export default function ProjectsPage() {
                             <Home className="w-4 h-4 mr-2" />
                             {displayData.area} {displayData.areaUnit}
                           </div>
-                          <div className="flex items-center text-sm text-[#0F425C]/80">
-                            <Calendar className="w-4 h-4 mr-2" />
-                            {displayData.duration}
-                          </div>
-                          <div className="flex items-center text-sm text-[#0F425C]/80">
-                            <Users className="w-4 h-4 mr-2" />
-                            {language === 'mn' ? `${displayData.team} хүн` : `${displayData.team} people`}
-                          </div>
                         </div>
 
                         <p className="text-[#0F425C]/80 text-sm mb-4 line-clamp-3">{displayData.description}</p>
-
-                        {/* Project Features */}
-                        <div className="mb-4">
-                          <h4 className="font-semibold text-[#0F425C] mb-2 text-sm">
-                            {language === 'mn' ? 'Онцлог шийдэл:' : 'Key Features:'}
-                          </h4>
-                          <div className="flex flex-wrap gap-2">
-                            {displayData.features.slice(0, 3).map((feature, index) => (
-                              <span key={index} className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
-                                {feature}
-                              </span>
-                            ))}
-                            {displayData.features.length > 3 && (
-                              <span className="px-2 py-1 bg-[#0F425C]/10 text-[#0F425C] text-xs rounded">
-                                +{displayData.features.length - 3}
-                              </span>
-                            )}
-                          </div>
-                        </div>
 
                         <button
                           type="button"
