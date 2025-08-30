@@ -116,8 +116,8 @@ export const projects: Project[] = [
     order: 6,
     titleMn: 'Шаргаморьт зуслангийн 2 давхар амины байшин',
     titleEn: 'Shargamoryt Intersection 2-Story Residential House',
-    descriptionMn: 'Сүхбаатар дүүрэг, 15-р хороо, Шаргаморьт зуслангийн 1000 м² газарт (2 айлын хамт эзэмшил) баригдсан 8×10 м дүнзэн 2 давхар амины орон сууц. 4 улирлын ашиглалтанд тохиромжтой энэхүү байшин нь 1-р давхарт том өрөө, гал тогоо, 00, угаалгын өрөө, 2-р давхарт 2 унтлагын өрөө бүхий. 12 м² террастай байшин нь камин зуухтай бөгөөд бүх улиралд ашиглах боломжтой. Тэгш, тохилог байрлалтай газарт баригдсан орчин үеийн стандартын дагуу бүтээгдсэн амьдралын орчин.',
-    descriptionEn: 'An 8×10 m 2-story residential house built on 1000 m² land (joint ownership of 2 families) in Sukhbaatar district, 15th khoroo, Shargamoryt intersection. This house suitable for year-round living features a large room, kitchen, toilet, and laundry room on the first floor, and 2 bedrooms on the second floor. The house includes a 12 m² terrace and fireplace stove suitable for all seasons. Built on flat, well-located land according to modern standards, providing an ideal living environment.',
+    descriptionMn: 'Хоёр давхар өргөжсөн энэхүү гэр бүл нь олон үеийн гэр бүлд тохиромжтой орчин бүрдүүлж чадсан амгалан дүр зураг байлаа. Доод давхарт бүх өдөр төдийн найрсаг цагуудыг өнгөрүүлэх том өрөө, дээд давхарт тайван унтлагын өрөөнүүдтэй энэхүү байшин нь үр хүүхдүүдийн хөгжилд тохиромжтой байсан. Камин зуухны дулаан дэргэд гэр бүлийн цуглаан хийх, террас дээр амралтын цагыг өнгөрүүлэх боломжтой байшин нь гэр бүлийн аз жаргалыг хоёр дахин нэмэгдүүлж чадсан.',
+    descriptionEn: 'This spacious two-story family home created a cozy picture perfect for multi-generational families. With a large room on the ground floor for spending harmonious daily moments and peaceful bedrooms upstairs, this house was ideal for children\'s development. The house, where families could gather around the warm fireplace and spend leisure time on the terrace, was able to double the family\'s happiness.',
     category: 'residential',
     location: 'Сүхбаатар дүүрэг, 15-р хороо, Шаргаморьт зуслан',
     completionDate: '2023-07-10',
@@ -129,29 +129,29 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-2/additional-3.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏠 8×10м дүнзэн 2 давхар байшин 🌍 1000м² газар 💰 150,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Шаргаморьт зуслан 🌡️ 4 улирлын ашиглалт 🏡 12м² террас',
+        captionEn: '🏠 8×10m 2-story house 🌍 1000m² land 💰 150,000,000₮ sold 📍 Sukhbaatar district, Shargamoryt intersection 🌡️ Year-round living 🏡 12m² terrace',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-2/additional-1.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 1',
-        captionEn: 'Additional view 1',
+        captionMn: '🛋️ 1-р давхар: том өрөө, гал тогоо 🚻 00, угаалгын өрөө 🔥 Камин зуух 🌿 Тэгш газар',
+        captionEn: '🛋️ 1st floor: large room, kitchen 🚻 Toilet, laundry room 🔥 Fireplace stove 🌿 Flat land',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-2/additional-2.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 2',
-        captionEn: 'Additional view 2',
+        captionMn: '🛏️ 2-р давхар: 2 унтлагын өрөө 👨‍👩‍👧‍👦 2 айлын хамт эзэмшил 🏗️ Орчин үеийн стандарт',
+        captionEn: '🛏️ 2nd floor: 2 bedrooms 👨‍👩‍👧‍👦 Joint ownership of 2 families 🏗️ Modern standards',
         isPrimary: false,
         order: 3
       },
       {
         url: '/uploads/project-2/main-view.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 3',
-        captionEn: 'Additional view 3',
+        captionMn: '🏘️ Тохилог байршил 🌡️ Бүх улиралд ашиглах боломжтай 🏠 Гэр бүлийн хэрэгцээнд тохирсон зохион байгуулалт',
+        captionEn: '🏘️ Convenient location 🌡️ Suitable for all seasons 🏠 Layout designed for family needs',
         isPrimary: false,
         order: 4
       }
@@ -216,8 +216,8 @@ export const projects: Project[] = [
     order: 4,
     titleMn: 'Сэлбэ зуслангийн канад хийцтэй дуплекс байшин',
     titleEn: 'Selbe Intersection Canadian Style Duplex House',
-    descriptionMn: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслангийн 700 м² нэг айлын хувийн эзэмшлийн газарт баригдсан 70 м² канад хийцтэй дуплекс загварын амины орон сууц. 2 давхар, 4 улирлын ашиглалтанд тохиромжтой энэхүү байшин нь 1-р давхарт том өрөө болон гал тогоотой, 2-р давхарт шууд гардаг нээлттэй тавцан, унтах зай талбай хэмнэлттэй зохион байгуулалттай. Орчин үеийн дизайн болон практик шийдэлтэй дуплекс загварын байшин нь амьдрахад тав тухтай орчныг бүрдүүлсэн.',
-    descriptionEn: 'A 70 m² Canadian-style duplex residential house built on 700 m² single-family private property in Sukhbaatar district, 20th khoroo, Selbe intersection. This 2-story house suitable for year-round living features a large room and kitchen on the first floor, and an open platform with direct access and space-efficient sleeping area on the second floor. The duplex design combines modern aesthetics with practical solutions, creating a comfortable living environment.',
+    descriptionMn: 'Орчин үеийн дуплекс загварын энэхүү дэвшилтэт гэр амгалан нь залуу гэр бүлд шинэ төрлийн амьдралыг санал болгож чадсан ерөнхий шийдэл байлаа. Канадын чанартай барилгын технологи ашигласан энэхүү байшин нь талбай хэмнэлттэй боловч бүх шаардлагыг хангасан практик орчин бүрдүүлсэн. Нээлттэй тавцан, шууд гарах боломжтой зохион байгуулалт нь залуу хосууддын орчин үеийн амьдралын хэв маягт тохирсон уран сайхны шийдэл байжээ.',
+    descriptionEn: 'This modern duplex-style advanced family home was an overall solution that offered young families a new type of lifestyle. Built using Canadian quality construction technology, this house created a space-efficient yet comprehensive practical environment. The open platform and direct access layout was an artistic solution that matched the modern lifestyle of young couples.',
     category: 'residential',
     location: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслан',
     completionDate: '2023-10-05',
@@ -229,36 +229,36 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-5/wide-view.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏠 70м² канад хийцтэй дуплекс 🌍 700м² газар 💰 160,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Сэлбэ зуслан 🏡 2 давхар 🌡️ 4 улирлын ашиглалт',
+        captionEn: '🏠 70m² Canadian-style duplex 🌍 700m² land 💰 160,000,000₮ sold 📍 Sukhbaatar district, Selbe intersection 🏡 2 floors 🌡️ Year-round living',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-5/environment-view.jpeg',
-        captionMn: 'Орчны харагдах байдал',
-        captionEn: 'Environment view',
+        captionMn: '🌿 Орчны байдал 👨‍👩‍👧‍👦 Нэг айлын эзэмшил 🏗️ Орчин үеийн дизайн 🏞️ Тайван орчин',
+        captionEn: '🌿 Environmental setting 👨‍👩‍👧‍👦 Single family ownership 🏗️ Modern design 🏞️ Peaceful environment',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-5/side-view.jpeg',
-        captionMn: 'Хажуугийн харагдах байдал',
-        captionEn: 'Side view',
+        captionMn: '🛋️ 1-р давхар: том өрөө + гал тогоо 🪜 Шууд гардаг нээлттэй тавцан 💡 Практик шийдэл',
+        captionEn: '🛋️ 1st floor: large room + kitchen 🪜 Direct access open platform 💡 Practical solutions',
         isPrimary: false,
         order: 3
       },
       {
         url: '/uploads/project-5/detail-view.jpeg',
-        captionMn: 'Дэлгэрэнгүй харагдах байдал',
-        captionEn: 'Detail view',
+        captionMn: '🛏️ 2-р давхар: унтах зай 📐 Талбай хэмнэлттэй зохион байгуулалт 🏡 Дуплекс загвар',
+        captionEn: '🛏️ 2nd floor: sleeping area 📐 Space-efficient layout 🏡 Duplex design',
         isPrimary: false,
         order: 4
       },
       {
         url: '/uploads/project-5/additional-view.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал',
-        captionEn: 'Additional view',
+        captionMn: '🇨🇦 Канадын чанартай технологи 🏗️ Бат бөх барилга 👫 Залуу гэр бүлд тохиромжтой 🎨 Уран сайхны шийдэл',
+        captionEn: '🇨🇦 Canadian quality technology 🏗️ Solid construction 👫 Perfect for young families 🎨 Artistic solutions',
         isPrimary: false,
         order: 5
       }
@@ -269,8 +269,8 @@ export const projects: Project[] = [
     order: 9,
     titleMn: 'Чингэлтэй дүүргийн үйлчилгээний барилга',
     titleEn: 'Chinggeltei District Service Building',
-    descriptionMn: 'Чингэлтэй дүүрэг, 19-р хороо, зам дагуу байрлах 1000 м² хувийн эзэмшлийн газарт баригдсан 108 м² макын блокон үйлчилгээний барилга. 3 давхар, вакуум цонхтой орчин үеийн барилга нь олон төрлийн үйлчилгээний зориулалттай. Гүний худгийн эрхтэй, дотоод 00, угаалгын өрөөтэй бүрэн тохижсон. Үүдэнд 12 м² харуулын байртай аюулгүй байдлыг хангасан арилжааны барилга. Замын дагуу байрлалтай нь хүртээмжийг хангасан давуу тал.',
-    descriptionEn: 'A 108 m² brick block service building built on 1000 m² private property along the road in Chinggeltei district, 19th khoroo. This modern 3-story building with vacuum windows is designed for multi-purpose service use. Fully equipped with deep well water rights, indoor toilet, and laundry room. Security ensured with a 12 m² guard house at the entrance. The roadside location provides excellent accessibility for commercial purposes.',
+    descriptionMn: 'Замын хажууд байрлах энэхүү олон зорилгот үйлчилгээний барилга нь арилжааны өрсөлдөхүйц орчин хайж байсан бизнес эрхлэгчдэд тохиромжтой боломж санал болгож чадсан. Гурван давхар өндөртэй, орчин үеийн технологи бүхий энэхүү барилга нь олон төрлийн үйлчилгээ үзүүлэх боломжийг олгосон. Аюулгүй байдлыг хангасан, бүх шаардлагатай дэд бүтэцтэй энэхүү барилга нь бизнесийн амжилтын үндэс болж чадсан.',
+    descriptionEn: 'This multi-purpose service building located roadside was able to offer suitable opportunities for business owners seeking a competitive commercial environment. This three-story building with modern technology provided the possibility of offering various services. With ensured security and all necessary infrastructure, this building was able to become the foundation for business success.',
     category: 'commercial',
     location: 'Чингэлтэй дүүрэг, 19-р хороо, зам дагуу',
     completionDate: '2023-05-20',
@@ -282,22 +282,22 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-6/main-view.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏢 108м² макын блокон үйлчилгээний барилга 🌍 1000м² газар 💰 140,000,000₮ зарагдсан 📍 Чингэлтэй дүүрэг, зам дагуу 🏗️ 3 давхар 🪟 Вакуум цонх',
+        captionEn: '🏢 108m² brick block service building 🌍 1000m² land 💰 140,000,000₮ sold 📍 Chinggeltei district, roadside 🏗️ 3 floors 🪟 Vacuum windows',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-6/back-view.jpeg',
-        captionMn: 'Хажуугийн харагдах байдал',
-        captionEn: 'Side view',
+        captionMn: '🛡️ 12м² харуулын байр 🚪 Үүдний аюулгүй байдал 🛣️ Замын дагуу хүртээмжтэй байршил 🏪 Арилжааны зориулалт',
+        captionEn: '🛡️ 12m² guard house 🚪 Entrance security 🛣️ Roadside accessible location 🏪 Commercial purpose',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-6/interior.jpeg',
-        captionMn: 'Дэлгэрэнгүй харагдах байдал',
-        captionEn: 'Detail view',
+        captionMn: '🏠 Дотоод 00, угаалгын өрөө 💧 Гүний худгийн эрх 🏢 Олон төрлийн үйлчилгээний боломж 🔧 Бүрэн тохижсон дэд бүтэц',
+        captionEn: '🏠 Indoor toilet, laundry room 💧 Deep well water rights 🏢 Multi-service possibilities 🔧 Fully equipped infrastructure',
         isPrimary: false,
         order: 3
       }
