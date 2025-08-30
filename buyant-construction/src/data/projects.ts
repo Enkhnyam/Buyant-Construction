@@ -45,15 +45,15 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-4/main-view.jpeg',
-        captionMn: '🏠 50м² амины байшин 🌍 700м² газар 💰 96,000,000₮ 🏗️ Канад технологи 🌡️ 4 улирлын ашиглалт 🔥 15см хана + 20см таазны дулаалга ⚡ 380В цахилгаан 🚻 3 тонн эко 00 🏡 14м² террас 🛡️ 4 тал төмөр хашаа',
-        captionEn: '🏠 50m² house 🌍 700m² land 💰 96,000,000₮ 🏗️ Canadian technology 🌡️ Year-round living 🔥 15cm wall + 20cm ceiling insulation ⚡ 380V electricity 🚻 3-ton eco toilet 🏡 14m² terrace 🛡️ 4-sided iron fence',
+        captionMn: '🏠 50м² амины байшин\n🌍 700м² газар\n💰 96,000,000₮\n🏗️ Канад технологи\n🌡️ 4 улирлын ашиглалт\n🔥 15см хана + 20см таазны дулаалга\n⚡ 380В цахилгаан\n🚻 3 тонн эко 00\n🏡 14м² террас\n🛡️ 4 тал төмөр хашаа',
+        captionEn: '🏠 50m² house\n🌍 700m² land\n💰 96,000,000₮\n🏗️ Canadian technology\n🌡️ Year-round living\n🔥 15cm wall + 20cm ceiling insulation\n⚡ 380V electricity\n🚻 3-ton eco toilet\n🏡 14m² terrace\n🛡️ 4-sided iron fence',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-4/side-view.jpeg',
-        captionMn: '📍 Баруун 100 модны зуслан, Кувейтийн амнаас зүүн тийш 🛣️ Засмал замаас 1.4км 🏙️ Хотын төвөөс 40км ✈️ Нисэх буудлаас 20км 🏠 2 өрөө 🔥 Цахилгаан халаагуур 📞 Холбоо: 8809-3221',
-        captionEn: '📍 East of Kuwait Embassy, Baruun 100 trees intersection 🛣️ 1.4km from paved road 🏙️ 40km from city center ✈️ 20km from airport 🏠 2 rooms 🔥 Electric heating 📞 Contact: 8809-3221',
+        captionMn: '📍 Баруун 100 модны зуслан, Кувейтийн амнаас зүүн тийш\n🛣️ Засмал замаас 1.4км\n🏙️ Хотын төвөөс 40км\n✈️ Нисэх буудлаас 20км\n🏠 2 өрөө\n🔥 Цахилгаан халаагуур\n📞 Холбоо: 8809-3221',
+        captionEn: '📍 East of Kuwait Embassy, Baruun 100 trees intersection\n🛣️ 1.4km from paved road\n🏙️ 40km from city center\n✈️ 20km from airport\n🏠 2 rooms\n🔥 Electric heating\n📞 Contact: 8809-3221',
         isPrimary: false,
         order: 2
       }
@@ -61,7 +61,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-1',
-    order: 5,
+    order: 9,
     titleMn: 'Зуслангийн амины орон сууц',
     titleEn: 'Intersection Residential House',
     descriptionMn: 'Зуслангийн тохилог байршилд байрладаг энэхүү гэр амгалан нь азтай эзэнтэйгээ уулзсан түүх юм. Орчин үеийн стандартын дагуу баригдсан энэхүү байшин нь гэр бүлийн бүх хэрэгцээг хангах чадвартай байлаа. Практик шийдэл, тав тухтай орчинтой энэхүү орон сууц нь шинэ эзэддээ аз жаргалтай амьдралыг бэлэглэсэн.',
@@ -129,29 +129,29 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-2/additional-3.jpeg',
-        captionMn: '🏠 8×10м дүнзэн 2 давхар байшин 🌍 1000м² газар 💰 150,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Шаргаморьт зуслан 🌡️ 4 улирлын ашиглалт 🏡 12м² террас',
-        captionEn: '🏠 8×10m 2-story house 🌍 1000m² land 💰 150,000,000₮ sold 📍 Sukhbaatar district, Shargamoryt intersection 🌡️ Year-round living 🏡 12m² terrace',
+        captionMn: '🏠 8×10м дүнзэн 2 давхар байшин\n🌍 1000м² газар\n💰 150,000,000₮ зарагдсан\n📍 Сүхбаатар дүүрэг, Шаргаморьт зуслан\n🌡️ 4 улирлын ашиглалт\n🏡 12м² террас',
+        captionEn: '🏠 8×10m 2-story house\n🌍 1000m² land\n💰 150,000,000₮ sold\n📍 Sukhbaatar district, Shargamoryt intersection\n🌡️ Year-round living\n🏡 12m² terrace',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-2/additional-1.jpeg',
-        captionMn: '🛋️ 1-р давхар: том өрөө, гал тогоо 🚻 00, угаалгын өрөө 🔥 Камин зуух 🌿 Тэгш газар',
-        captionEn: '🛋️ 1st floor: large room, kitchen 🚻 Toilet, laundry room 🔥 Fireplace stove 🌿 Flat land',
+        captionMn: '🛋️ 1-р давхар: том өрөө, гал тогоо\n🚻 00, угаалгын өрөө\n🔥 Камин зуух\n🌿 Тэгш газар',
+        captionEn: '🛋️ 1st floor: large room, kitchen\n🚻 Toilet, laundry room\n🔥 Fireplace stove\n🌿 Flat land',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-2/additional-2.jpeg',
-        captionMn: '🛏️ 2-р давхар: 2 унтлагын өрөө 👨‍👩‍👧‍👦 2 айлын хамт эзэмшил 🏗️ Орчин үеийн стандарт',
-        captionEn: '🛏️ 2nd floor: 2 bedrooms 👨‍👩‍👧‍👦 Joint ownership of 2 families 🏗️ Modern standards',
+        captionMn: '🛏️ 2-р давхар: 2 унтлагын өрөө\n👨‍👩‍👧‍👦 2 айлын хамт эзэмшил\n🏗️ Орчин үеийн стандарт',
+        captionEn: '🛏️ 2nd floor: 2 bedrooms\n👨‍👩‍👧‍👦 Joint ownership of 2 families\n🏗️ Modern standards',
         isPrimary: false,
         order: 3
       },
       {
         url: '/uploads/project-2/main-view.jpeg',
-        captionMn: '🏘️ Тохилог байршил 🌡️ Бүх улиралд ашиглах боломжтай 🏠 Гэр бүлийн хэрэгцээнд тохирсон зохион байгуулалт',
-        captionEn: '🏘️ Convenient location 🌡️ Suitable for all seasons 🏠 Layout designed for family needs',
+        captionMn: '🏘️ Тохилог байршил\n🌡️ Бүх улиралд ашиглах боломжтай\n🏠 Гэр бүлийн хэрэгцээнд тохирсон зохион байгуулалт',
+        captionEn: '🏘️ Convenient location\n🌡️ Suitable for all seasons\n🏠 Layout designed for family needs',
         isPrimary: false,
         order: 4
       }
@@ -175,15 +175,15 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-3/new_main.jpeg',
-        captionMn: '🏠 50м² бетон блокон байшин 🌍 1400м² газар 💰 210,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Сэлбэ зуслан 🏡 1 давхар 🌡️ 4 улирлын ашиглалт',
-        captionEn: '🏠 50m² concrete block house 🌍 1400m² land 💰 210,000,000₮ sold 📍 Sukhbaatar district, Selbe intersection 🏡 1 floor 🌡️ Year-round living',
+        captionMn: '🏠 50м² бетон блокон байшин\n🌍 1400м² газар\n💰 210,000,000₮ зарагдсан\n📍 Сүхбаатар дүүрэг, Сэлбэ зуслан\n🏡 1 давхар\n🌡️ 4 улирлын ашиглалт',
+        captionEn: '🏠 50m² concrete block house\n🌍 1400m² land\n💰 210,000,000₮ sold\n📍 Sukhbaatar district, Selbe intersection\n🏡 1 floor\n🌡️ Year-round living',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-3/additional-1.jpeg',
-        captionMn: '🛋️ Том өрөө + гал тогоо цуг 🛏️ 2 унтлагын өрөө 🏡 24м² террас 🔥 Камин зуух',
-        captionEn: '🛋️ Combined large room + kitchen 🛏️ 2 bedrooms 🏡 24m² terrace 🔥 Fireplace stove',
+        captionMn: '🛋️ Том өрөө + гал тогоо цуг\n🛏️ 2 унтлагын өрөө\n🏡 24м² террас\n🔥 Камин зуух',
+        captionEn: '🛋️ Combined large room + kitchen\n🛏️ 2 bedrooms\n🏡 24m² terrace\n🔥 Fireplace stove',
         isPrimary: false,
         order: 2
       },
@@ -266,7 +266,7 @@ export const projects: Project[] = [
   },
   {
     id: 'project-6',
-    order: 9,
+    order: 5,
     titleMn: 'Чингэлтэй дүүргийн үйлчилгээний барилга',
     titleEn: 'Chinggeltei District Service Building',
     descriptionMn: 'Замын хажууд байрлах энэхүү олон зорилгот үйлчилгээний барилга нь арилжааны өрсөлдөхүйц орчин хайж байсан бизнес эрхлэгчдэд тохиромжтой боломж санал болгож чадсан. Гурван давхар өндөртэй, орчин үеийн технологи бүхий энэхүү барилга нь олон төрлийн үйлчилгээ үзүүлэх боломжийг олгосон. Аюулгүй байдлыг хангасан, бүх шаардлагатай дэд бүтэцтэй энэхүү барилга нь бизнесийн амжилтын үндэс болж чадсан.',
@@ -282,22 +282,22 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-6/main-view.jpeg',
-        captionMn: '🏢 108м² макын блокон үйлчилгээний барилга 🌍 1000м² газар 💰 140,000,000₮ зарагдсан 📍 Чингэлтэй дүүрэг, зам дагуу 🏗️ 3 давхар 🪟 Вакуум цонх',
-        captionEn: '🏢 108m² brick block service building 🌍 1000m² land 💰 140,000,000₮ sold 📍 Chinggeltei district, roadside 🏗️ 3 floors 🪟 Vacuum windows',
+        captionMn: '🏢 108м² макын блокон үйлчилгээний барилга\n🌍 1000м² газар\n💰 140,000,000₮ зарагдсан\n📍 Чингэлтэй дүүрэг, зам дагуу\n🏗️ 3 давхар\n🪟 Вакуум цонх',
+        captionEn: '🏢 108m² brick block service building\n🌍 1000m² land\n💰 140,000,000₮ sold\n📍 Chinggeltei district, roadside\n🏗️ 3 floors\n🪟 Vacuum windows',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-6/back-view.jpeg',
-        captionMn: '🛡️ 12м² харуулын байр 🚪 Үүдний аюулгүй байдал 🛣️ Замын дагуу хүртээмжтэй байршил 🏪 Арилжааны зориулалт',
-        captionEn: '🛡️ 12m² guard house 🚪 Entrance security 🛣️ Roadside accessible location 🏪 Commercial purpose',
+        captionMn: '🛡️ 12м² харуулын байр\n🚪 Үүдний аюулгүй байдал\n🛣️ Замын дагуу хүртээмжтэй байршил\n🏪 Арилжааны зориулалт',
+        captionEn: '🛡️ 12m² guard house\n🚪 Entrance security\n🛣️ Roadside accessible location\n🏪 Commercial purpose',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-6/interior.jpeg',
-        captionMn: '🏠 Дотоод 00, угаалгын өрөө 💧 Гүний худгийн эрх 🏢 Олон төрлийн үйлчилгээний боломж 🔧 Бүрэн тохижсон дэд бүтэц',
-        captionEn: '🏠 Indoor toilet, laundry room 💧 Deep well water rights 🏢 Multi-service possibilities 🔧 Fully equipped infrastructure',
+        captionMn: '🏠 Дотоод 00, угаалгын өрөө\n💧 Гүний худгийн эрх\n🏢 Олон төрлийн үйлчилгээний боломж\n🔧 Бүрэн тохижсон дэд бүтэц',
+        captionEn: '🏠 Indoor toilet, laundry room\n💧 Deep well water rights\n🏢 Multi-service possibilities\n🔧 Fully equipped infrastructure',
         isPrimary: false,
         order: 3
       }
