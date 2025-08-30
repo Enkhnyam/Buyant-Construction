@@ -244,7 +244,7 @@ export default function ProjectsCarousel() {
                               }`}
                             >
                               {project.status === 'available'
-                                ? (language === 'mn' ? 'Байгаа' : 'Available')
+                                ? (language === 'mn' ? 'Зарна' : 'For Sale')
                                 : project.status === 'in_construction'
                                 ? (language === 'mn' ? 'Баригдаж байна' : 'In Construction')
                                 : (language === 'mn' ? 'Зарагдсан' : 'Sold')}

@@ -32,8 +32,8 @@ export const projects: Project[] = [
     order: 1,
     titleMn: 'Канад технологийн амины байшин',
     titleEn: 'Canadian Technology Residential House',
-    descriptionMn: 'Баруун 100 модны зуслан, Кувейтийн амнаас зүүн тийш байрлах 700 м² хувийн эзэмшлийн газарт баригдсан орчин үеийн амины байшин. 50 м² хэмжээтэй энэхүү байшин нь Канад технологиор баригдсан бөгөөд 4 улирлын ашиглалтанд тохиромжтой. 2 өрөө бүхий байшин нь 15 см хана болон 20 см таазны эрдэс хөвөн дулаалгатай, цахилгаан халаагууртай. 14 м² терраст бүхий энэхүү байшин нь 3 тонн багтаамжтай гадна эко 00-тай, 380 В цахилгаантай, 4 тал төмөр хашаатай. Засмал замаас 1.4 км, хотын төвөөс 40 км, нисэх буудлаас 20 км зайтай.',
-    descriptionEn: 'A modern residential house built on a 700 m² private property located east of the Kuwait Embassy intersection at Baruun 100 trees crossroad. This 50 m² house is built using Canadian technology and suitable for year-round living. The 2-room house features 15 cm wall and 20 cm ceiling mineral wool insulation with electric heating. The house includes a 14 m² terrace, outdoor eco toilet with 3-ton capacity, 380V electricity, and 4-sided iron fence. Located 1.4 km from paved road, 40 km from city center, and 20 km from airport.',
+    descriptionMn: 'Хотын яарах түрүүлгээс хол, тайван орчинд байрлах энэхүү гэр бүл зарагдана. Канадын дэвшилтэт технологиор баригдсан энэхүү байшин нь жилийн дөрвөн улиралд тав тухтай амьдрах боломжийг олгодог. Тусгаарлагдсан хувийн газартай, өөрийн террастай энэхүү байшин нь шинэ амьдралаа эхлүүлэхэд тохиромжтой. Бүх шаардлагатай дэд бүтцээр хангагдсан бөгөөд нүүж ирээд шууд амьдарч эхлэх боломжтой.',
+    descriptionEn: 'Located away from the city rush in a peaceful environment, this family home is available for sale. Built using advanced Canadian technology, this house offers comfortable year-round living. With its private enclosed land and own terrace, this home is perfect for starting a new life. Fully equipped with all necessary infrastructure, you can move in and start living immediately.',
     category: 'residential',
     location: 'Баруун 100 модны зуслан, Кувейтийн амнаас зүүн тийш',
     completionDate: '2024-01-15',
@@ -45,15 +45,15 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-4/main-view.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏠 50м² амины байшин 🌍 700м² газар 💰 96,000,000₮ 🏗️ Канад технологи 🌡️ 4 улирлын ашиглалт 🔥 15см хана + 20см таазны дулаалга ⚡ 380В цахилгаан 🚻 3 тонн эко 00 🏡 14м² террас 🛡️ 4 тал төмөр хашаа',
+        captionEn: '🏠 50m² house 🌍 700m² land 💰 96,000,000₮ 🏗️ Canadian technology 🌡️ Year-round living 🔥 15cm wall + 20cm ceiling insulation ⚡ 380V electricity 🚻 3-ton eco toilet 🏡 14m² terrace 🛡️ 4-sided iron fence',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-4/side-view.jpeg',
-        captionMn: 'Хажуугийн харагдах байдал',
-        captionEn: 'Side view',
+        captionMn: '📍 Баруун 100 модны зуслан, Кувейтийн амнаас зүүн тийш 🛣️ Засмал замаас 1.4км 🏙️ Хотын төвөөс 40км ✈️ Нисэх буудлаас 20км 🏠 2 өрөө 🔥 Цахилгаан халаагуур 📞 Холбоо: 8809-3221',
+        captionEn: '📍 East of Kuwait Embassy, Baruun 100 trees intersection 🛣️ 1.4km from paved road 🏙️ 40km from city center ✈️ 20km from airport 🏠 2 rooms 🔥 Electric heating 📞 Contact: 8809-3221',
         isPrimary: false,
         order: 2
       }
@@ -64,8 +64,8 @@ export const projects: Project[] = [
     order: 5,
     titleMn: 'Зуслангийн амины орон сууц',
     titleEn: 'Intersection Residential House',
-    descriptionMn: 'Зуслангийн тохилог байршилд баригдсан амины орон сууц. Дулаан хангамжтай, орчин үеийн стандартын дагуу баригдсан. Гэр бүлийн хэрэгцээнд тохирсон практик шийдэлтэй, амьдрахад тав тухтай орчин бүрдүүлсэн зарагдсан үл хөдлөх хөрөнгө.',
-    descriptionEn: 'A residential house built in a convenient intersection location. Equipped with heating system and built according to modern standards. Designed with practical solutions for family needs, creating a comfortable living environment. A sold property that provided ideal residential conditions.',
+    descriptionMn: 'Зуслангийн тохилог байршилд байрладаг энэхүү гэр амгалан нь азтай эзэнтэйгээ уулзсан түүх юм. Орчин үеийн стандартын дагуу баригдсан энэхүү байшин нь гэр бүлийн бүх хэрэгцээг хангах чадвартай байлаа. Практик шийдэл, тав тухтай орчинтой энэхүү орон сууц нь шинэ эзэддээ аз жаргалтай амьдралыг бэлэглэсэн.',
+    descriptionEn: 'This cozy home located at a convenient intersection is a story of finding its lucky owners. Built according to modern standards, this house was capable of meeting all family needs. With practical solutions and comfortable environment, this residence gifted its new owners a happy life.',
     category: 'residential',
     location: 'Улаанбаатар хот',
     completionDate: '2023-12-01',
@@ -162,8 +162,8 @@ export const projects: Project[] = [
     order: 3,
     titleMn: 'Сэлбэ зуслангийн бетон блокон амины байшин',
     titleEn: 'Selbe Intersection Concrete Block Residential House',
-    descriptionMn: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслангийн 1400 м² эзэмших эрхийн гэрчилгээтэй газарт баригдсан 50 м² бетон блокон амины орон сууц. 1 давхар, 4 улирлын ашиглалтанд тохиромжтой энэхүү байшин нь том өрөө, гал тогоо цуг болон 2 унтлагын өрөө бүхий. Камин зуух болон цахилгаан халаагуур (ресси агаар шатаадаггүй) системтэй дулаан хангамжтай. 24 м² террастай байшин нь өргөн уудам газартай бөгөөд орчин үеийн амьдралын бүх тав тухыг хангасан. Бүрэн тохижсон, амьдрахад бэлэн байшин.',
-    descriptionEn: 'A 50 m² concrete block residential house built on 1400 m² titled land in Sukhbaatar district, 20th khoroo, Selbe intersection. This single-story house suitable for year-round living features a combined large room and kitchen plus 2 bedrooms. Equipped with fireplace stove and electric heating system (environmentally friendly, no air burning). The house includes a 24 m² terrace and spacious land area, providing all modern living conveniences. Fully equipped and ready for living.',
+    descriptionMn: 'Өргөн уудам газартай энэхүү гэр бүлийн амгалан орон нь аз жаргалтай гэр бүлд шинэ гэр болж өглөө. Бат бөх бетон блокоор баригдсан энэхүү байшин нь олон жилийн турш найдвартай байх учиртай. Дулаан камин зуух, байгальд ээлтэй халаалтын системтэй энэхүү орон сууц нь өвлийн хүйтэн өдрүүдэд гэр бүлийн дулаан уур амьсгалыг бүрдүүлдэг байлаа. Тохилог байршилтай, өргөн террастай энэхүү байшин нь гэр бүлийн цугларалт, найз нөхөдтэй уулзалтад тохиромжтой байсан.',
+    descriptionEn: 'This spacious family home with extensive land became a new home for a happy family. Built with solid concrete blocks, this house was designed to be reliable for many years. With its warm fireplace stove and eco-friendly heating system, this residence created a cozy family atmosphere during cold winter days. With its convenient location and spacious terrace, this house was perfect for family gatherings and meetings with friends.',
     category: 'residential',
     location: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслан',
     completionDate: '2023-08-15',
@@ -175,15 +175,15 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-3/new_main.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏠 50м² бетон блокон байшин 🌍 1400м² газар 💰 210,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Сэлбэ зуслан 🏡 1 давхар 🌡️ 4 улирлын ашиглалт',
+        captionEn: '🏠 50m² concrete block house 🌍 1400m² land 💰 210,000,000₮ sold 📍 Sukhbaatar district, Selbe intersection 🏡 1 floor 🌡️ Year-round living',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-3/additional-1.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 1',
-        captionEn: 'Additional view 1',
+        captionMn: '🛋️ Том өрөө + гал тогоо цуг 🛏️ 2 унтлагын өрөө 🏡 24м² террас 🔥 Камин зуух',
+        captionEn: '🛋️ Combined large room + kitchen 🛏️ 2 bedrooms 🏡 24m² terrace 🔥 Fireplace stove',
         isPrimary: false,
         order: 2
       },
@@ -412,8 +412,8 @@ export const projects: Project[] = [
     order: 2,
     titleMn: 'Сэлбэ зуслангийн канад хийцтэй амины байшин',
     titleEn: 'Selbe Intersection Canadian Style Residential House',
-    descriptionMn: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслангийн 700 м² хувийн эзэмшлийн газарт баригдсан 52 м² канад хийцтэй амины орон сууц. 1 давхар, 4 улирлын ашиглалтанд тохиромжтой энэхүү байшин нь том өрөө, гал тогоо, унтлагын өрөө бүхий. 24 м² террастай байшин нь зуухтай бөгөөд зуны болон өвлийн бүх улиралд ашиглах боломжтой. Гүний худгийн эрхтэй, гадна болон дотор бие засах өрөөтэй. Тасрахгүй цахилгаан, интернет холболттой. Хашаа, хаалга, харуул хамгаалалттай бүрэн тохилог амьдрах орчин.',
-    descriptionEn: 'A 52 m² Canadian-style residential house built on 700 m² private property in Sukhbaatar district, 20th khoroo, Selbe intersection. This single-story house suitable for year-round living features a large room, kitchen, and bedroom. The house includes a 24 m² terrace and stove heating system suitable for all seasons. Equipped with deep well water rights, outdoor and indoor bathrooms. Features uninterrupted electricity and internet connection. Complete living environment with fence, gate, and security protection.',
+    descriptionMn: 'Амьдралын бүх тав тухыг хангасан энэхүү гэр амгалан нь азтай гэр бүлд шинэ эзэнтэй боллоо. Канадын чанартай барилгын технологиор хийгдсэн энэхүү байшин нь жилийн турш тогтвортой дулаан, тайван орчинг хангадаг байжээ. Өргөн тайван террас, хувийн гүний худаг, найдвартай аюулгүй байдлын системтэй энэхүү орон сууц нь гэр бүлийн аз жаргалтай өдрүүдийг өнгөрүүлэхэд тохиромжтой байсан.',
+    descriptionEn: 'This cozy family home with all life conveniences has found its lucky new owners. Built with Canadian quality construction technology, this house provided year-round stable warmth and peaceful environment. With its spacious quiet terrace, private deep well, and reliable security system, this residence was perfect for spending happy family days.',
     category: 'residential',
     location: 'Сүхбаатар дүүрэг, 20-р хороо, Сэлбэ зуслан',
     completionDate: '2023-11-30',
@@ -425,36 +425,36 @@ export const projects: Project[] = [
     images: [
       {
         url: '/uploads/project-9/main-view.jpeg',
-        captionMn: 'Үндсэн харагдах байдал',
-        captionEn: 'Main view',
+        captionMn: '🏠 52м² канад хийцтэй байшин 🌍 700м² газар 💰 165,000,000₮ зарагдсан 📍 Сүхбаатар дүүрэг, Сэлбэ зуслан 🏡 1 давхар 🌡️ 4 улирлын ашиглалт 🏡 24м² террас',
+        captionEn: '🏠 52m² Canadian-style house 🌍 700m² land 💰 165,000,000₮ sold 📍 Sukhbaatar district, Selbe intersection 🏡 1 floor 🌡️ Year-round living 🏡 24m² terrace',
         isPrimary: true,
         order: 1
       },
       {
         url: '/uploads/project-9/living-room.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 1',
-        captionEn: 'Additional view 1',
+        captionMn: '🛋️ Том өрөө болон гал тогооны орчин 🔥 Зуухтай дулаан хангамж 🌿 Тайван амрах орчин',
+        captionEn: '🛋️ Large living room and kitchen area 🔥 Stove heating system 🌿 Peaceful relaxation environment',
         isPrimary: false,
         order: 2
       },
       {
         url: '/uploads/project-9/bedroom.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 2',
-        captionEn: 'Additional view 2',
+        captionMn: '🛏️ Унтлагын өрөө 🌙 Тайван нойрын орчин 🪟 Байгалийн гэрэл',
+        captionEn: '🛏️ Bedroom 🌙 Peaceful sleeping environment 🪟 Natural lighting',
         isPrimary: false,
         order: 3
       },
       {
         url: '/uploads/project-9/kitchen.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 3',
-        captionEn: 'Additional view 3',
+        captionMn: '🍳 Гал тогооны өрөө 🚰 Усны системтэй 🏠 Практик зохион байгуулалт',
+        captionEn: '🍳 Kitchen area 🚰 Water system equipped 🏠 Practical layout',
         isPrimary: false,
         order: 4
       },
       {
         url: '/uploads/project-9/outside.jpeg',
-        captionMn: 'Нэмэлт харагдах байдал 4',
-        captionEn: 'Additional view 4',
+        captionMn: '🌲 Гадна орчин 💧 Гүний худгийн эрх 🚻 Гадна болон дотор 00 ⚡ Тасрахгүй цахилгаан 🌐 Интернет 🛡️ Харуул хамгаалалт',
+        captionEn: '🌲 Outdoor environment 💧 Deep well water rights 🚻 Outdoor and indoor toilet ⚡ Uninterrupted electricity 🌐 Internet 🛡️ Security protection',
         isPrimary: false,
         order: 5
       }

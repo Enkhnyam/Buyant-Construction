@@ -2,21 +2,14 @@
 
 import React, { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { Building2, Home, MapPin, ArrowRight, Search, X } from 'lucide-react'
+import { Building2, Home, MapPin, ArrowRight, X } from 'lucide-react'
 import { projects, Project } from '@/data/projects'
 
 export default function ProjectsPage() {
   const { language, t } = useLanguage()
-  const [searchTerm, setSearchTerm] = useState('')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const filteredProjects = projects.filter(project => {
-    const title = language === 'mn' ? project.titleMn : project.titleEn
-    const location = project.location
-    const matchesSearch = title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         location.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesSearch
-  }).sort((a, b) => a.order - b.order)
+  const filteredProjects = projects.sort((a, b) => a.order - b.order)
 
   const getProjectDisplayData = (project: Project) => {
     const title = language === 'mn' ? project.titleMn : project.titleEn
@@ -79,23 +72,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Search */}
-        <section className="py-12 bg-[#F4F2EA]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0F425C]/40 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder={language === 'mn' ? 'Төсөл хайх...' : 'Search projects...'}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-3 border border-[#0F425C]/20 rounded-lg focus:ring-2 focus:ring-[#0F425C] focus:border-transparent w-64"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* Projects Grid */}
         <section className="py-20 bg-white">

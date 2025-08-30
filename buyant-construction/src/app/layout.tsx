@@ -6,7 +6,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Буянт амины орон сууц - Амины орон сууцны зарын үйлчилгээ',
+  title: 'Buyant House',
   description: 'Амины орон сууцны зарын үйлчилгээ - Буянт амины орон сууц',
   authors: [{ name: 'Буянт амины орон сууц Team' }],
   keywords: ['барилга', 'construction', 'mongolia', 'mongol', 'buyant', 'буяант'],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Буянт амины орон сууц - Амины орон сууцны зарын үйлчилгээ',
+    title: 'Buyant House',
     description: 'Professional construction services and legal consultation in Mongolia',
     type: 'website',
     locale: 'mn_MN',
